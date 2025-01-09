@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   minishel.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 10:41:28 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/09 16:06:33 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/09 15:06:00 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/09 16:13:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishel.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	minishell(void)
-{
-	printf("🐧> ");
-	return (0);
-}
+#include <stdio.h>
+
+int	minishell(void);
+
+#endif
 

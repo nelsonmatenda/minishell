@@ -14,6 +14,6 @@
 
 int main(void)
 {
-	minishel();
+	printf("Hello world\n");
 	return 0;
 }

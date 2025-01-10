@@ -10,7 +10,7 @@ on:
 
 jobs:
   norminette:
-    name: Verificação de norminette
+    name: Verificação de Norminette
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code

@@ -14,20 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Configurando ambiente
-      run: |
-        sudo apt update
-        sudo apt install -y python3 python3-pip
-        python3 -m pip install --upgrade pip setuptools
-        python3 -m pip install norminette
+        run: |
+          sudo apt update
+          sudo apt install -y python3 python3-pip
+          python3 -m pip install --upgrade pip setuptools
+          python3 -m pip install norminette
 
       - name: Executando norminette
-      run: |
-        norminette | tee norminette_report.txt
-        if grep -q "Error" norminette_report.txt; then
-          exit 1
-        fi
+        run: |
+          norminette | tee norminette_report.txt
+          if grep -q "Error" norminette_report.txt; then
+            exit 1
+          fi
 
 

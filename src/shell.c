@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   shell.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:41:28 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/09 16:06:33 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:08:44 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishel.h"
+#include "../includes/minishell.h"
 
-int	minishell(void)
-{
-	printf("🐧> ");
+int minishell(void) {
+	while (1)
+		readline("🐧> ");
 	return (0);
 }
 

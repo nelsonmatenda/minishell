@@ -5,4 +5,4 @@
   - Redirecionamento (>, >>, <, <<, |).
   - Controle de sinais.
   - Implementar built-ins (echo, cd, pwd, export, unset, env, exit).
-  
+

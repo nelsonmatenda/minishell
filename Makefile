@@ -1,5 +1,6 @@
 NAME = minishell
-SRCS  = minishell.c
+APP = ./app/minishell.c
+SRCS  = shell.c
 DIR_SRC = ./src
 OBJ_DIR = ./objs
 SRC_OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -12,14 +13,9 @@ vpath %.c $(DIR_SRC)
 all: $(NAME)
 	echo all
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(APP) $(OBJ_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(APP) $(OBJS) -lreadline -o $(NAME)
 
-test: test/prompt.c $(OBJ_DIR) $(OBJS) test/minunit.h
-	$(CC) $(CFLAGS) $(OBJS) $< -o ./test/test_bin
-
-run_test: test
-	./test/test_bin
 $(OBJ_DIR):
 	mkdir -p ${OBJ_DIR}
 
@@ -31,7 +27,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME) test/test_bin
+	rm -f $(NAME)
 
 re: fclean all
 

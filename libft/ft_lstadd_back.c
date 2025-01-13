@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 10:41:28 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 11:25:38 by nfigueir         ###   ########.fr       */
+/*   Created: 2024/05/21 10:00:09 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/14 09:42:32 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "../includes/minishell.h"
 
-char	**tokenize(char **input_splited)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
-	int	pos;
+	t_list	*start;
 
-	i = 0;
-	while(input_splited[i] != NULL)
+	start = *lst;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-
+		while (start->next)
+			start = start->next;
+		start->next = new;
 	}
 }
-
-int minishell(void) {
-	char	*input;
-	t_list_token	*tokens;
-
-	input = NULL;
-	while (1)
-	{
-		input = readline("🐧> "); // precisa de free 1 malloc
-		tokens = tokenize(input);
-		identify_tokens(tokens);
-		free(input);
-	}
-	//ft_exit(input_splited);
-
-	return (0);
-}
-

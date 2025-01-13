@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 10:41:28 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 11:25:38 by nfigueir         ###   ########.fr       */
+/*   Created: 2024/05/21 09:42:25 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/14 09:43:35 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "../includes/minishell.h"
 
-char	**tokenize(char **input_splited)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
-	int	pos;
+	t_list	*new_node;
 
-	i = 0;
-	while(input_splited[i] != NULL)
-	{
-
-	}
+	new_node = malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }
-
-int minishell(void) {
-	char	*input;
-	t_list_token	*tokens;
-
-	input = NULL;
-	while (1)
-	{
-		input = readline("🐧> "); // precisa de free 1 malloc
-		tokens = tokenize(input);
-		identify_tokens(tokens);
-		free(input);
-	}
-	//ft_exit(input_splited);
-
-	return (0);
-}
-

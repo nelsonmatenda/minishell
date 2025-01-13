@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell.c                                            :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 10:41:28 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 11:25:38 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/09 15:06:00 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/14 12:33:55 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-char	**tokenize(char **input_splited)
-{
-	int	i;
-	int	pos;
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "../libft/libft.h"
+#include "list_token.h"
 
-	i = 0;
-	while(input_splited[i] != NULL)
-	{
+void	destroy_splited(char **splited);
+int		minishell(void);
+t_list_token	*tokenize(char *input);
 
-	}
-}
+// UTIL
+int	is_valid_command(char *token);
 
-int minishell(void) {
-	char	*input;
-	t_list_token	*tokens;
-
-	input = NULL;
-	while (1)
-	{
-		input = readline("🐧> "); // precisa de free 1 malloc
-		tokens = tokenize(input);
-		identify_tokens(tokens);
-		free(input);
-	}
-	//ft_exit(input_splited);
-
-	return (0);
-}
+#endif
 

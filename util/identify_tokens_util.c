@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identify_tokens_util.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:24:04 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 14:24:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:59:09 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	is_valid_command(char *token)
 	int		j;
 	int		k;
 
+	if (access(token, X_OK) == 0)
+		return (1);
 	path = getenv("PATH");
 	dir = ft_split(path, ':');
 	i = 0;

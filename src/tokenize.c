@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:28:09 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 12:25:56 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/14 21:09:07 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,9 @@ t_list_token	*tokenize(char *input)
 	}
 	free(splited);
 	return (tokens);
+}
+
+void	identify_tokens(t_list_token *token)
+{
+	
 }

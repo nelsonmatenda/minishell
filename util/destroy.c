@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:04:38 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/13 12:09:05 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:47:42 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	destroy_splited(char **splited)
 	while (splited[i] != NULL)
 	{
 		free(splited[i]);
+		splited[i] = NULL;
 		i++;
 	}
 	free(splited);
+	splited = NULL;
 }

@@ -9,15 +9,4 @@
 
 ls ./u | grep -c
 
-token -> <ls> <./u>  <|> <grep> <-c>
-
-struct
-  cmd - ls
-  arg - ./u
-
-struct
-  special - |
-
-struct
-  smd - grep
-  opt - -c
+Esqueçemos na funão tokenize de verificar as "opções". ls -la

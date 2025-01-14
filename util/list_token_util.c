@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_token.c                                       :+:      :+:    :+:   */
+/*   list_token_util.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:42:07 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 10:04:34 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/14 20:46:44 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void	destroy_list_token (t_list_token *tokens)
 	{
 		aux = tokens->next;
 		free(tokens->data);
+		tokens->data = NULL;
 		free(tokens);
 		tokens = aux;
 	}
+	tokens = NULL;
 }

@@ -9,4 +9,7 @@
 
 ls ./u | grep -c
 
-Esqueçemos na funão tokenize de verificar as "opções". ls -la
+Lexer
+Trabalhar com um array de struct, será melhor. 
+
+Esqueçemos na função tokenize de verificar as "opções". ls -la

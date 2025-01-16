@@ -3,53 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 12:28:09 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 21:09:07 by matenda          ###   ########.fr       */
+/*   Updated: 2025/01/16 12:24:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	handle_special_characters(char *str, int *j, t_list_token **tokens)
+void	identify_tokens(t_list_token *token)
 {
-	char	c[3];
+	t_list_token *aux;
 
-	ft_bzero(c, sizeof(c));
-	c[0] = str[*j];
-	if (str[*j + 1] == str[*j])
+	while (token)
 	{
-		c[1] = str[*j];
-		(*j)++;
+		aux = token->next;
+		if (!ft_strncmp(token->data,  "|", sizeof("|")))
+			token->type = TYPE_PIPE;
+		else if (!ft_strncmp(token->data, ">", sizeof(">")))
+			token->type = TYPE_REDIRECT_OUT;
+		else if (!ft_strncmp(token->data, ">>", sizeof(">>")))
+			token->type = TYPE_REDIRECT_OUT_APPEND;
+		else if (!ft_strncmp(token->data, "<", sizeof("<")))
+			token->type = TYPE_REDIRECT_IN;
+		else if (!ft_strncmp(token->data, "<<", sizeof("<<")))
+			token->type = TYPE_HE_DOC;
+		token = aux;
 	}
-	ft_lstadd_token(tokens, ft_lstnew_token(ft_strdup(c)));
-}
-
-static void	add_tokens_to_list(char *str, t_list_token **tokens)
-{
-	int		j;
-	int		k;
-	char	text[1024];
-
-	ft_bzero(text, sizeof(text));
-	j = 0;
-	k = 0;
-	while (str[j])
-	{
-		k = 0;
-		while (str[j] && str[j] != '|' && str[j] != '<' && str[j] != '>')
-		{
-			text[k++] = str[j++];
-		}
-		text[k] = '\0';
-		if (text[0] != '\0')
-			ft_lstadd_token(tokens, ft_lstnew_token(ft_strdup(text)));
-		if (str[j] == '|' || str[j] == '<' || str[j] == '>')
-			handle_special_characters(str, &j, tokens);
-		if (str[j])
-			j++;
-	}
+	aux = NULL;
 }
 
 t_list_token	*tokenize(char *input)
@@ -70,10 +52,26 @@ t_list_token	*tokenize(char *input)
 		i++;
 	}
 	free(splited);
+	identify_tokens(tokens);
 	return (tokens);
 }
-
-void	identify_tokens(t_list_token *token)
+// |  > >> << < $
+// echo -e "hello$PATH"
+int	cout_tokens(char *input)
 {
-	
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (input[i] != '\0')
+	{
+		while (input[i] != '|' || input[i] == '<' || input[i] == '>')
+		{
+			if ()
+			i++;
+		}
+		i++;
+		count++;
+	}
 }

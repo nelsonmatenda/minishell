@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:06:00 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 21:10:19 by matenda          ###   ########.fr       */
+/*   Updated: 2025/01/15 14:58:25 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 
 void			destroy_splited(char **splited);
 int				minishell(void);
+void			handle_special_characters(char *str, int *j, t_list_token **tokens);
+void			add_tokens_to_list(char *str, t_list_token **tokens);
 t_list_token	*tokenize(char *input);
-int				is_valid_command(char *token);
+//int				is_valid_command(char *token);
 void			identify_tokens(t_list_token *token);
 
 

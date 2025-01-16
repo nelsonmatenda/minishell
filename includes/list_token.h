@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:00:44 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 12:33:38 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:54:29 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 typedef enum e_type
 {
+	TYPE_UNKNOWN,
 	TYPE_COMMAND,
 	TYPE_ARGUMMENT,
 	TYPE_PIPE, // |
 	TYPE_REDIRECT_OUT, // >
 	TYPE_REDIRECT_OUT_APPEND, // >>
 	TYPE_REDIRECT_IN, // <
-	TYPE_HE_DOC // <<
+	TYPE_HE_DOC, // <<
 }	t_token_type;
 
 typedef struct s_list_token
@@ -29,6 +30,7 @@ typedef struct s_list_token
 	char				*data;
 	t_token_type		type;
 	struct s_list_token	*next;
+	int					err;
 }						t_list_token;
 
 t_list_token	*ft_lstnew_token(char *data);

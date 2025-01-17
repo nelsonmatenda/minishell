@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/17 02:05:42 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/17 02:15:16 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **envp)
 	char	**token;
 	char	*full_path;
 
-	input = readline("mini>");
+	input = readline("👽-➤  ");
 	token = ft_split(input, ' ');
 	if (is_valid_command(token[0], &full_path, envp))
 		execve(full_path, token, envp);

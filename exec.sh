@@ -1,2 +1,2 @@
-cc -g first.c -lreadline libft/*.c -o bin
+cc -g src/minishell.c -lreadline libft/*.c -o bin
 ./bin

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/17 12:12:17 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:23:39 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av, char **envp)
 	{
 		input = readline("👽-➤  ");
 		token = ft_split(input, ' ');
-		check_word_case(token);
+		//check_word_case(token);
 		if (is_valid_command(token[0], &full_path, envp))
 			execute(full_path, token, envp);
 		reset_shell(full_path, token, input);

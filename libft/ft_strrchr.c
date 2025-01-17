@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:32:03 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/05/21 17:39:06 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:42:49 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ char	*ft_strrchr(const char *s, int c)
 	return (NULL);
 }
 
+int	ft_strrchr_pos(const char *s, int c)
+{
+	int		i;
+	char	chr;
+
+	chr = (char)c;
+	i = ft_strlen(s);
+	while (i >= 0)
+	{
+		if (s[i] == chr)
+			return (i);
+		i--;
+	}
+	return (7168);
+}
 //int	main()
 //{
 //	char s[10]; //= "some,data,in,commas";

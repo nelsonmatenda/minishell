@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/17 11:01:57 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:39:59 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,20 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
+# include <stdbool.h>
 
-int	is_valid_command(char *token, char **arg_path, char **envp);
+# define NO_FOUND 7168
+
+typedef enum
+{
+	NO_QUOTE,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE,
+	INVALID_QUOTE
+}	e_quote;
+
+e_quote	check_quotes(const char *str, char **no_quotes_str);
+int		is_valid_command(char *token, char **arg_path, char **envp);
 void	destroy_splited(char **splited);
 
 #endif

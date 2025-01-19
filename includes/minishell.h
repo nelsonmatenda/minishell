@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/19 18:05:35 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/19 21:42:17 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum
 	INVALID_QUOTE
 }	e_quote;
 
-e_quote	check_quotes(const char *str, char **no_quotes_str);
+e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
 int		is_valid_command(char *token, char **arg_path, char **envp);
 void	destroy_splited(char **splited);
 char	**ft_split_quotes(char const *s, char c, int *quotes_qtt);

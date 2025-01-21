@@ -1,2 +1,2 @@
-cc -g src/minishell.c -lreadline libft/*.c src/util/*.c -o bin
+cc -g -Wall -Wextra -Werror libft/*.c src/*.c src/util/destroy_split.c -lreadline -o bin
 ./bin

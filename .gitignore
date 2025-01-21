@@ -3,3 +3,4 @@ a.out
 *.o
 minishell
 ./obj
+test_bin

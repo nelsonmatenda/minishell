@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:18:02 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/19 22:33:03 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/20 09:14:35 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	count_env(char **str, int end, char **envp)
 			while (str2[i] && str2[i] != ' ')
 				tmp[j++] = str2[i++];
 			tmp[j] = 0;
-			replace = find_env(envp, tmp); 
+			replace = find_env(envp, tmp);
 			if (replace != NULL)
 			{
 				replace_env_var(&str2, tmp, replace);
@@ -139,22 +139,22 @@ e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp)
 	return (NO_QUOTE);
 }
 
-int	main(int ac, char **av, char **envp)
-{
-	char	*str;
+// int	main(int ac, char **av, char **envp)
+// {
+// 	char	*str;
 
-	while (true)
-	{
-		char *input = readline("Digite Alguma coisa: ");
-		//int i = count_env(&input, ft_strlen(input), envp);
-		//printf("%d\n%s\n\n", i, input);
-		//input = ft_strjoin(input, "=");
-		//printf("%s\n", find_env(envp, input));
-		e_quote quote = check_quotes(input, &str, envp);
-		//if (quote != NO_QUOTE && quote != INVALID_QUOTE)
-		//	printf("%s\n", str);
-		//else if (quote == INVALID_QUOTE)
-		//	perror("quotes");
-	}
-}
+// 	while (true)
+// 	{
+// 		char *input = readline("Digite Alguma coisa: ");
+// 		//int i = count_env(&input, ft_strlen(input), envp);
+// 		//printf("%d\n%s\n\n", i, input);
+// 		//input = ft_strjoin(input, "=");
+// 		//printf("%s\n", find_env(envp, input));
+// 		e_quote quote = check_quotes(input, &str, envp);
+// 		//if (quote != NO_QUOTE && quote != INVALID_QUOTE)
+// 		//	printf("%s\n", str);
+// 		//else if (quote == INVALID_QUOTE)
+// 		//	perror("quotes");
+// 	}
+// }
 

@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:18:02 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/19 22:33:03 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:46:32 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,36 +72,34 @@ int	count_env(char **str, int end, char **envp)
 
 	i = 0;
 	count_env = 0;
-	tmp = malloc(ft_strlen(*str) + 1);
-	char	*str2 = *str;
-	//printf("%s\n", *str);
-	while (str2[i])
+	tmp = malloc(ft_strlen(str[0]) + 1);
+	while (str[0][i])
 	{
-		if (str2[i] == '$')
+		if (str[0][i] == '$')
 		{
 			i++;
 			j = 0;
-			while (str2[i] && str2[i] != ' ')
-				tmp[j++] = str2[i++];
+			while (str[0][i] && str[0][i] != ' ')
+				tmp[j++] = str[0][i++];
+			tmp[j++] = '=';
 			tmp[j] = 0;
-			replace = find_env(envp, tmp); 
+			replace = find_env(envp, tmp);
+			tmp[--j] = 0;
+			tmp = ft_strjoin("$", tmp);
 			if (replace != NULL)
 			{
-				replace_env_var(&str2, tmp, replace);
-				str2 = str2 + 2;
+				replace_env_var(&str[0], tmp, replace);
 				count_env++;
 			}
 		}
 		i++;
 	}
-	printf("%s\n\n", str2);
 	return (count_env);
 }
 
 e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp)
 {
 	char	**split_quotes;
-	char	*no_quote_str;
 	size_t	len;
 	int		i;
 	int		quotes_qtt;
@@ -112,26 +110,24 @@ e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp)
 	if (len < 2)
 		return (NO_QUOTE);
 	i = 0;
-	while (i < len)
+	while (str[i])
 	{
 		if (str[i] == '\'')
 		{
 			first_quote_pos = i;
 			last_quote_pos = ft_strrchr_pos(str, '\'');
 			split_quotes = ft_split_quotes(str, '\'', &quotes_qtt);
-			no_quote_str = join_words(split_quotes);
-			count_env(&no_quote_str, ft_strlen(no_quote_str), envp);
-			//replace_env_var(&no_quote_str + i, "$0", "Kicuma");
-			printf("%s\n\n", no_quote_str);
+			*no_quotes_str = join_words(split_quotes);
+			//count_env(no_quotes_str, ft_strlen(*no_quotes_str), envp);
 			return (NO_QUOTE);
 		}
-		if (str[i] == '"')
+		else if (str[i] == '"')
 		{
+			first_quote_pos = i;
 			last_quote_pos = ft_strrchr_pos(str, '"');
 			split_quotes = ft_split_quotes(str, '"', &quotes_qtt);
-			no_quote_str = join_words(split_quotes);
-			replace_env_var(&no_quote_str + i, "$0", "Kicuma");
-			printf("%s\n\n", no_quote_str);
+			*no_quotes_str = join_words(split_quotes);
+			count_env(no_quotes_str, ft_strlen(*no_quotes_str), envp);
 			return (NO_QUOTE);
 		}
 		i++;
@@ -145,16 +141,9 @@ int	main(int ac, char **av, char **envp)
 
 	while (true)
 	{
-		char *input = readline("Digite Alguma coisa: ");
-		//int i = count_env(&input, ft_strlen(input), envp);
-		//printf("%d\n%s\n\n", i, input);
-		//input = ft_strjoin(input, "=");
-		//printf("%s\n", find_env(envp, input));
+		char *input = readline("hell$ ");
 		e_quote quote = check_quotes(input, &str, envp);
-		//if (quote != NO_QUOTE && quote != INVALID_QUOTE)
-		//	printf("%s\n", str);
-		//else if (quote == INVALID_QUOTE)
-		//	perror("quotes");
+		printf("%s\n", str);
 	}
 }
 

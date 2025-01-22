@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:35:47 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:17:25 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 			data[j++] = input[i++];
 		data[j] = '\0';
 		if (j == 0)
-			free(data);
+			lst_quote_add(quote_list, ft_lstnew_quote(data, INVALID_QUOTE));
 		else if (input[i] == c && c == '\'')
 			i += lst_quote_add(quote_list, ft_lstnew_quote(data, SINGLE_QUOTE));
 		else if (input[i] == c && c == '"')

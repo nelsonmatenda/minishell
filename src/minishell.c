@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 11:08:36 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:13:25 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	t_shell	shell;
+	char	*output;
 	char	**token;
 
 	init_shell(&shell);
@@ -64,7 +65,8 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		shell.env = envp;
-		shell.input = readline("👽-➤  ");
+		output = readline("👽-➤  ");
+		shell.input = remove_quotes_expand_env_var(output, shell.env);
 		if (shell.input != NULL)
 		{
 			shell.nbr_of_tokens = count_command(shell.input);

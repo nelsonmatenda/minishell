@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/21 12:56:35 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:53:35 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	t_shell	shell;
+	char	*output;
 	char	**token;
 
 	init_shell(&shell);
 	while (1)
 	{
-		shell.input = readline("👽-➤  ");
+		output = readline("👽-➤  ");
+		shell.input = remove_quotes_expand_env_var(output, envp);
+		// printf("%s\n\n", output);
 		shell.nbr_of_tokens = count_command(shell.input);
 		if (!tokenize(&shell, shell.nbr_of_tokens))
 			printf("Algo errado com tokens\n");

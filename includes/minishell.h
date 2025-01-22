@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:41:19 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:37:17 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ t_quote	*convert_str_to_quote_list(char *input);
 void	free_quote_list(t_quote *quote_list);
 void	substitute_env_var(char **str, const char *env_var, \
 							const char *env_value);
+t_quote	*expand_env_var(char *input, char **envp);
+char	*remove_quotes_expand_env_var(char *input, char **envp);
 
 #endif

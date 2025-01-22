@@ -6,11 +6,11 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:42:14 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:43:14 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:08:32 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "libft.h"
 
 int	ft_iswhitespace(char c)
 {

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/21 12:10:15 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:43:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_shell
 	char	*input;
 	char	*cmd_full_path;
 	int		nbr_of_tokens;
+	char	**env;
 }			t_shell;
 
 

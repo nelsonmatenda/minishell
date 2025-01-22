@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/21 16:49:23 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:41:19 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@
 
 # define NO_FOUND 7168
 
+// typedef struct s_token
+// {
+// 	char	*data;
+// 	char	*io_type;
+// }			t_token;
+
+typedef struct s_token
+{
+	char	*data;
+	int		stdio[2];
+}			t_token;
+
+
+typedef struct s_shell
+{
+	t_token	*tokens;
+	char	*input;
+	char	*cmd_full_path;
+	int		nbr_of_tokens;
+}			t_shell;
+
+
 typedef enum
 {
 	NO_QUOTE,
@@ -40,6 +62,9 @@ typedef struct	s_quote
 	struct s_quote	*next;
 }					t_quote;
 
+void	init_shell(t_shell	*shell);
+int		tokenize(t_shell *shell, int nbr);
+int		count_command(char	*s);
 e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
 int		is_valid_command(char *token, char **arg_path, char **envp);
 void	destroy_splited(char **splited);

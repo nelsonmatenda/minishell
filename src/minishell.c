@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/17 13:23:39 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:56:35 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,61 @@
 
 void	execute(char *full_path, char **token, char **envp);
 
-void	reset_shell(char *full_path, char **token, char *input)
+void	reset_shell(char *full_path, char **token)
 {
-	free(full_path);
+	if (full_path)
+		free(full_path);
 	destroy_splited(token);
 }
 
-void	check_word_case(char **token)
-{
-	int	i;
-	int	j;
-	int	k;
-	char	*s[1024];
+// void	check_word_case(char **token)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	k;
+// 	char	*s[1024];
 
-	i = 0;
-	while (token[i] != NULL)
-	{
-		j = 0;
-		if (token[i][j] == '\'')
-		{
-			k = 0;
-			while (token[i][j] != '\'' && token[i][j] != '\0' && token[i][1 + j] != '\0')
-			{
-				token[i][j] = token[i][++j];
-			}
-			s[k] = '\0';
-		}
-	}
-}
+// 	i = 0;
+// 	while (token[i] != NULL)
+// 	{
+// 		j = 0;
+// 		if (token[i][j] == '\'')
+// 		{
+// 			k = 0;
+// 			while (token[i][j] != '\'' && token[i][j] != '\0' && token[i][1 + j] != '\0')
+// 			{
+// 				token[i][j] = token[i][j + 1];
+// 				j++;
+// 			}
+// 			s[k] = '\0';
+// 		}
+// 	}
+// }
 
 int	main(int ac, char **av, char **envp)
 {
-	char	*cmd;
-	char *input;
+	(void)ac;
+	(void)av;
+	t_shell	shell;
 	char	**token;
-	char	*full_path;
 
+	init_shell(&shell);
 	while (1)
 	{
-		input = readline("👽-➤  ");
-		token = ft_split(input, ' ');
-		//check_word_case(token);
-		if (is_valid_command(token[0], &full_path, envp))
-			execute(full_path, token, envp);
-		reset_shell(full_path, token, input);
-		if (!ft_strncmp(input, "exi", ft_strlen("exi")))
+		shell.input = readline("👽-➤  ");
+		shell.nbr_of_tokens = count_command(shell.input);
+		if (!tokenize(&shell, shell.nbr_of_tokens))
+			printf("Algo errado com tokens\n");
+		token = ft_split(shell.tokens[0].data, ' ');
+		if (is_valid_command(token[0], &shell.cmd_full_path, envp))
+			execute(shell.cmd_full_path, token, envp);
+		if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
 		{
-			free(input);
+			free(shell.input);
 			break ;
 		}
-		free(input);
+		reset_shell(shell.cmd_full_path, token);
+		free(shell.input);
 	}
 	return (0);
 }

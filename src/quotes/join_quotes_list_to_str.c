@@ -6,13 +6,13 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:34:11 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:35:56 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:45:27 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*join_quotes_list_to_str(t_quotes **list)
+char	*join_quotes_list_to_str(t_quote **list)
 {
 
 }

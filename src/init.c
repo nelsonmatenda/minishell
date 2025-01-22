@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 11:44:17 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:44:20 by jquicuma         ###   ########.fr       */
+/*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/20 09:21:10 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void	free_quote_list(t_quote *quote_list)
+void	init_shell(t_shell	*shell)
 {
-	t_quote	*current;
-	t_quote	*next;
-
-	current = quote_list;
-	while (current)
-	{
-		next = current->next;
-		free(current->data);
-		free(current);
-		current = next;
-	}
+	shell->cmd_full_path = NULL;
+	shell->input = NULL;
+	shell->tokens = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/21 17:43:17 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:09:02 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef enum
 	INVALID_QUOTE
 }	e_quote;
 
+typedef struct	s_quote
+{
+	char			*data;
+	e_quote			type;
+	struct s_quote	*next;
+}					t_quote;
+
 void	init_shell(t_shell	*shell);
 int		tokenize(t_shell *shell, int nbr);
 int		count_command(char	*s);
@@ -65,5 +72,11 @@ void	destroy_splited(char **splited);
 char	**ft_split_quotes(char const *s, char c, int *quotes_qtt);
 void	replace_env_var(char **str, const char *env_var,\
 											const char *env_value);
+t_quote	*convert_str_to_quote_list(char *input);
+void	free_quote_list(t_quote *quote_list);
+void	substitute_env_var(char **str, const char *env_var, \
+							const char *env_value);
+t_quote	*expand_env_var(char *input, char **envp);
+char	*remove_quotes_expand_env_var(char *input, char **envp);
 
 #endif

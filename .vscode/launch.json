@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/bin",
+			"program": "${workspaceFolder}/src/quotes/a.out",
 			"args": [],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",

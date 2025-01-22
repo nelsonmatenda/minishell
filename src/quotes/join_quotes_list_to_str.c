@@ -6,11 +6,22 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:34:11 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:34:45 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:22:29 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+static bool	is_valid_quote(t_quote *quote_list)
+{
+	while (quote_list)
+	{
+		if (quote_list->type == INVALID_QUOTE)
+			return (0);
+		quote_list = quote_list->next;
+	}
+	return (1);
+}
 
 char	*remove_quotes_expand_env_var(char *input, char **envp)
 {
@@ -32,25 +43,12 @@ char	*remove_quotes_expand_env_var(char *input, char **envp)
 		output = tmp;
 		quote_list = quote_list->next;
 	}
+	if (!is_valid_quote(tmp_list_free))
+	{
+		free_quote_list(tmp_list_free);
+		return (NULL);
+	}
 	free_quote_list(tmp_list_free);
 	return (output);
 }
 
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	char	*str;
-
-// 	(void)argc;
-// 	(void)argv;
-// 	(void)envp;
-// 	str = ft_strdup("echo  \"\'$USER\' $USER $USER\"$USER  $PATH  pure \'\"world\"\' \"cruel");
-// 	//t_quote *list = expand_env_var(str, envp);
-// 	// for (t_quote *lst = list; lst; lst = lst->next)
-// 	// 	printf("|%s|\n", lst->data);
-// 	// free_quote_list(list);
-// 	char *str2 = remove_quotes_expand_env_var(str, envp);
-// 	printf("%s\n\n", str2);
-// 	free(str);
-// 	free(str2);
-// 	return (0);
-// }

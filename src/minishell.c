@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 17:33:09 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:26:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	main(int ac, char **av, char **envp)
 				break ;
 			}
 		}
+		else
+			printf("quotes: invalid quotes\n");
 		reset_shell(&shell, &token);
 		free(shell.input);
 	}

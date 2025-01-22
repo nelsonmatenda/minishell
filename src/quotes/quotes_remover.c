@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:10:44 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:35:43 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,21 +101,3 @@ t_quote	*expand_env_var(char *input, char **envp)
 	}
 	return (quotes_list);
 }
-/*
-int	main(int argc, char **argv, char **envp)
-{
-	char	*str;
-
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	str = ft_strdup("echo  \"\'$USER\' $USER $PATH\
-				"my  $PATH  pure \'\"world\"\' \"cruel");
-	t_quote *list = expand_env_var(str, envp);
-	for (t_quote *lst = list; lst; lst = lst->next)
-		printf("%s\n", lst->data);
-	free_quote_list(list);
-	free(str);
-	return (0);
-}
-*/

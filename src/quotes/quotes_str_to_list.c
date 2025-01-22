@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/21 16:24:07 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:27:23 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	add_to_list_no_quote(t_quote **quote_list, char *input)
 	if (input[i] && input[i] != '\'' && input[i] != '"')
 	{
 		data = malloc(ft_strlen(input) + 1);
-		while (input[i] && input[i] != ' ' && input[i] != '\'' && \
+		while (input[i] /*&& input[i] != ' '*/ && input[i] != '\'' && \
 				input[i] != '"')
 		{
 			data[i] = input[i];
@@ -103,8 +103,8 @@ t_quote	*convert_str_to_quote_list(char *input)
 	quote_list = NULL;
 	while (input[i])
 	{
-		while (input[i] && input[i] == ' ')
-			i++;
+		//while (input[i] && input[i] == ' ')
+		//	i++;
 		if (input[i] == '\'' || input[i] == '"')
 			i += add_to_list_with_quote(&quote_list, &input[i]);
 		else if (input[i])

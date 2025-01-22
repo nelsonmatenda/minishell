@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:24:10 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 17:05:57 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:32:51 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,49 +91,49 @@ int	count_command(char	*s)
 	}
 	return (count);
 }
-// int	create_token(t_shell *shell, char **s, int *k)
-// {
-// 	int	i;
-// 	int	j;
+int	create_token(t_shell *shell, char **s, int *k)
+{
+	int	i;
+	int	j;
 
-// 	i = 0;
-// 	while ((*s)[i] && (*s)[i] != '|' && (*s)[i] != '<' && (*s)[i] != '>')
-// 		i++;
-// 	shell->tokens[++(*k)].data = malloc(sizeof(char) * (i + 1));
-// 	if (!shell->tokens[++(*k)].data)
-// 		return (-1);
-// 	j = -1;
-// 	while (**s && **s != '|' && **s != '<' && **s != '>')
-// 	{
-// 		shell->tokens[++(*k)].data[++j] = **s;
-// 		(*s)++;
-// 	}
-// 	shell->tokens[++(*k)].data[++j] = '\0';
-// 	return (1);
-// }
+	i = 0;
+	while ((*s)[i] && (*s)[i] != '|' && (*s)[i] != '<' && (*s)[i] != '>')
+		i++;
+	shell->tokens[++(*k)].data = malloc(sizeof(char) * (i + 1));
+	if (!shell->tokens[*k].data)
+		return (-1);
+	j = -1;
+	while (**s && **s != '|' && **s != '<' && **s != '>')
+	{
+		shell->tokens[*k].data[++j] = **s;
+		(*s)++;
+	}
+	shell->tokens[*k].data[++j] = '\0';
+	return (1);
+}
 
 int	split_tokens(t_shell *shell)
 {
-	int	j;
+	//int	j;
 	int	k;
-	char	tmp[255];
+	//char	tmp[255];
 	char	*aux;
 
 	k = -1;
 	aux = shell->input;
 	while (*aux)
 	{
-		j = -1;
+		//j = -1;
 		first_caracter_case(&aux);
-		while (*aux && *aux != '|' && *aux != '<' && *aux != '>')
-		{
-			tmp[++j] = *aux;
-			aux++;
-		}
-		tmp[++j] = '\0';
-		shell->tokens[++k].data = ft_strdup(tmp);
-		// if (create_token(shell, &aux, &k) == -1)
-		// 	return (-1);
+		// while (*aux && *aux != '|' && *aux != '<' && *aux != '>')
+		// {
+		// 	tmp[++j] = *aux;
+		// 	aux++;
+		// }
+		// tmp[++j] = '\0';
+		// shell->tokens[++k].data = ft_strdup(tmp);
+		if (create_token(shell, &aux, &k) == -1)
+			return (-1);
 		if (check_multiple_limits(&aux) == -1)
 			return (-1);
 		//ft_bzero(tmp, sizeof(tmp));

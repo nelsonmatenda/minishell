@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:24:10 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 15:48:22 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:05:57 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,25 @@ int	count_command(char	*s)
 	}
 	return (count);
 }
-// void	create_token(t_shell *shell,int *i, int nbr_of_token)
+// int	create_token(t_shell *shell, char **s, int *k)
 // {
-// 	int	pos;
+// 	int	i;
+// 	int	j;
 
-// 	pos = 0;
-// 	while (shell->input[*i] && shell->input[*i] != '|' && shell->input[*i] != '<' && shell->input[*i] != '>')
-// 		(*i)++;
-// 	while (pos < )
+// 	i = 0;
+// 	while ((*s)[i] && (*s)[i] != '|' && (*s)[i] != '<' && (*s)[i] != '>')
+// 		i++;
+// 	shell->tokens[++(*k)].data = malloc(sizeof(char) * (i + 1));
+// 	if (!shell->tokens[++(*k)].data)
+// 		return (-1);
+// 	j = -1;
+// 	while (**s && **s != '|' && **s != '<' && **s != '>')
+// 	{
+// 		shell->tokens[++(*k)].data[++j] = **s;
+// 		(*s)++;
+// 	}
+// 	shell->tokens[++(*k)].data[++j] = '\0';
+// 	return (1);
 // }
 
 int	split_tokens(t_shell *shell)
@@ -121,9 +132,11 @@ int	split_tokens(t_shell *shell)
 		}
 		tmp[++j] = '\0';
 		shell->tokens[++k].data = ft_strdup(tmp);
+		// if (create_token(shell, &aux, &k) == -1)
+		// 	return (-1);
 		if (check_multiple_limits(&aux) == -1)
 			return (-1);
-		ft_bzero(tmp, sizeof(tmp));
+		//ft_bzero(tmp, sizeof(tmp));
 		if (*aux == '\0')
 			break ;
 	}

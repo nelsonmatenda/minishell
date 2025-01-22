@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 12:53:35 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:11:07 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 void	execute(char *full_path, char **token, char **envp);
 
-void	reset_shell(char *full_path, char **token)
+void	reset_shell(t_shell *shell, char ***token)
 {
-	if (full_path)
-		free(full_path);
-	destroy_splited(token);
+	if (shell->cmd_full_path)
+	{
+		free(shell->cmd_full_path);
+		shell->cmd_full_path = NULL;
+	}
+	if (*token)
+	{
+		destroy_splited(*token);
+		*token = NULL;
+	}
 }
 
 // void	check_word_case(char **token)
@@ -54,23 +61,27 @@ int	main(int ac, char **av, char **envp)
 	char	**token;
 
 	init_shell(&shell);
+	token = NULL;
 	while (1)
 	{
+		shell.env = envp;
 		output = readline("👽-➤  ");
-		shell.input = remove_quotes_expand_env_var(output, envp);
-		// printf("%s\n\n", output);
-		shell.nbr_of_tokens = count_command(shell.input);
-		if (!tokenize(&shell, shell.nbr_of_tokens))
-			printf("Algo errado com tokens\n");
-		token = ft_split(shell.tokens[0].data, ' ');
-		if (is_valid_command(token[0], &shell.cmd_full_path, envp))
-			execute(shell.cmd_full_path, token, envp);
-		if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
+		shell.input = remove_quotes_expand_env_var(output, shell.env);
+		if (shell.input != NULL)
 		{
-			free(shell.input);
-			break ;
+			shell.nbr_of_tokens = count_command(shell.input);
+			if (!tokenize(&shell, shell.nbr_of_tokens))
+				printf("Algo errado com tokens\n");
+			token = ft_split(shell.tokens[0].data, ' ');
+			if (is_valid_command(token[0], &shell.cmd_full_path, envp))
+				execute(shell.cmd_full_path, token, envp);
+			if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
+			{
+				free(shell.input);
+				break ;
+			}
 		}
-		reset_shell(shell.cmd_full_path, token);
+		reset_shell(&shell, &token);
 		free(shell.input);
 	}
 	return (0);

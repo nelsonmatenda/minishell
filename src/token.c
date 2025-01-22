@@ -6,46 +6,65 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:24:10 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/21 12:05:53 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:48:22 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	check_multiple_limits(char *s, int *i)
+int	check_wrong_comb(char **s)
 {
-	int	err;
-
-	err = 0;
-	while (s[*i] && (s[*i] == '|' || s[*i] == '<' || s[*i] == '>'))
-	{
-		if (s[*i] == '|' && ( s[*i + 1] == '|' || s[*i + 1] == '>' \
-			|| s[*i + 1] == '<'))
-			return (-1);
-		else if (s[*i] == '>' && ( s[*i + 1] == '|' || s[*i + 1] == '<'))
-			return (-1);
-		else if (s[*i] == '<' && ( s[*i + 1] == '|' || s[*i + 1] == '>'))
-			return (-1);
-		(*i)++;
-		while (s[*i] != '\0' && (s[*i] == ' ' || (s[*i] >= 0 && s[*i] <= 9)))
-		{
-			err = 1;
-			(*i)++;
-		}
-		err++;
-	}
-	if (err > 2)
+	if (**s == '|' && *(*s + 1) && ( *(*s + 1) == '|' \
+		|| *(*s + 1) == '>' || *(*s + 1) == '<'))
+		return (-1);
+	else if (**s == '>' && *(*s + 1) && ( *(*s + 1) == '|' \
+		|| *(*s + 1) == '<'))
+		return (-1);
+	else if (**s == '<' && *(*s + 1) && ( *(*s + 1) == '|' \
+		|| *(*s + 1) == '>'))
 		return (-1);
 	return (1);
 }
 
-int	first_caracter_case(char *s,int *i)
+int	check_multiple_limits(char **s)
 {
-	if (s[*i] == '|' || s[*i] == '<' || s[*i] == '>')
+	int	err;
+
+	err = 0;
+	while (*s && (**s == '|' || **s == '<' || **s == '>'))
 	{
-		if (s[*i] == '|') // erro de sintax
+		if (check_wrong_comb(s) == -1)
 			return (-1);
-		if (check_multiple_limits(s, i) == -1)
+		(*s)++;
+		err++;
+	}
+	while (**s && (**s == ' ' || (**s >= 0 && **s <= 9)))
+	{
+		(*s)++;
+		if (**s && (**s == '|' || **s == '<' || **s == '>'))
+			return (-1);
+		if (**s == '\0')
+			return (-1);
+	}
+	if (err > 2)
+		return (-1);
+	if (*(*s -1) && (*(*s -1) == '|' || *(*s -1) == '<' || *(*s -1) == '>'))
+		return (-1);
+	return (1);
+}
+
+int	first_caracter_case(char **s)
+{
+	if (ft_iswhitespace(**s))
+	{
+		while (ft_iswhitespace(**s))
+			(*s)++;
+	}
+	if (**s && (**s == '|' || **s == '<' || **s == '>'))
+	{
+		if (**s == '|') // erro de sintax
+			return (-1);
+		if (check_multiple_limits(s) == -1)
 			return (-1);
 	}
 	return (1);
@@ -53,49 +72,59 @@ int	first_caracter_case(char *s,int *i)
 
 int	count_command(char	*s)
 {
-	int	i;
 	int	count;
 
-	i = 0;
 	count = 0;
-	if (first_caracter_case(s, &i) == -1)
+	if (first_caracter_case(&s) == -1)
 		return (-1);
-	while (s[i] != '\0')
+	while (s)
 	{
-		while (s[i] && (s[i] != '|' && s[i] != '<' && s[i] != '>'))
-			i++;
-		if (check_multiple_limits(s, &i) == -1)
+		while (*s && (*s != '|' && *s != '<' && *s != '>'))
+			s++;
+		if (check_multiple_limits(&s) == -1)
 			return (-1);
 		count++;
-		while (s[i] != '\0' && (s[i] == ' ' || (s[i] >= 0 && s[i] <= 9)))
-			i++;
-		if (s[i] == '\0')
+		while (*s && (*s == ' ' || (*s >= 0 && *s <= 9)))
+			s++;
+		if (*s == '\0')
 			break;
 	}
 	return (count);
 }
+// void	create_token(t_shell *shell,int *i, int nbr_of_token)
+// {
+// 	int	pos;
+
+// 	pos = 0;
+// 	while (shell->input[*i] && shell->input[*i] != '|' && shell->input[*i] != '<' && shell->input[*i] != '>')
+// 		(*i)++;
+// 	while (pos < )
+// }
 
 int	split_tokens(t_shell *shell)
 {
-	int	i;
 	int	j;
 	int	k;
 	char	tmp[255];
+	char	*aux;
 
-	i = 0;
 	k = -1;
-	while (shell->input[i])
+	aux = shell->input;
+	while (*aux)
 	{
 		j = -1;
-		while (shell->input[i] && shell->input[i] != '|' \
-				&& shell->input[i] != '<' && shell->input[i] != '>')
-			tmp[++j] = shell->input[i++];
+		first_caracter_case(&aux);
+		while (*aux && *aux != '|' && *aux != '<' && *aux != '>')
+		{
+			tmp[++j] = *aux;
+			aux++;
+		}
 		tmp[++j] = '\0';
 		shell->tokens[++k].data = ft_strdup(tmp);
-		if (check_multiple_limits(shell->input, &i) == -1)
+		if (check_multiple_limits(&aux) == -1)
 			return (-1);
 		ft_bzero(tmp, sizeof(tmp));
-		if (shell->input[i] == '\0')
+		if (*aux == '\0')
 			break ;
 	}
 	return (1);

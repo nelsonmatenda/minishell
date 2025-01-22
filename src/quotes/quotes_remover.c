@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:32:26 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:53:36 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static int	verify_env_var(char **input, char **envp, int i)
 	j = 0;
 	ptr = *input;
 	tmp = malloc(ft_strlen(ptr) + 2);
-	while (ptr[i] && ptr[i] != ' ' && ptr[i] != '\'' && ptr[i] != '"')
+	while (ptr[i] && ptr[i] != ' ' && ptr[i] != '\'' && ptr[i] != '"' \
+			&& ft_isvalid_var_name(ptr[i]))
 		tmp[j++] = ptr[i++];
 	tmp[j++] = '=';
 	tmp[j] = '\0';

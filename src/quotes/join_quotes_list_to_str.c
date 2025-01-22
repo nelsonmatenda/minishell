@@ -6,32 +6,11 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:34:11 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 12:38:10 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:34:45 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-
-
-// char *join_strings(char **array, size_t size) {
-//     if (!array || size == 0)
-//         return NULL;
-
-//     char *result = strdup(array[0]); // Copia a primeira string
-//     if (!result)
-//         return NULL;
-
-//     for (size_t i = 1; i < size; i++) {
-//         char *temp = ft_strjoin(result, array[i]); // Junta a string atual
-//         free(result); // Libera a string antiga
-//         if (!temp)
-//             return NULL; // Retorna NULL em caso de erro
-//         result = temp; // Atualiza o resultado
-//     }
-
-//     return result;
-// }
 
 char	*remove_quotes_expand_env_var(char *input, char **envp)
 {

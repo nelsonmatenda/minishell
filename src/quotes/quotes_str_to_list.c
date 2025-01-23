@@ -6,60 +6,62 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 09:51:03 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:30:39 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	lst_quote_add(t_quote **lst, t_quote *new)
+static int	handle_separator(t_quote **quote_list, char *input, int i)
 {
-	t_quote	*current;
+	int		j;
+	char	*data;
 
-	if (!new)
-		return (0);
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		current = *lst;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-	}
-	return (1);
+	j = i;
+	if (input[i] == '>' && input[i + 1] == '>')
+		i++;
+	else if (input[i] == '<' && input[i + 1] == '<')
+		i++;
+	data = malloc((i - j + 2) * sizeof(char));
+	if (!data)
+		return (-1); // erro de alocação
+	ft_strlcpy(data, &input[j], i - j + 2);
+	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE));
+	return (i + 1);
 }
 
-static t_quote	*ft_lstnew_quote(char *data, e_quote type)
+static int	handle_token(t_quote **quote_list, char *input, int i)
 {
-	t_quote	*new_node;
+	int		j;
+	char	*data;
 
-	new_node = malloc(sizeof(t_quote));
-	if (!new_node)
-		return (NULL);
-	new_node->data = data;
-	new_node->type = type;
-	new_node->next = NULL;
-	return (new_node);
+	j = i;
+	data = malloc(ft_strlen(input) + 1);
+	if (!data)
+		return (-1); // erro de alocação
+	while (input[i] && input[i] != ' ' && !ft_strchr("<>|", input[i]) && \
+			input[i] != '\'' && input[i] != '"')
+	{
+		data[i - j] = input[i];
+		i++;
+	}
+	data[i - j] = '\0';
+	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE));
+	return (i);
 }
 
 static int	add_to_list_no_quote(t_quote **quote_list, char *input)
 {
 	int		i;
-	char	*data;
 
 	i = 0;
-	if (input[i] && input[i] != '\'' && input[i] != '"')
+	while (input[i] && input[i] != '\'' && input[i] != '"')
 	{
-		data = malloc(ft_strlen(input) + 1);
-		while (input[i] && input[i] != '\'' && \
-				input[i] != '"' && input[i] != ' ')
-		{
-			data[i] = input[i];
-			i++;
-		}
-		data[i] = '\0';
-		lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE));
+		if (ft_strchr("<>|", input[i]))
+			return (handle_separator(quote_list, input, i));
+		else if (input[i] != ' ')
+			return (handle_token(quote_list, input, i));
+		i++;
 	}
 	return (i);
 }

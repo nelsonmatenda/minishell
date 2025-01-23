@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 12:31:45 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:05:03 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ void	substitute_env_var(char **str, const char *env_var, \
 							const char *env_value);
 t_quote	*expand_env_var(char *input, char **envp);
 char	*remove_quotes_expand_env_var(char *input, char **envp);
+int		lst_quote_add(t_quote **lst, t_quote *new);
+t_quote	*ft_lstnew_quote(char *data, e_quote type);
 
 #endif

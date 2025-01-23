@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:24:10 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 17:32:51 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/23 09:06:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ int	first_caracter_case(char **s)
 	}
 	return (1);
 }
+
+// int	verif_quotes(char *s)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (s[i] && (s[i] == '\'' || s[i] == '"'))
+// 	{
+// 		while (s[i] && (s[i] != '\'' || s[i] != '"'))
+// 			i++;
+// 		if (s[i] == '\0')
+// 			return (-1);
+// 	}
+// 	return (i);
+// }
 
 int	count_command(char	*s)
 {

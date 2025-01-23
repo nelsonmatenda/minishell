@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 16:05:03 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:15:15 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,20 @@ typedef enum
 
 typedef enum
 {
-	UNKNOWN,
-	PIPE,
+	CMD,
+	ARG,
+	PIPE, // |
 	RD_IN, // <
 	RD_OUT, // >
 	APPEND, // >>
 	HR_DOC // <<
-}	t_spec;
+}	e_token_type;
 
 typedef struct	s_quote
 {
 	char			*data;
 	e_quote			type;
+	e_token_type	token_type;
 	struct s_quote	*next;
 }					t_quote;
 
@@ -88,5 +90,7 @@ t_quote	*expand_env_var(char *input, char **envp);
 char	*remove_quotes_expand_env_var(char *input, char **envp);
 int		lst_quote_add(t_quote **lst, t_quote *new);
 t_quote	*ft_lstnew_quote(char *data, e_quote type);
+char	**get_paths(char *envp[]);
+void	determine_token_types(t_quote *quote_list, char **paths);
 
 #endif

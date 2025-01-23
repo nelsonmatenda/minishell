@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 16:09:02 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:31:45 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,6 @@
 
 # define NO_FOUND 7168
 
-// typedef struct s_token
-// {
-// 	char	*data;
-// 	char	*io_type;
-// }			t_token;
-
-typedef struct s_token
-{
-	char	*data;
-	int		stdio[2];
-}			t_token;
-
-
-typedef struct s_shell
-{
-	t_token	*tokens;
-	char	*input;
-	char	*cmd_full_path;
-	int		nbr_of_tokens;
-	char	**env;
-}			t_shell;
-
 
 typedef enum
 {
@@ -56,6 +34,16 @@ typedef enum
 	INVALID_QUOTE
 }	e_quote;
 
+typedef enum
+{
+	UNKNOWN,
+	PIPE,
+	RD_IN, // <
+	RD_OUT, // >
+	APPEND, // >>
+	HR_DOC // <<
+}	t_spec;
+
 typedef struct	s_quote
 {
 	char			*data;
@@ -63,8 +51,28 @@ typedef struct	s_quote
 	struct s_quote	*next;
 }					t_quote;
 
-void	init_shell(t_shell	*shell);
-int		tokenize(t_shell *shell, int nbr);
+typedef struct s_token
+{
+	char	**data;
+	int		left;
+	int		right;
+}			t_token;
+
+
+typedef struct s_shell
+{
+	t_token	**tokens;
+	t_quote	*list_input;
+	char	*input;
+	char	*cmd_full_path;
+	int		nbr_of_tokens;
+	char	**env;
+}			t_shell;
+
+
+
+void	init_shell(t_shell	*shell, char **envp);
+int		tokenize(t_shell *shell);
 int		count_command(char	*s);
 e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
 int		is_valid_command(char *token, char **arg_path, char **envp);

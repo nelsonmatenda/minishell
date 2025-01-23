@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 18:26:12 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:58:58 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,28 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	t_shell	shell;
-	char	*output;
+	//char	*output;
 	char	**token;
 
-	init_shell(&shell);
+	init_shell(&shell, envp);
 	token = NULL;
 	while (1)
 	{
-		shell.env = envp;
-		output = readline("👽-➤  ");
-		shell.input = remove_quotes_expand_env_var(output, shell.env);
+		shell.input = readline("👽-➤  ");
+		shell.list_input = expand_env_var(shell.input, envp);
 		if (shell.input != NULL)
 		{
-			shell.nbr_of_tokens = count_command(shell.input);
-			if (!tokenize(&shell, shell.nbr_of_tokens))
-				printf("Algo errado com tokens\n");
-			token = ft_split(shell.tokens[0].data, ' ');
-			if (is_valid_command(token[0], &shell.cmd_full_path, envp))
-				execute(shell.cmd_full_path, token, envp);
-			if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
-			{
-				free(shell.input);
-				break ;
-			}
+			// shell.nbr_of_tokens = count_command(shell.input);
+			// if (!tokenize(&shell, shell.nbr_of_tokens))
+			// 	printf("Algo errado com tokens\n");
+			// token = ft_split(shell.tokens[0].data, ' ');
+			// if (is_valid_command(token[0], &shell.cmd_full_path, envp))
+			// 	execute(shell.cmd_full_path, token, envp);
+			// if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
+			// {
+			// 	free(shell.input);
+			// 	break ;
+			// }
 		}
 		else
 			printf("quotes: invalid quotes\n");

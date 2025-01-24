@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   error_msg.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/24 11:36:27 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/24 11:14:59 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/24 11:17:42 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef ERROR_MSG_H
+# define ERROR_MSG_H
 
-
-void	init_shell(t_shell	*shell, char **envp)
+enum e_error
 {
-	shell->cmd_full_path = NULL;
-	shell->input = NULL;
-	shell->nbr_of_tokens = 0;
-	shell->cmd = NULL;
-	shell->list_input = NULL;
-	shell->env = envp;
-}
+	SY_ERR = -42,
+	MEM_ERR = -43
+};
+
+#endif

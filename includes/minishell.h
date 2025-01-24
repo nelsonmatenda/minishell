@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 19:15:15 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:19:11 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <stdbool.h>
+# include "error_msg.h"
 
 # define NO_FOUND 7168
 
@@ -53,17 +54,19 @@ typedef struct	s_quote
 	struct s_quote	*next;
 }					t_quote;
 
-typedef struct s_token
+typedef struct s_command
 {
-	char	**data;
-	int		left;
-	int		right;
-}			t_token;
+	char	**args;
+	char	*in;
+	char	*out;
+	char	*delim;
+	int		append;
+}			t_command;
 
 
 typedef struct s_shell
 {
-	t_token	**tokens;
+	t_command	**cmd;
 	t_quote	*list_input;
 	char	*input;
 	char	*cmd_full_path;
@@ -74,7 +77,7 @@ typedef struct s_shell
 
 
 void	init_shell(t_shell	*shell, char **envp);
-int		tokenize(t_shell *shell);
+int		parser(t_shell *shell);
 int		count_command(char	*s);
 e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
 int		is_valid_command(char *token, char **arg_path, char **envp);

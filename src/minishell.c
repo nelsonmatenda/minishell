@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/23 11:58:58 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:18:08 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	main(int ac, char **av, char **envp)
 	{
 		shell.input = readline("👽-➤  ");
 		shell.list_input = expand_env_var(shell.input, envp);
+		for (t_quote *lst = shell.list_input; lst; lst = lst->next)
+			printf("DATA: %s, QUOTE: %d, TOKEN: %d\n", lst->data, lst->type, lst->token_type);
 		if (shell.input != NULL)
 		{
 			// shell.nbr_of_tokens = count_command(shell.input);

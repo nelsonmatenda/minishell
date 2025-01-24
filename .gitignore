@@ -4,3 +4,4 @@ a.out
 minishell
 ./obj
 test_bin
+./dd.sh

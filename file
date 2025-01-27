@@ -1,1 +1,28 @@
-
+total 188
+drwxr-xr-x  9 nfigueir 2024_luanda  4096 Jan 27 16:46 .
+drwxr-xr-x 10 nfigueir 2024_luanda  4096 Jan 13 09:12 ..
+-rw-r--r--  1 nfigueir 2024_luanda     0 Jan 27 16:46 2
+-rw-r--r--  1 nfigueir 2024_luanda   130 Jan 27 15:10 A
+-rwxr-xr-x  1 nfigueir 2024_luanda   141 Jan 27 14:50 dd.sh
+-rwxr-xr-x  1 nfigueir 2024_luanda   129 Jan 23 11:12 exec.sh
+-rw-r--r--  1 nfigueir 2024_luanda     0 Jan 27  2025 file
+-rw-r--r--  1 nfigueir 2024_luanda    46 Jan 27 16:46 file2
+drwxr-xr-x  8 nfigueir 2024_luanda  4096 Jan 27 08:21 .git
+drwxr-xr-x  3 nfigueir 2024_luanda  4096 Jan 10 14:48 .github
+-rw-r--r--  1 nfigueir 2024_luanda    47 Jan 24 09:08 .gitignore
+drwxr-xr-x  2 nfigueir 2024_luanda  4096 Jan 24 11:15 includes
+-rw-r--r--  1 nfigueir 2024_luanda  2277 Jan 24 10:41 lexer.c
+drwxr-xr-x  2 nfigueir 2024_luanda  4096 Jan 24 09:09 libft
+-rw-r--r--  1 nfigueir 2024_luanda   700 Jan 14 12:42 Makefile
+-rw-r--r--  1 nfigueir 2024_luanda     0 Jan 27 16:22 out
+-rw-r--r--  1 nfigueir 2024_luanda    15 Jan 27 16:23 out2
+-rw-r--r--  1 nfigueir 2024_luanda  4236 Jan 24 13:38 parser_test.c
+-rw-r--r--  1 nfigueir 2024_luanda   401 Jan 16 10:25 README.md
+-rw-r--r--  1 nfigueir 2024_luanda  1342 Jan 16 10:22 shell.c
+drwxr-xr-x  6 nfigueir 2024_luanda  4096 Jan 27 14:44 src
+drwxr-xr-x  2 nfigueir 2024_luanda  4096 Jan 17 11:11 test
+-rwxr-xr-x  1 nfigueir 2024_luanda 89696 Jan 27 16:44 test_bin
+-rw-r--r--  1 nfigueir 2024_luanda    55 Jan 27 10:52 test.c
+-rw-r--r--  1 nfigueir 2024_luanda  4292 Jan 23 09:06 token.c
+-rwxr-xr-x  1 nfigueir 2024_luanda   187 Jan 17 11:15 valgrind.sh
+drwxr-xr-x  2 nfigueir 2024_luanda  4096 Jan 27 09:03 .vscode

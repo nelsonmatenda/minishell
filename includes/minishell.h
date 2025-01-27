@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/24 12:19:11 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:59:14 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,38 @@ typedef struct s_shell
 
 
 
-void	init_shell(t_shell	*shell, char **envp);
-int		parser(t_shell *shell);
-int		count_command(char	*s);
-e_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
-int		is_valid_command(char *token, char **arg_path, char **envp);
-void	destroy_splited(char **splited);
-char	**ft_split_quotes(char const *s, char c, int *quotes_qtt);
-void	replace_env_var(char **str, const char *env_var,\
+void		init_shell(t_shell	*shell, char **envp);
+int			parser(t_shell *shell);
+int			count_command(char	*s);
+e_quote		check_quotes(const char *str, char **no_quotes_str, char **envp);
+int			is_valid_command(char *token, char **arg_path, char **envp);
+void		destroy_splited(char **splited);
+// TOKENS
+char		**ft_split_quotes(char const *s, char c, int *quotes_qtt);
+void		replace_env_var(char **str, const char *env_var,\
 											const char *env_value);
-t_quote	*convert_str_to_quote_list(char *input);
-void	free_quote_list(t_quote *quote_list);
-void	substitute_env_var(char **str, const char *env_var, \
+t_quote		*convert_str_to_quote_list(char *input);
+void		free_quote_list(t_quote *quote_list);
+void		substitute_env_var(char **str, const char *env_var, \
 							const char *env_value);
-t_quote	*expand_env_var(char *input, char **envp);
-char	*remove_quotes_expand_env_var(char *input, char **envp);
-int		lst_quote_add(t_quote **lst, t_quote *new);
-t_quote	*ft_lstnew_quote(char *data, e_quote type);
-char	**get_paths(char *envp[]);
-void	determine_token_types(t_quote *quote_list, char **paths);
+t_quote		*expand_env_var(char *input, char **envp);
+char		*remove_quotes_expand_env_var(char *input, char **envp);
+int			lst_quote_add(t_quote **lst, t_quote *new);
+t_quote		*ft_lstnew_quote(char *data, e_quote type);
+char		**get_paths(char *envp[]);
+void		determine_token_types(t_quote *quote_list);
+// PARSER
+int			checks(t_quote *aux);
+int			first_caracter_case(t_quote **list);
+int			count_check_tokens(t_shell *shell);
+t_command	*new_cmd(void);
+void		handler_rd_in(t_command *cur, t_quote **tokens);
+void		handler_rd_out(t_command *cur, t_quote **tokens);
+void		handler_append(t_command *cur, t_quote **tokens);
+void		handler_heredoc(t_command *cur, t_quote **tokens);
+void		handler_args(t_command *cur, t_quote **tokens);
+void		handler_pipe(t_command **cur, t_quote **tokens, \
+					t_command **cmd, int *i);
+int			parser(t_shell *shell);
 
 #endif

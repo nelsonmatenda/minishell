@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.h                                        :+:      :+:    :+:   */
+/*   p_error_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 11:14:59 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 12:58:51 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/27 14:39:37 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/27 14:48:48 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_MSG_H
-# define ERROR_MSG_H
+#include "../../includes/minishell.h"
 
-# define P_ERR_TOKEN "mini: syntax error near unexpected token\n"
-# define P_ERR_NOT_FOUND "command not found\n"
-
-enum e_error
+void	p_error_cmd(char *s)
 {
-	SY_ERR = -42,
-	MEM_ERR = -43
-};
-
-#endif
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(P_ERR_NOT_FOUND, 2);
+}

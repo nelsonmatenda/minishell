@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_remover.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 19:09:53 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:12:32 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,9 @@ t_quote	*expand_env_var(char *input, char **envp)
 	t_quote	*quotes_list;
 	t_quote	*tmp_q_list;
 	int		i;
-	char	**paths;
 
 	quotes_list = convert_str_to_quote_list(input);
-	paths = get_paths(envp);
-	determine_token_types(quotes_list, paths);
-	destroy_splited(paths);
+	determine_token_types(quotes_list);
 	tmp_q_list = quotes_list;
 	while (tmp_q_list)
 	{

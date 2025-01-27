@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/23 19:18:08 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:24:10 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,7 @@ static char *build_full_path(char *dir, char *token)
 	int i = 0, j = 0;
 
 	while (dir[i])
-	{
 		full_path[j++] = dir[i++];
-	}
 	full_path[j++] = '/';
 	i = 0;
 	while (token[i])

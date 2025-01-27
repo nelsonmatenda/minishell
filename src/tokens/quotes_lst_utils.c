@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:01:54 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 16:04:04 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:13:52 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ t_quote	*ft_lstnew_quote(char *data, e_quote type)
 	new_node->data = data;
 	new_node->type = type;
 	new_node->next = NULL;
+	new_node->has_add = 0;
 	return (new_node);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/27 14:59:14 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:12:55 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_quote
 	e_quote			type;
 	e_token_type	token_type;
 	struct s_quote	*next;
+	int				has_add;
 }					t_quote;
 
 typedef struct s_command

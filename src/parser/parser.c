@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 15:49:44 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:01:17 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	parsing(t_shell *shell)
 	tokens = shell->list_input;
 	while (tokens)
 	{
-		if (tokens->token_type == ARG || tokens->token_type == CMD)
+		if (tokens->token_type == ARG)
 			handler_args(cur, &tokens);
 		else if (tokens->token_type == RD_IN)
 			handler_rd_in(cur, &tokens);

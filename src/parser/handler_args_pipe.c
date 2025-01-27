@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_args_pipe.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:23:19 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 16:35:30 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/27 20:22:11 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,8 @@ static int	count_args(t_quote *tokens)
 	return count;
 }
 
-void	handler_args(t_command *cur, t_quote **tokens)
+static void add_token_to_parser(t_command *cur, t_quote *aux, int *i)
 {
-	int	arg_count;
-	int	i;
-	t_quote	*aux;
-
-	aux = *tokens;
-	arg_count = count_args(*tokens);
-	cur->args = malloc(sizeof(char *) * (arg_count + 1));
-	if (!cur->args)
-		return ;
-	i = 0;
 	while (aux && ((aux)->token_type == ARG || (aux)->token_type != PIPE))
 	{
 		if ((aux)->token_type == RD_IN || (aux)->token_type == RD_OUT \
@@ -61,11 +51,30 @@ void	handler_args(t_command *cur, t_quote **tokens)
 			aux = (aux)->next;
 		else
 		{
-			cur->args[i] = ft_strdup((aux)->data);
-			i++;
+			cur->args[*i] = ft_strdup((aux)->data);
+			aux->has_add = 1;
+			(*i)++;
 		}
 		aux = (aux)->next;
 	}
+}
+
+void	handler_args(t_command *cur, t_quote **tokens)
+{
+	int	arg_count;
+	int	i;
+
+	if ((*tokens)->has_add)
+	{
+		*tokens = (*tokens)->next;
+		return ;
+	}
+	arg_count = count_args(*tokens);
+	cur->args = malloc(sizeof(char *) * (arg_count + 1));
+	if (!cur->args)
+		return ;
+	i = 0;
+	add_token_to_parser(cur, *tokens, &i);
 	*tokens = (*tokens)->next;
 	cur->args[i] = NULL;
 }

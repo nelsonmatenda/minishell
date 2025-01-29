@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/27 20:12:55 by matenda          ###   ########.fr       */
+/*   Updated: 2025/01/29 12:46:02 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,14 @@ typedef struct s_shell
 	char	**env;
 }			t_shell;
 
-
+typedef struct	s_subst
+{
+	const char	*str;
+	const char	*env_var;
+	const char	*env_value;
+	size_t		env_var_len;
+	size_t		env_value_len;
+}	t_subst;
 
 void		init_shell(t_shell	*shell, char **envp);
 int			parser(t_shell *shell);

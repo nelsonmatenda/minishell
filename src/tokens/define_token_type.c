@@ -6,13 +6,13 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 19:03:28 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/27 14:45:07 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:25:25 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static e_token_type	get_token_type(t_quote *quote)
+static t_token_type	get_token_type(t_quote *quote)
 {
 	if (quote->type == DOUBLE_QUOTE || quote->type == SINGLE_QUOTE)
 		return (ARG);

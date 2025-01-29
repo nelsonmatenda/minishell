@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 12:11:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:48:44 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,26 @@ static void	parsing(t_shell *shell)
 	shell->cmd[++i] = NULL;
 }
 
+static int	is_valid_quote(t_quote *list)
+{
+	t_quote	*aux;
+
+	aux = list;
+	while (aux)
+	{
+		if (aux->type == INVALID_QUOTE)
+			return (0);
+		aux = aux->next;
+	}
+	return (1);
+}
+
 int	parser(t_shell *shell)
 {
 	int	size;
 
+	if (!is_valid_quote(shell->list_input))
+		return (ft_putstr_fd(P_ERR_QUOTES, 2), 0);
 	size = count_check_tokens(shell);
 	if (size == 0)
 		return (0);
@@ -54,39 +70,3 @@ int	parser(t_shell *shell)
 	parsing(shell);
 	return (1);
 }
-
-// void	print_cmds(t_command **cmds) {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (cmds[i]) {
-// 		j = 0;
-// 		printf("Comando: ");
-// 		while (cmds[i]->args[j])
-// 			printf("%s ", cmds[i]->args[j++]);
-// 		printf("\n");
-// 		if (cmds[i]->in)
-// 			printf("  Entrada: %s\n", cmds[i]->in);
-// 		if (cmds[i]->delim)
-// 			printf("  Entrada delimitada por: %s(heredoc)\n", cmds[i]->delim);
-// 		if (cmds[i]->out)
-// 			printf("  Saída: %s (%s)\n", cmds[i]->out, /*\*/
-//					cmds[i]->append ? "append" : "overwrite");
-// 		printf("  ---\n");
-// 		i++;
-// 	}
-// }
-
-// int main (int ac, char **av, char **envp)
-// {
-// 	(void)ac;
-// 	(void)av;
-// 	t_shell shell;
-
-// 	init_shell(&shell, envp);
-// 	shell.input = readline("👽-➤  ");
-// 	shell.list_input = expand_env_var(shell.input, envp);
-// 	if (parser(&shell))
-// 		print_cmds(shell.cmd);
-// }

@@ -6,12 +6,11 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/24 11:36:27 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:30:24 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
 
 void	init_shell(t_shell	*shell, char **envp)
 {

@@ -6,21 +6,17 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/29 13:36:48 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:19:43 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <stdbool.h>
 # include "error_msg.h"
+# include "lib.h"
+
+extern int	g_signal;
 
 # define NO_FOUND 7168
 
@@ -117,5 +113,6 @@ void			handler_pipe(t_command **cur, t_quote **tokens, \
 					t_command **cmd, int *i);
 int				parser(t_shell *shell);
 void			destroy_cmd(t_command **cmd);
+void			signals(void);
 
 #endif

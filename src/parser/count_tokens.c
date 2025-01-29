@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/28 11:05:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:20:18 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	count_check_tokens(t_shell *shell)
 	aux = shell->list_input;
 	count = 0;
 	if (!first_caracter_case(&aux))
-		return (SY_ERR);
+		return (0);
 	if (!sub(&aux, &count))
-		return (SY_ERR);
+		return (0);
 	return (count);
 }

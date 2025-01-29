@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.h                                        :+:      :+:    :+:   */
+/*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 11:14:59 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 18:56:28 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/29 17:51:24 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/29 18:57:20 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_MSG_H
-# define ERROR_MSG_H
+#ifndef LIB_H
+# define LIB_H
 
-# define P_ERR_TOKEN "mini: syntax error near unexpected token\n"
-# define P_ERR_QUOTES "mini: syntax error, invalid quotes\n"
-# define P_ERR_NOT_FOUND "command not found\n"
+# define _DEFAULT_SOURCE
 
-# define SIGNAL_CTRL_C 130
+# include <termios.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <readline/readline.h>
+# include <stdbool.h>
+# include <signal.h>
+# include <sys/signal.h>
+# include "../libft/libft.h"
 
 #endif

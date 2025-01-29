@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 12:24:10 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:57:11 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,23 @@ int	main(int ac, char **av, char **envp)
 	{
 		shell.input = readline("👽-➤  ");
 		shell.list_input = expand_env_var(shell.input, envp);
-		for (t_quote *lst = shell.list_input; lst; lst = lst->next)
-			printf("DATA: %s, QUOTE: %d, TOKEN: %d\n", lst->data, lst->type, lst->token_type);
-		if (shell.input != NULL)
+		if (shell.list_input != NULL)
 		{
-			// shell.nbr_of_tokens = count_command(shell.input);
-			// if (!tokenize(&shell, shell.nbr_of_tokens))
-			// 	printf("Algo errado com tokens\n");
-			// token = ft_split(shell.tokens[0].data, ' ');
-			// if (is_valid_command(token[0], &shell.cmd_full_path, envp))
-			// 	execute(shell.cmd_full_path, token, envp);
-			// if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
-			// {
-			// 	free(shell.input);
-			// 	break ;
-			// }
+			if (parser(&shell) != 0)
+			{
+				// shell.nbr_of_tokens = count_command(shell.input);
+				// if (!tokenize(&shell, shell.nbr_of_tokens))
+				// 	printf("Algo errado com tokens\n");
+				// token = ft_split(shell.tokens[0].data, ' ');
+				// if (is_valid_command(token[0], &shell.cmd_full_path, envp))
+				// 	execute(shell.cmd_full_path, token, envp);
+				// if (!ft_strncmp(shell.input, "exi", ft_strlen("exi")))
+				// {
+				// 	free(shell.input);
+				// 	break ;
+				// }
+			}
 		}
-		else
-			printf("quotes: invalid quotes\n");
 		reset_shell(&shell, &token);
 		free(shell.input);
 	}

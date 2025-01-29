@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 21:01:17 by matenda          ###   ########.fr       */
+/*   Updated: 2025/01/29 10:52:32 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,15 @@ void print_cmds(t_command **cmds) {
 	}
 }
 
-int main (int ac, char **av, char **envp)
-{
-	(void)ac;
-	(void)av;
-	t_shell shell;
+// int main (int ac, char **av, char **envp)
+// {
+// 	(void)ac;
+// 	(void)av;
+// 	t_shell shell;
 
-	init_shell(&shell, envp);
-	shell.input = readline("👽-➤  ");
-	shell.list_input = expand_env_var(shell.input, envp);
-	if (parser(&shell))
-		print_cmds(shell.cmd);
-}
+// 	init_shell(&shell, envp);
+// 	shell.input = readline("👽-➤  ");
+// 	shell.list_input = expand_env_var(shell.input, envp);
+// 	if (parser(&shell))
+// 		print_cmds(shell.cmd);
+// }

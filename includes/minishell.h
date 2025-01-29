@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/29 12:57:17 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 13:36:48 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_shell
 	char		**env;
 }				t_shell;
 
-typedef struct	s_subst
+typedef struct s_subst
 {
 	const char	*str;
 	const char	*env_var;
@@ -81,9 +81,11 @@ typedef struct	s_subst
 }				t_subst;
 
 void			init_shell(t_shell	*shell, char **envp);
-int				parser(t_shell *shell);
+void			reset_shell(t_shell *shell);
+void			ft_exit(t_shell *shell);
 int				count_command(char	*s);
-t_enum_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
+t_enum_quote	check_quotes(const char *str, char **no_quotes_str, \
+							char **envp);
 int				is_valid_command(char *cmd, char **paths);
 void			destroy_splited(char **splited);
 // TOKENS
@@ -114,5 +116,6 @@ void			handler_args(t_command *cur, t_quote **tokens);
 void			handler_pipe(t_command **cur, t_quote **tokens, \
 					t_command **cmd, int *i);
 int				parser(t_shell *shell);
+void			destroy_cmd(t_command **cmd);
 
 #endif

@@ -9,7 +9,8 @@ CFLAGS	= -Wall -Wextra -Werror -MMD -MP -g3
 LDLIBS	= -lreadline
 SRCS	= $(addprefix src/, $(addsuffix .c, \
 			minishell\
-			init))
+			init\
+			exit))
 SRCS	+= $(addprefix src/error/, $(addsuffix .c, \
 			p_error_cmd))
 SRCS	+= $(addprefix src/parser/, $(addsuffix .c, \
@@ -29,7 +30,8 @@ SRCS	+= $(addprefix src/tokens/, $(addsuffix .c, \
 			quotes_str_to_list\
 			substitute_env_var))
 SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
-			destroy_split))
+			destroy_split\
+			is_valid_command))
 OBJ_DIR	= .objs
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 SRC_OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)

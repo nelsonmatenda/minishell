@@ -5,3 +5,4 @@ minishell
 ./obj
 test_bin
 ./dd.sh
+.objs

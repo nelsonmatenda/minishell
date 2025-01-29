@@ -1,0 +1,8 @@
+bin
+a.out
+*.o
+minishell
+./obj
+test_bin
+./dd.sh
+.objs

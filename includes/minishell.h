@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/29 12:29:26 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:57:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,20 @@ typedef struct s_shell
 	char		**env;
 }				t_shell;
 
+typedef struct	s_subst
+{
+	const char	*str;
+	const char	*env_var;
+	const char	*env_value;
+	int			env_var_len;
+	int			env_value_len;
+}				t_subst;
+
 void			init_shell(t_shell	*shell, char **envp);
 int				parser(t_shell *shell);
 int				count_command(char	*s);
-t_enum_quote	check_quotes(const char *str, char **no_quotes_str, \
-							char **envp);
-int				is_valid_command(char *token, char **arg_path, char **envp);
+t_enum_quote	check_quotes(const char *str, char **no_quotes_str, char **envp);
+int				is_valid_command(char *cmd, char **paths);
 void			destroy_splited(char **splited);
 // TOKENS
 char			**ft_split_quotes(char const *s, char c, int *quotes_qtt);

@@ -34,6 +34,8 @@ SRC = ft_atoi \
 			ft_toupper \
 			ft_strcmp \
 			ft_isvalid_var_name \
+			ft_strcpy \
+			ft_strcat \
 
 END				:=	\033[0m
 BLUE			:=	\033[0;34m

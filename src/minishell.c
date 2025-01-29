@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 12:51:06 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/29 12:54:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	execute(char *full_path, char **token, char **envp)
 
 }
 
-static int	is_valid_command(char *cmd, char **paths)
+int	is_valid_command(char *cmd, char **paths)
 {
 	char	*full_path;
 	int		i;

@@ -32,6 +32,13 @@ SRC = ft_atoi \
 			ft_substr \
 			ft_tolower \
 			ft_toupper \
+			ft_strcmp \
+			ft_isvalid_var_name \
+
+END				:=	\033[0m
+BLUE			:=	\033[0;34m
+GREEN			:=	\033[0;32m
+WHITE			:=	\033[1;37m
 
 SRCS		= $(addsuffix .c, ${SRC})
 
@@ -59,23 +66,27 @@ CFLAGS 		= -Wall -Wextra -Werror
 NAME		= libft.a
 
 .c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+			@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+			@printf "$(GREEN)> $(END)$(WHITE)Compilando os objectos do libft... %-33.33s\r$(END)" $@
 
 $(NAME):	${OBJS}
-			${AR} ${NAME} ${OBJS}
-			${RN} ${NAME}
+			@${AR} ${NAME} ${OBJS}
+			@${RN} ${NAME}
+			@printf "\n$(GREEN)> $(END)$(WHITE)$(NAME) compilado com sucesso🎉$(END)\n"
 
 all:		$(NAME)
 
 clean:
-			${RM} ${OBJS} ${BONUS_OBJS}
+			@printf "$(GREEN)> $(END)$(WHITE)Limpeza do libft... 🧹$(END)"
+			@${RM} ${OBJS} ${BONUS_OBJS}
+			@printf "$(WHITE) finalizada.$(END)\n"
 
 fclean:		clean
-			${RM} $(NAME)
+			@${RM} $(NAME)
 
 re:			fclean all
 
 bonus:		$(BONUS_OBJS)
-			${AR} $(NAME) $(BONUS_OBJS)
+			@${AR} $(NAME) $(BONUS_OBJS)
 
 .PHONY:		all clean fclean re bonus

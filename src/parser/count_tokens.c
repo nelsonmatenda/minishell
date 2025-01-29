@@ -6,24 +6,33 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:17:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 15:51:13 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:05:24 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+static int	check_rd(t_quote **aux)
+{
+	if ((*aux)->token_type != ARG)
+	{
+		if (!checks(*aux))
+			return (0);
+	}
+	return (1);
+}
+
 static int	sub(t_quote **aux, int *count)
 {
 	while (*aux != NULL)
 	{
-		if ((*aux)->token_type != ARG)
-		{
-			if (!checks(*aux))
-				return (0);
-		}
+		if (!check_rd(aux))
+			return (0);
 		while (*aux && (*aux)->token_type != PIPE && (*aux)->token_type != ARG)
 		{
 			(*aux) = (*aux)->next;
+			if (*aux && (*aux)->token_type != ARG)
+				return (0);
 			while (*aux && (*aux)->token_type == ARG)
 				(*aux) = (*aux)->next;
 		}
@@ -43,7 +52,7 @@ static int	sub(t_quote **aux, int *count)
 int	count_check_tokens(t_shell *shell)
 {
 	t_quote	*aux;
-	int	count;
+	int		count;
 
 	aux = shell->list_input;
 	count = 0;

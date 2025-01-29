@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/27 20:12:55 by matenda          ###   ########.fr       */
+/*   Updated: 2025/01/28 10:15:09 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void		determine_token_types(t_quote *quote_list);
 // PARSER
 int			checks(t_quote *aux);
 int			first_caracter_case(t_quote **list);
+void		first_case_parser(t_command *cur, t_quote **tokens);
 int			count_check_tokens(t_shell *shell);
 t_command	*new_cmd(void);
 void		handler_rd_in(t_command *cur, t_quote **tokens);

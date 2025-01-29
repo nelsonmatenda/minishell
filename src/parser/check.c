@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:15:22 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 14:47:55 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:01:19 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	check_wrong_comb(char *s)
 {
-	if (*s == '|' && *(s + 1) && ( *(s + 1) == '|' \
+	if (*s == '|' && *(s + 1) && (*(s + 1) == '|' \
 		|| *(s + 1) == '>' || *(s + 1) == '<'))
 		return (0);
-	else if (*s == '>' && *(s + 1) && ( *(s + 1) == '|' \
+	else if (*s == '>' && *(s + 1) && (*(s + 1) == '|' \
 		|| *(s + 1) == '<'))
 		return (0);
-	else if (*s == '<' && *(s + 1) && ( *(s + 1) == '|' \
+	else if (*s == '<' && *(s + 1) && (*(s + 1) == '|' \
 		|| *(s + 1) == '>'))
 		return (0);
 	return (1);
@@ -58,7 +58,6 @@ int	first_caracter_case(t_quote **list)
 	s = (*list)->data;
 	if ((*list)->token_type != ARG)
 	{
-
 		if (*s == '|')
 			return (ft_putstr_fd(P_ERR_TOKEN, 2), 0);
 		if (!check_wrong_comb(s))

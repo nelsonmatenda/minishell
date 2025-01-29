@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_str_to_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/23 18:30:39 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/28 11:39:00 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	handle_separator(t_quote **quote_list, char *input, int i)
 		i++;
 	data = malloc((i - j + 2) * sizeof(char));
 	if (!data)
-		return (-1); // erro de alocação
+		return (-1);
 	ft_strlcpy(data, &input[j], i - j + 2);
 	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE));
 	return (i + 1);
@@ -38,7 +38,7 @@ static int	handle_token(t_quote **quote_list, char *input, int i)
 	j = i;
 	data = malloc(ft_strlen(input) + 1);
 	if (!data)
-		return (-1); // erro de alocação
+		return (-1);
 	while (input[i] && input[i] != ' ' && !ft_strchr("<>|", input[i]) && \
 			input[i] != '\'' && input[i] != '"')
 	{

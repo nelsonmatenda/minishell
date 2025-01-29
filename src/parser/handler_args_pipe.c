@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   handler_args_pipe.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:23:19 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/27 20:22:11 by matenda          ###   ########.fr       */
+/*   Updated: 2025/01/28 11:06:53 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_command *new_cmd(void)
+t_command	*new_cmd(void)
 {
-	t_command	*c = malloc(sizeof(t_command));
+	t_command	*c;
+
+	c = malloc(sizeof(t_command));
 	if (!c)
 		return (NULL);
 	c->args = NULL;
@@ -39,10 +41,10 @@ static int	count_args(t_quote *tokens)
 			count++;
 		tokens = tokens->next;
 	}
-	return count;
+	return (count);
 }
 
-static void add_token_to_parser(t_command *cur, t_quote *aux, int *i)
+static void	add_token_to_parser(t_command *cur, t_quote *aux, int *i)
 {
 	while (aux && ((aux)->token_type == ARG || (aux)->token_type != PIPE))
 	{

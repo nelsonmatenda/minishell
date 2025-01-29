@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 11:04:38 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 20:47:42 by matenda          ###   ########.fr       */
+/*   Created: 2025/01/23 19:12:23 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/23 19:13:06 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	destroy_splited(char **splited)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int i = 0;
-	while (splited[i] != NULL)
-	{
-		free(splited[i]);
-		splited[i] = NULL;
+	int	i;
+
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
 		i++;
-	}
-	free(splited);
-	splited = NULL;
+	return (s1[i] - s2[i]);
 }

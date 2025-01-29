@@ -1,45 +1,72 @@
-NAME = minishell
-APP = ./app/minishell.c
-SRCS  = shell.c
-DIR_SRC = ./src
-OBJ_DIR = ./objs
+#color
+WHITE	= \033[1;37m
+END		= \033[0m
+GREEN	= \033[0;32m
+#######################################################
+NAME	= minishell
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -MMD -MP -g3
+LDLIBS	= -lreadline
+SRCS	= $(addprefix src/, $(addsuffix .c, \
+			minishell\
+			init\
+			exit))
+SRCS	+= $(addprefix src/error/, $(addsuffix .c, \
+			p_error_cmd))
+SRCS	+= $(addprefix src/parser/, $(addsuffix .c, \
+			check\
+			count_tokens\
+			destroy_cmd\
+			first_case_parser\
+			handler_args_pipe\
+			handler_redi\
+			parser))
+SRCS	+= $(addprefix src/tokens/, $(addsuffix .c, \
+			define_token_type\
+			free_data\
+			get_paths\
+			quotes_lst_utils\
+			quotes_remover\
+			quotes_str_to_list\
+			substitute_env_var))
+SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
+			destroy_split\
+			is_valid_command))
+OBJ_DIR	= .objs
+OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 SRC_OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
-OBJS = $(SRC_OBJ)
-LIBFT =	./libft/libft.a
-LIB_DIR =	./libft
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
 
-vpath %.c $(DIR_SRC)
+LIBFT	= ./libft/libft.a
+LIB_DIR	= libft
+LDLIBS	+= -L$(LIB_DIR) -lft
+
+DEPS			=	$(OBJS:.o=.d)
 
 all: $(NAME)
-	echo all
 
-$(NAME): $(APP) $(OBJ_DIR) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(APP) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
+$(NAME): $(OBJ_DIR) $(OBJS)
+		@make -C $(LIB_DIR)
+		@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDLIBS)
+		@echo "\n${GREEN}> ${END}${WHITE}$(NAME) compilado com sucesso 🎉${END}\n"
 
 $(OBJ_DIR):
-	mkdir -p ${OBJ_DIR}
+	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.c
-	@/bin/echo -n .
-	cc $(CFLAGS) -c $< -o $@
-
-$(LIBFT): $(LIB_DIR)
-		@make -C $(LIB_DIR)
-
-test:
-	cc test.c libft/*.c util/*.c -o test_novo
+	@mkdir -p $(dir $@)
+	@printf "${GREEN}> $(END)${WHITE}Compilando os objectos do minishell... %-66.99s\r" $@
+	@cc $(CFLAGS) -c $< -o $@
 
 run: all
-	./minishell
+	@./minishell
 clean:
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
+	@echo "${GREEN}> ${END}${WHITE}Apagando os objectos do $(NAME)...${END}"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 	@make fclean -C $(LIB_DIR)
-
+	@echo "${GREEN}> ${END}${WHITE}Limpeza do $(NAME) finalizada${END}"
 re: fclean all
 
-
+-include $(DEPS)

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   error_msg.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:23:57 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/24 11:14:59 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/29 12:43:35 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef ERROR_MSG_H
+# define ERROR_MSG_H
 
-void	ft_exit(t_shell *shell)
+# define P_ERR_TOKEN "mini: syntax error near unexpected token\n"
+# define P_ERR_QUOTES "mini: syntax error, invalid quotes\n"
+# define P_ERR_NOT_FOUND "command not found\n"
+
+enum e_error
 {
-	if (shell)
-		reset_shell(shell);
-}
+	SY_ERR = -42,
+	MEM_ERR = -43
+};
+
+#endif

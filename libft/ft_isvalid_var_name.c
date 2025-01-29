@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_isvalid_var_name.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:23:57 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/22 16:50:58 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/22 16:52:49 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_exit(t_shell *shell)
+int	ft_isvalid_var_name(char c)
 {
-	if (shell)
-		reset_shell(shell);
+	if (ft_isalnum(c) || c == '_')
+		return (1);
+	return (0);
 }

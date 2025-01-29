@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:23:57 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/23 19:13:16 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/23 19:13:27 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_exit(t_shell *shell)
+char	*ft_strcpy(char *dest, char *src)
 {
-	if (shell)
-		reset_shell(shell);
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

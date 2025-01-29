@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 10:51:41 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/14 12:13:17 by jquicuma         ###   ########.fr       */
+/*   Created: 2025/01/22 11:44:17 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/22 11:44:20 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+void	free_quote_list(t_quote *quote_list)
 {
-	t_list_token	*list;
-	char			*teste;
+	t_quote	*current;
+	t_quote	*next;
 
-	teste = ft_strdup("echo hello>>teste|cat    teste");
-	list = tokenize(teste);
-	if (list == NULL)
-		printf("Lista de tokens está nula.\n");
-	else
+	current = quote_list;
+	while (current)
 	{
-		for (t_list_token *new = list; new; new = new->next)
-			printf("%s\n", new->data);
+		next = current->next;
+		free(current->data);
+		free(current);
+		current = next;
 	}
-	free(teste);
-	destroy_list_token(list);
-	return (0);
 }

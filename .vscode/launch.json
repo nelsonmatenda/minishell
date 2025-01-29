@@ -4,12 +4,11 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
-
 		{
-			"name": "minishell",
+			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/test/test_bin",
+			"program": "${workspaceFolder}/bin",
 			"args": [],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
@@ -26,11 +25,13 @@
 					"description": "Set Disassembly Flavor to Intel",
 					"text": "-gdb-set disassembly-flavor intel",
 					"ignoreFailures": true
+				},
+				{
+					"description": "Set print options for GDB",
+					"text": "-gdb-set print char-array-indexes off",
+					"ignoreFailures": true
 				}
 			]
 		}
-
-
-
 	]
 }

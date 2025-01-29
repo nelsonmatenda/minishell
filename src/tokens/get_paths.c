@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   get_paths.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 13:33:46 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/22 12:08:25 by jquicuma         ###   ########.fr       */
+/*   Created: 2025/01/23 19:04:41 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/23 19:05:11 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-int	ft_isprint(int c)
+char	**get_paths(char *envp[])
 {
-	return (c >= 32 && c <= 126);
+	int		i;
+	char	**paths;
+
+	i = 0;
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
+		i++;
+	if (!envp[i])
+		return (NULL);
+	paths = ft_split(envp[i] + 5, ':');
+	return (paths);
 }

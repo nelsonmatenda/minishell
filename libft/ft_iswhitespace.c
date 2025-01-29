@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_iswhitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:23:57 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/22 11:42:14 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/22 12:08:32 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_exit(t_shell *shell)
+int	ft_iswhitespace(char c)
 {
-	if (shell)
-		reset_shell(shell);
+	return (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' \
+		|| c == '\v');
 }

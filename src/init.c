@@ -5,10 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 13:49:22 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/13 14:01:55 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/29 12:30:24 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+void	init_shell(t_shell	*shell, char **envp)
+{
+	shell->cmd_full_path = NULL;
+	shell->input = NULL;
+	shell->nbr_of_tokens = 0;
+	shell->cmd = NULL;
+	shell->list_input = NULL;
+	shell->env = envp;
+}

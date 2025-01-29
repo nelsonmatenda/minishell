@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   destroy_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 09:51:57 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/13 09:54:56 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/17 11:01:09 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/28 11:40:46 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	main(void)
+void	destroy_splited(char **splited)
 {
-	minishell();
-	return (0);
+	int	i;
+
+	i = 0;
+	while (splited[i] != NULL)
+	{
+		free(splited[i]);
+		splited[i] = NULL;
+		i++;
+	}
+	free(splited);
+	splited = NULL;
 }

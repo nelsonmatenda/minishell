@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:13:54 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/14 09:04:52 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/23 19:15:23 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_iswhitespace(char c);
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
@@ -45,6 +46,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *s);
 void	*ft_calloc(size_t count, size_t size);
+void	*ft_realloc(void *ptr, size_t newsize);
 char	*ft_strdup(const char *s);
 //part 2
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -68,5 +70,12 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+//ADICIONAL
+int		ft_strchr_pos(const char *s, int c);
+int		ft_strrchr_pos(const char *s, int c);
+int		ft_isvalid_var_name(char c);
+char	*ft_strcat(char *dest, char *src);
+char	*ft_strcpy(char *dest, char *src);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

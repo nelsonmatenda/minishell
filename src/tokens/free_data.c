@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:44:17 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/22 11:44:20 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:31:35 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,19 @@ void	free_quote_list(t_quote *quote_list)
 		free(current);
 		current = next;
 	}
+}
+
+void	ft_free_array(char **array)
+{
+	int	i;
+
+	if (!array)
+		return;
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }

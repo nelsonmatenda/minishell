@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 17:51:24 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 14:41:34 by jquicuma         ###   ########.fr       */
+/*   Created: 2025/01/31 16:40:11 by jquicuma          #+#    #+#             */
+/*   Updated: 2025/01/31 16:51:54 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-# define LIB_H
+#include "../../includes/minishell.h"
 
-# define _DEFAULT_SOURCE
+int	open_file(char *file, int flags)
+{
+	int	fd;
 
-# include <termios.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <stdbool.h>
-# include <signal.h>
-# include <sys/signal.h>
-# include "../libft/libft.h"
-# include <readline/history.h>
+	fd = open(file, flags, 0644);
+	if (fd == -1)
+		perror("Error opening file");
+	return (fd);
+}
 
-#endif
+int	setup_pipe(int pipe_fd[2])
+{
+	if (pipe(pipe_fd) == -1)
+	{
+		perror("pipe");
+		return (-1);
+	}
+	return (0);
+}

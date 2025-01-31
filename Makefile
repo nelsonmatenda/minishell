@@ -39,6 +39,9 @@ SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
 			execute))
 SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
 			heredoc))
+SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \
+			redirection \
+			utils))
 OBJ_DIR	= .objs
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 SRC_OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)

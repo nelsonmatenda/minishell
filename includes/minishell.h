@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/30 18:57:32 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:44:14 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,11 @@ void			signals(void);
 void			signals_heredoc(int sa);
 int				heredoc(t_shell *shell);
 void			execute(t_shell *shell);
+//REDIRECT
+int				process_pipeline(t_shell *shell);
+void			ft_free_array(char **array);
+char			*find_command_path(char *cmd, char **env);
+int				open_file(char *file, int flags);
+int				setup_pipe(int pipe_fd[2]);
 
 #endif

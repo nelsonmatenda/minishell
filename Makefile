@@ -33,7 +33,12 @@ SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
 			destroy_split\
 			is_valid_command))
 SRCS	+= $(addprefix src/signals/, $(addsuffix .c, \
-			signals))
+			signals \
+			signals_heredoc))
+SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
+			execute))
+SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
+			heredoc))
 OBJ_DIR	= .objs
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 SRC_OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)

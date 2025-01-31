@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/29 18:19:43 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:57:32 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_shell
 	char		*input;
 	char		*cmd_full_path;
 	int			nbr_of_tokens;
+	char		*hr_filename;
 	char		**env;
 }				t_shell;
 
@@ -114,5 +115,8 @@ void			handler_pipe(t_command **cur, t_quote **tokens, \
 int				parser(t_shell *shell);
 void			destroy_cmd(t_command **cmd);
 void			signals(void);
+void			signals_heredoc(int sa);
+int				heredoc(t_shell *shell);
+void			execute(t_shell *shell);
 
 #endif

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   signals_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 17:51:24 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/30 17:38:58 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/30 18:54:20 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/30 18:56:36 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-# define LIB_H
+#include "../../includes/minishell.h"
 
-# define _DEFAULT_SOURCE
 
-# include <termios.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <stdbool.h>
-# include <signal.h>
-# include <sys/signal.h>
-# include "../libft/libft.h"
-
-#endif
+void	signals_heredoc(int sa)
+{
+	if (sa == SIGINT)
+	{
+		g_signal = SIGNAL_CTRL_C;
+		close(STDIN_FILENO);
+	}
+}

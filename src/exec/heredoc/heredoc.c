@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/30 19:08:35 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:12:39 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,21 @@ char	*create_tmp_file(t_shell *shell)
 	}
 }
 
+// int	read_heredoc(int fd, char *delim)
+// {
+// 	char	*line;
+
+// 	while (1)
+// 	{
+// 		line = readline("> ");
+// 		if (!line)
+// 		{
+// 			if (g_signal == SIGNAL_CTRL_C)
+// 				return (close(fd));
+// 		}
+// 	}
+// }
+
 int	heredoc(t_shell *shell)
 {
 	int		fd;
@@ -84,6 +99,6 @@ int	heredoc(t_shell *shell)
 	if (fd == -1)
 		return (0);
 	signal(SIGINT, &signals_heredoc);
-	//read_heredoc()
+	//read_heredoc();
 	return (close(fd), 1);
 }

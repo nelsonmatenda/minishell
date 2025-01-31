@@ -36,6 +36,7 @@ SRC = ft_atoi \
 			ft_isvalid_var_name \
 			ft_strcpy \
 			ft_strcat \
+			ft_strjoin_with_two_point \
 
 END				:=	\033[0m
 BLUE			:=	\033[0;34m

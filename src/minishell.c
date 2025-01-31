@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/30 18:26:07 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 08:50:34 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
+	g_signal = 0;
 	init_shell(&shell, envp);
 	minishell(&shell);
 	return (ft_exit(&shell), 0);

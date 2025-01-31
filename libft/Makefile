@@ -37,6 +37,7 @@ SRC = ft_atoi \
 			ft_strcpy \
 			ft_strcat \
 			ft_strjoin_with_two_point \
+			ft_find_char \
 
 END				:=	\033[0m
 BLUE			:=	\033[0;34m

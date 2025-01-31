@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:19:56 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 09:11:16 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:16:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	handler_rd_in(t_command *cur, t_quote **tokens)
 {
 	char	*aux;
-	
+
 	*tokens = (*tokens)->next;
 	if (tokens && *tokens)
 	{
@@ -72,7 +72,7 @@ void	handler_append(t_command *cur, t_quote **tokens)
 		}
 		else
 			cur->out = ft_strdup((*tokens)->data);
-		cur->append = 0;
+		cur->append = 1;
 		*tokens = (*tokens)->next;
 		while ((*tokens) && (*tokens)->token_type == ARG && (*tokens)->next)
 			*tokens = (*tokens)->next;
@@ -94,6 +94,8 @@ void	handler_heredoc(t_command *cur, t_quote **tokens)
 		}
 		else
 			cur->delim = ft_strdup((*tokens)->data);
+		if ((*tokens)->type != NO_QUOTE && (*tokens)->type != INVALID_QUOTE)
+			cur->delim_in_quotes = 1;
 		*tokens = (*tokens)->next;
 		while ((*tokens) && (*tokens)->token_type == ARG && (*tokens)->next)
 			*tokens = (*tokens)->next;

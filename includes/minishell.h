@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/30 18:57:32 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:45:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_command
 	char	*in;
 	char	*out;
 	char	*delim;
+	int		delim_in_quotes;
 	int		append;
 }			t_command;
 

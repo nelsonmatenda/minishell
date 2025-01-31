@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 09:12:39 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:29:15 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*create_tmp_file(t_shell *shell)
 	}
 }
 
-// int	read_heredoc(int fd, char *delim)
+// int	read_heredoc(int fd, t_shell *shell)
 // {
 // 	char	*line;
 
@@ -83,8 +83,18 @@ char	*create_tmp_file(t_shell *shell)
 // 		if (!line)
 // 		{
 // 			if (g_signal == SIGNAL_CTRL_C)
-// 				return (close(fd));
+// 				return (close(fd), exit(g_signal), 1);
+/*			ft_putstr_fd("mini: warning: here-document \*/ 
+// 						delimited by end-of-file (wanted)", 2);
+// 			return (close(fd), 0);
 // 		}
+// 		if (!line || !ft_strcmp(line, cmd->delim))
+// 			return (free(line), close(fd), 1);
+// 		if (!cmd->delim_in_quotes)
+// 			expand_env_var();
+// 		write(fd, line, ft_strlen(line));
+// 		write(fd, "\n", 1);
+// 		free(line);
 // 	}
 // }
 

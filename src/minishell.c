@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 08:50:34 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:23:29 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	minishell(t_shell *shell)
 		shell->list_input = expand_env_var(shell->input, shell->env);
 		if (shell->list_input && parser(shell))
 		{
-			execute(shell);
-			if (!ft_strncmp(shell->cmd[0]->args[0], "exi", ft_strlen("exi")))
+			//execute(shell);
+			if (!ft_strncmp(shell->cmd[0]->args[1], "exi", ft_strlen("exi")))
 				break ;
 		}
 		reset_shell(shell);

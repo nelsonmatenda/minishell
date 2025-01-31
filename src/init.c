@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 12:30:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:25:44 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	init_shell(t_shell	*shell, char **envp)
 	shell->nbr_of_tokens = 0;
 	shell->cmd = NULL;
 	shell->list_input = NULL;
+	shell->hr_filename = NULL;
 	shell->env = envp;
 }

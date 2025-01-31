@@ -6,11 +6,13 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:42:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 08:50:34 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	g_signal;
 
 void	reset_shell(t_shell *shell)
 {
@@ -40,10 +42,17 @@ void	minishell(t_shell *shell)
 {
 	while (1)
 	{
-		shell->input = readline("👽-➤  ");
+		signals();
+		shell->input = readline("👽-➤ ");
+		if (!shell->input)
+		{
+			ft_putstr_fd("exit\n", STDOUT_FILENO);
+			break ;
+		}
 		shell->list_input = expand_env_var(shell->input, shell->env);
 		if (shell->list_input && parser(shell))
 		{
+			execute(shell);
 			if (!ft_strncmp(shell->cmd[0]->args[0], "exi", ft_strlen("exi")))
 				break ;
 		}
@@ -57,6 +66,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
+	g_signal = 0;
 	init_shell(&shell, envp);
 	minishell(&shell);
 	return (ft_exit(&shell), 0);

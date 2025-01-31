@@ -32,6 +32,13 @@ SRCS	+= $(addprefix src/tokens/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
 			destroy_split\
 			is_valid_command))
+SRCS	+= $(addprefix src/signals/, $(addsuffix .c, \
+			signals \
+			signals_heredoc))
+SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
+			execute))
+SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
+			heredoc))
 OBJ_DIR	= .objs
 OBJS	= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 SRC_OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
@@ -54,7 +61,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@printf "${GREEN}> $(END)${WHITE}Compilando os objectos do minishell... %-66.99s\r" $@
+	@printf "${GREEN}> $(END)${WHITE}Compilando os objectos do minishell... %-66.99s\r${END}" $@
 	@cc $(CFLAGS) -c $< -o $@
 
 run: all

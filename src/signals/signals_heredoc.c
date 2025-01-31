@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   signals_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:02:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/30 18:19:00 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/01/30 18:54:20 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/01/30 18:56:36 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	execute(t_shell *shell)
+
+void	signals_heredoc(int sa)
 {
-	heredoc(shell);
+	if (sa == SIGINT)
+	{
+		g_signal = SIGNAL_CTRL_C;
+		close(STDIN_FILENO);
+	}
 }

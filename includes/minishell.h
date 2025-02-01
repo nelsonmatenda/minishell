@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/31 17:06:17 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:00:24 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_command
 	char	*out;
 	char	*delim;
 	int		delim_in_quotes;
+	int		last_is_delim;
 	int		append;
 }			t_command;
 
@@ -94,6 +95,7 @@ t_quote			*convert_str_to_quote_list(char *input);
 void			free_quote_list(t_quote *quote_list);
 void			substitute_env_var(char **str, const char *env_var, \
 							const char *env_value);
+int				expand_env(char **input, char **envp);
 t_quote			*expand_env_var(char *input, char **envp);
 char			*remove_quotes_expand_env_var(char *input, char **envp);
 int				lst_quote_add(t_quote **lst, t_quote *new);
@@ -116,10 +118,13 @@ void			handler_pipe(t_command **cur, t_quote **tokens, \
 int				parser(t_shell *shell);
 void			destroy_cmd(t_command **cmd);
 void			signals(void);
+void			signals_heredoc_parents(int sig);
+void			signals_child(void);
 void			signals_heredoc(int sa);
-int				heredoc(t_shell *shell);
-void			execute(t_shell *shell);
+int				heredoc(t_shell *shell, t_command *cmd);
+//void			execute(t_shell *shell);
 //REDIRECT
+void			expand_variables(t_shell *shell, char **line);
 int				process_pipeline(t_shell *shell);
 void			ft_free_array(char **array);
 char			*find_command_path(char *cmd, char **env);

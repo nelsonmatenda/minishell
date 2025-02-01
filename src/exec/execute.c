@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:02:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/30 18:19:00 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:54:29 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	execute(t_shell *shell)
 {
-	heredoc(shell);
+	(void)shell;
+	return ;
 }

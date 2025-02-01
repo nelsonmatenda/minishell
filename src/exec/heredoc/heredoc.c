@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 15:29:15 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:12:55 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,42 +73,64 @@ char	*create_tmp_file(t_shell *shell)
 	}
 }
 
-// int	read_heredoc(int fd, t_shell *shell)
-// {
-// 	char	*line;
 
-// 	while (1)
-// 	{
-// 		line = readline("> ");
-// 		if (!line)
-// 		{
-// 			if (g_signal == SIGNAL_CTRL_C)
-// 				return (close(fd), exit(g_signal), 1);
-/*			ft_putstr_fd("mini: warning: here-document \*/ 
-// 						delimited by end-of-file (wanted)", 2);
-// 			return (close(fd), 0);
-// 		}
-// 		if (!line || !ft_strcmp(line, cmd->delim))
-// 			return (free(line), close(fd), 1);
-// 		if (!cmd->delim_in_quotes)
-// 			expand_env_var();
-// 		write(fd, line, ft_strlen(line));
-// 		write(fd, "\n", 1);
-// 		free(line);
-// 	}
-// }
 
-int	heredoc(t_shell *shell)
+int	read_heredoc(t_shell *shell, t_command *cmd, int fd)
+{
+	char	*line;
+
+	while (1)
+	{
+		line = readline("> ");
+		if (!line)
+		{
+			if (g_signal == SIGNAL_CTRL_C)
+				return (close(fd), exit(g_signal), 1);
+			ft_putstr_fd("mini: warning: here-document \
+						delimited by end-of-file (wanted)", 2);
+			return (close(fd), 0);
+		}
+		if (!line || !ft_strcmp(line, cmd->delim))
+		{
+			char buffer[100] = {0};
+			int bytes_read = read(fd, buffer, 99);
+			buffer[100] = '\0';
+			printf("FIRST{%s} = %d\n", buffer, bytes_read);
+			sleep(5);
+			return (free(line), 1);
+		}
+		if (!cmd->delim_in_quotes)
+			expand_variables(shell, &line);
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		free(line);
+	}
+	close(fd);
+}
+
+int	heredoc(t_shell *shell, t_command *cmd)
 {
 	int		fd;
+	int		i;
+	char	**delim;
 
-	shell->hr_filename = create_tmp_file(shell);
-	if (!shell->hr_filename)
-		return (0);
-	fd = open(shell->hr_filename, O_RDWR | O_EXCL, 0644);
-	if (fd == -1)
-		return (0);
-	signal(SIGINT, &signals_heredoc);
-	//read_heredoc();
-	return (close(fd), 1);
+	if (!cmd->delim)
+		return (-1);
+	delim = ft_split(cmd->delim, ':');
+	i = 0;
+	while(delim[i])
+	{
+		signal(SIGINT, &signals_heredoc);
+		shell->hr_filename = create_tmp_file(shell);
+		if (!shell->hr_filename)
+			return (0);
+		fd = open(shell->hr_filename, O_RDWR | O_APPEND | O_NONBLOCK, 0644);
+		write(fd, "ALGO COISA", ft_strlen("ALGO COISA"));
+		printf("%s", shell->hr_filename);
+		if (fd == -1)
+			return (0);
+		read_heredoc(shell, cmd, fd);
+		i++;
+	}
+	return (fd);
 }

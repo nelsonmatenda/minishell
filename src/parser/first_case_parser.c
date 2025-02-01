@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:14:00 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 10:34:36 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:25:32 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	first_rd_in(t_command *cur, t_quote **tokens)
 		if (cur->in)
 			free(cur->in);
 		cur->in = ft_strdup((*tokens)->data);
+		cur->last_is_delim = 0;
 		*tokens = (*tokens)->next;
 	}
 }
@@ -57,6 +58,9 @@ static void	first_rd_hr_doc(t_command *cur, t_quote **tokens)
 		if (cur->delim)
 			free(cur->delim);
 		cur->delim = ft_strdup((*tokens)->data);
+		if ((*tokens)->type != NO_QUOTE && (*tokens)->type != INVALID_QUOTE)
+			cur->delim_in_quotes = 1;
+		cur->last_is_delim = 1;
 		*tokens = (*tokens)->next;
 	}
 }

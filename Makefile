@@ -34,11 +34,13 @@ SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
 			is_valid_command))
 SRCS	+= $(addprefix src/signals/, $(addsuffix .c, \
 			signals \
-			signals_heredoc))
+			signals_heredoc \
+			signals_child))
 SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
 			execute))
 SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
-			heredoc))
+			heredoc \
+			expand_var_heredoc))
 SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \
 			redirection \
 			utils))

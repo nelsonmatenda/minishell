@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/27 14:12:32 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:59:59 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	verify_env_var(char **input, char **envp, int i)
 	return (1);
 }
 
-static int	expand_env(char **input, char **envp)
+int	expand_env(char **input, char **envp)
 {
 	int		i;
 	char	*input_ptr;

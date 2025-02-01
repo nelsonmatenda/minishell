@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:01:09 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/28 11:40:46 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:21:56 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	destroy_splited(char **splited)
 {
 	int	i;
 
+
+	if (!splited)
+		return;
 	i = 0;
 	while (splited[i] != NULL)
 	{

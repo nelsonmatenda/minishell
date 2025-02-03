@@ -73,6 +73,7 @@ run: all
 	@./minishell
 clean:
 	@rm -rf $(OBJ_DIR)
+	@make clean -C $(LIB_DIR)
 	@echo "${GREEN}> ${END}${WHITE}Apagando os objectos do $(NAME)...${END}"
 
 fclean: clean

@@ -6,13 +6,13 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:55:33 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 09:01:11 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:19:22 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_with_two_point(char const *s1, char const *s2)
+char	*ft_strjoin_with_two_point(char const *s1, char const *s2, char c)
 {
 	char	*join;
 	int		i;
@@ -29,7 +29,7 @@ char	*ft_strjoin_with_two_point(char const *s1, char const *s2)
 		i++;
 		j++;
 	}
-	join[i++] = ':';
+	join[i++] = c;
 	j = 0;
 	while (s2[j])
 	{

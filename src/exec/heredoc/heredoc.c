@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 10:31:48 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:35:46 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*create_tmp_file(t_shell *shell)
 
 
 
-int	read_heredoc(t_shell *shell, t_command *cmd, int fd)
+int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 {
 	char	*line;
 
@@ -89,7 +89,7 @@ int	read_heredoc(t_shell *shell, t_command *cmd, int fd)
 			ft_putstr_fd(P_ERR_EXIT_HR, 2);
 			return (close(fd), 0);
 		}
-		if (!line || !ft_strcmp(line, cmd->delim))
+		if (!line || !ft_strcmp(line, delim))
 			return (free(line), close(fd), 1);
 		if (!cmd->delim_in_quotes)
 			expand_variables(shell, &line);
@@ -107,20 +107,20 @@ int	heredoc(t_shell *shell, t_command *cmd)
 
 	if (!cmd->delim)
 		return (-1);
-	delim = ft_split(cmd->delim, ':');
-	i = 0;
-	while(delim[i])
+	delim = ft_split(cmd->delim, '`');
+	i = -1;
+	while(delim[++i])
 	{
-		signal(SIGINT, &signals_heredoc);
+		if (shell->hr_filename)
+			free(shell->hr_filename);
 		shell->hr_filename = create_tmp_file(shell);
 		if (!shell->hr_filename)
 			return (0);
 		fd = open(shell->hr_filename, O_RDWR, 0644);
 		if (fd == -1)
 			return (-1);
-		if(!read_heredoc(shell, cmd, fd))
+		if(!read_heredoc(shell, cmd, delim[i], fd))
 			return (-1);
-		i++;
 	}
 	fd = open(shell->hr_filename, O_RDONLY, 0644);
 	if (fd == -1)

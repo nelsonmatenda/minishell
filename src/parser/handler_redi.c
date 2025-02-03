@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:19:56 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 18:18:03 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:25:25 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handler_rd_in(t_command *cur, t_quote **tokens)
 		if (cur->in)
 		{
 			aux = cur->in;
-			cur->in = ft_strjoin_with_two_point(aux, (*tokens)->data);
+			cur->in = ft_strjoin_with_two_point(aux, (*tokens)->data, ':');
 			free(aux);
 		}
 		else
@@ -46,7 +46,7 @@ void	handler_rd_out(t_command *cur, t_quote **tokens)
 		if (cur->out)
 		{
 			aux = cur->out;
-			cur->out = ft_strjoin_with_two_point(aux, (*tokens)->data);
+			cur->out = ft_strjoin_with_two_point(aux, (*tokens)->data, ':');
 			free(aux);
 		}
 		else
@@ -68,7 +68,7 @@ void	handler_append(t_command *cur, t_quote **tokens)
 		if (cur->out)
 		{
 			aux = cur->out;
-			cur->out = ft_strjoin_with_two_point(aux, (*tokens)->data);
+			cur->out = ft_strjoin_with_two_point(aux, (*tokens)->data, ':');
 			free(aux);
 		}
 		else
@@ -90,7 +90,7 @@ void	handler_heredoc(t_command *cur, t_quote **tokens)
 		if (cur->delim)
 		{
 			aux = cur->delim;
-			cur->delim = ft_strjoin_with_two_point(aux, (*tokens)->data);
+			cur->delim = ft_strjoin_with_two_point(aux, (*tokens)->data, '`');
 			free(aux);
 		}
 		else

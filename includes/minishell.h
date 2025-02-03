@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/01 14:00:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:19:44 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ void			signals_heredoc_parents(int sig);
 void			signals_child(void);
 void			signals_heredoc(int sa);
 int				heredoc(t_shell *shell, t_command *cmd);
-//void			execute(t_shell *shell);
 //REDIRECT
 void			expand_variables(t_shell *shell, char **line);
 int				process_pipeline(t_shell *shell);

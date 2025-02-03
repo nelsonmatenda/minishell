@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:13:54 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 15:16:08 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:20:10 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		ft_isvalid_var_name(char c);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strcmp(char *s1, char *s2);
-char	*ft_strjoin_with_two_point(char const *s1, char const *s2);
+char	*ft_strjoin_with_two_point(char const *s1, char const *s2, char c);
 ssize_t	ft_find_char(char *str, char c);
 
 #endif

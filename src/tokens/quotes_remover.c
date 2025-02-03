@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_remover.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/01 13:59:59 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:44:23 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,9 @@ t_quote	*expand_env_var(char *input, char **envp)
 			if (tmp_q_list->data[i] == '$' && \
 			(tmp_q_list->type == DOUBLE_QUOTE || tmp_q_list->type == NO_QUOTE))
 			{
-				if (expand_env(&tmp_q_list->data, envp))
+				if (tmp_q_list->data[i + 1] && tmp_q_list->data[i + 1] == '?')
+					;
+				else if (expand_env(&tmp_q_list->data, envp))
 					i = -1;
 			}
 			i++;

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:34:36 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/30 10:13:30 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:43:25 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,23 @@ static void	handler_ctrl_backslash(void)
 	sigaction(SIGQUIT, &ctrl_backslash, NULL);
 }
 
+static void	signal_terms(void)
+{
+	struct termios	term;
+
+	if (tcgetattr(1, &term))
+	{
+		ft_putstr_fd("mini: tcgetattr failed\n", 2);
+		return ;
+	}
+	term.c_lflag &= ~ECHOCTL;
+	if (tcsetattr(1, 0, &term))
+		ft_putstr_fd("mini: tcsetattr failed\n", 2);
+}
+
 void	signals(void)
 {
+	signal_terms();
 	handler_ctrl_c();
 	handler_ctrl_backslash();
 }

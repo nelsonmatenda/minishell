@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/01 18:12:55 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:31:48 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,17 @@ int	read_heredoc(t_shell *shell, t_command *cmd, int fd)
 		{
 			if (g_signal == SIGNAL_CTRL_C)
 				return (close(fd), exit(g_signal), 1);
-			ft_putstr_fd("mini: warning: here-document \
-						delimited by end-of-file (wanted)", 2);
+			ft_putstr_fd(P_ERR_EXIT_HR, 2);
 			return (close(fd), 0);
 		}
 		if (!line || !ft_strcmp(line, cmd->delim))
-		{
-			char buffer[100] = {0};
-			int bytes_read = read(fd, buffer, 99);
-			buffer[100] = '\0';
-			printf("FIRST{%s} = %d\n", buffer, bytes_read);
-			sleep(5);
-			return (free(line), 1);
-		}
+			return (free(line), close(fd), 1);
 		if (!cmd->delim_in_quotes)
 			expand_variables(shell, &line);
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);
 	}
-	close(fd);
 }
 
 int	heredoc(t_shell *shell, t_command *cmd)
@@ -124,13 +115,15 @@ int	heredoc(t_shell *shell, t_command *cmd)
 		shell->hr_filename = create_tmp_file(shell);
 		if (!shell->hr_filename)
 			return (0);
-		fd = open(shell->hr_filename, O_RDWR | O_APPEND | O_NONBLOCK, 0644);
-		write(fd, "ALGO COISA", ft_strlen("ALGO COISA"));
-		printf("%s", shell->hr_filename);
+		fd = open(shell->hr_filename, O_RDWR, 0644);
 		if (fd == -1)
-			return (0);
-		read_heredoc(shell, cmd, fd);
+			return (-1);
+		if(!read_heredoc(shell, cmd, fd))
+			return (-1);
 		i++;
 	}
+	fd = open(shell->hr_filename, O_RDONLY, 0644);
+	if (fd == -1)
+		return (-1);
 	return (fd);
 }

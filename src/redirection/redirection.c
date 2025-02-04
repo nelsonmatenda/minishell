@@ -6,13 +6,13 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/03 10:35:53 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:50:20 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	process_files(char *file_list, int flags, int std)
+int	process_files(char *file_list, int flags, int std)
 {
 	char	**files;
 	int		fd;
@@ -20,7 +20,7 @@ static int	process_files(char *file_list, int flags, int std)
 
 	fd = 0;
 	i = 0;
-	files = ft_split(file_list, ':');
+	files = ft_split(file_list, ' ');
 	if (!files)
 		return (-1);
 	while (files[i])
@@ -39,7 +39,7 @@ static int	process_files(char *file_list, int flags, int std)
 	return (0);
 }
 
-static int	handle_redirections(t_shell *shell, t_command *cmd)
+int	handle_redirections(t_shell *shell, t_command *cmd)
 {
 	int	flags;
 	int	fd_heredoc;
@@ -68,7 +68,7 @@ static int	handle_redirections(t_shell *shell, t_command *cmd)
 	return (0);
 }
 
-static void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
+void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 {
 	char	*cmd_path;
 
@@ -88,12 +88,13 @@ static void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 		perror("Command not found");
 		exit(EXIT_FAILURE);
 	}
-	execve(cmd_path, shell->cmd[i]->args, shell->env);
+	if (shell->cmd[i]->args)
+		execve(cmd_path, shell->cmd[i]->args, shell->env);
 	perror("execve");
 	exit(EXIT_FAILURE);
 }
 
-static int	handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2])
+int	handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2])
 {
 	pid_t	pid;
 
@@ -118,30 +119,5 @@ static int	handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2])
 		*prev_fd = -1;
 	if (!shell->cmd[i + 1] && pipe_fd[0] != -1)
 		close(pipe_fd[0]);
-	return (0);
-}
-
-int	process_pipeline(t_shell *shell)
-{
-	int	i;
-	int	prev_fd;
-	int	pipe_fd[2];
-
-	i = 0;
-	prev_fd = -1;
-	pipe_fd[0] = -1;
-	pipe_fd[1] = -1;
-	while (shell->cmd[i])
-	{
-		if (shell->cmd[i + 1] && setup_pipe(pipe_fd) == -1)
-			return (-1);
-		if (handle_process(shell, i, &prev_fd, pipe_fd) == -1)
-			return (-1);
-		if (shell->cmd[i + 1])
-			close(pipe_fd[1]);
-		i++;
-	}
-	while (wait(NULL) > 0)
-		;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:14:59 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 10:20:21 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:53:23 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define P_ERR_EXIT_HR "mini: warning: here-document delimited \
 						by end-of-file (wanted)\n"
 
+# define SIGNAL_ERR_SYNTAX 2
 # define SIGNAL_CTRL_C 130
 
 #endif

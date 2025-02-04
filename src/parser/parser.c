@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:38:39 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:58:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	is_valid_quote(t_quote *list)
 	while (aux)
 	{
 		if (aux->type == INVALID_QUOTE)
-			return (0);
+			return (p_err_prohibited_char(), 0);
 		aux = aux->next;
 	}
 	return (1);

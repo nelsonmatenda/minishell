@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/03 11:19:44 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:23:29 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_subst
 	int			env_value_len;
 }				t_subst;
 
+void	ctrl_handler(int sig);
+void			p_err_prohibited_char(void);
 void			init_shell(t_shell	*shell, char **envp);
 void			reset_shell(t_shell *shell);
 void			ft_exit(t_shell *shell);
@@ -104,7 +106,7 @@ char			**get_paths(char *envp[]);
 void			determine_token_types(t_quote *quote_list);
 // PARSER
 int				checks(t_quote *aux);
-int				first_caracter_case(t_quote **list);
+int				first_caracter_case(t_quote **list, int *i);
 void			first_case_parser(t_command *cur, t_quote **tokens);
 int				count_check_tokens(t_shell *shell);
 t_command		*new_cmd(void);
@@ -124,7 +126,11 @@ void			signals_heredoc(int sa);
 int				heredoc(t_shell *shell, t_command *cmd);
 //REDIRECT
 void			expand_variables(t_shell *shell, char **line);
-int				process_pipeline(t_shell *shell);
+int				process_files(char *file_list, int flags, int std);
+int				handle_redirections(t_shell *shell, t_command *cmd);
+void			execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd);
+int				handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2]);
+int				ft_exec(t_shell *shell);
 void			ft_free_array(char **array);
 char			*find_command_path(char *cmd, char **env);
 int				open_file(char *file, int flags);

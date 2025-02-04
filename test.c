@@ -1,35 +1,25 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <unistd.h>
-#include <readline/readline.h>
 
 // Handler para Ctrl+C (SIGINT)
-void handle_sigint(int sig) {
-    // Escreve "^C" no terminal
-    write(STDOUT_FILENO, "^C\n", 3);
+#include <signal.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-    // Atualiza o estado interno do Readline para nova linha
-    rl_on_new_line();
-
-    // Prepara para redesenhar o prompt
-    rl_replace_line("", 0); // Limpa o buffer de entrada atual
-    rl_redisplay();         // Redesenha o prompt
+void handler(int sig) {
+    exit(0); // Finaliza o processo ao receber SIGINT
 }
 
 int main() {
-    // Configura o handler para Ctrl+C
-    signal(SIGINT, handle_sigint);
-
-    // Loop principal do terminal
-    while (1) {
-        char *input = readline("👽-➤ ");
-        if (!input) break; // Sai se receber EOF (Ctrl+D)
-
-        // Processa o comando aqui (exemplo: echo)
-        printf("Comando: %s\n", input);
-        free(input);
+    pid_t pid = fork();
+    if (pid == 0) {
+        // Código do filho
+        signal(SIGINT, handler); // Instala o handler
+        while (1); // Loop infinito para teste
+    } else {
+        // Código do pai
+        wait(NULL);
     }
-
     return 0;
 }

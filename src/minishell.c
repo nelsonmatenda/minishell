@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/01 13:53:54 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:30:02 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,21 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		signals();
+		printf("readline chamado\n");
 		shell->input = readline("👽-➤ ");
 		if (!shell->input)
 		{
-			ft_putstr_fd("exit\n", STDOUT_FILENO);
+			 if (g_signal == SIGNAL_CTRL_C)
+			 	ft_putstr_fd("exit", STDOUT_FILENO);
+			 else
+				ft_putstr_fd("exit\n", STDOUT_FILENO);
+			g_signal = 0;
 			break ;
 		}
 		shell->list_input = expand_env_var(shell->input, shell->env);
 		add_history(shell->input);
 		if (shell->list_input && parser(shell))
-			process_pipeline(shell);
+			ft_exec(shell);
 		reset_shell(shell);
 	}
 }

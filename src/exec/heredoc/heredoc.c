@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 11:35:46 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:18:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ char	*create_tmp_file(t_shell *shell)
 	int		fd;
 
 	if (shell->hr_filename)
-		return (unlink(shell->hr_filename), shell->hr_filename);
-	name = ft_strdup(HR_FILENAME);
+		name = shell->hr_filename;
+	else
+		name = ft_strdup(HR_FILENAME);
 	if (!name)
 		return (NULL);
 	while (1)
@@ -81,6 +82,7 @@ int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 
 	while (1)
 	{
+		//signal(SIGINT, signals_heredoc);
 		line = readline("> ");
 		if (!line)
 		{
@@ -107,7 +109,7 @@ int	heredoc(t_shell *shell, t_command *cmd)
 
 	if (!cmd->delim)
 		return (-1);
-	delim = ft_split(cmd->delim, '`');
+	delim = ft_split(cmd->delim, ' ');
 	i = -1;
 	while(delim[++i])
 	{

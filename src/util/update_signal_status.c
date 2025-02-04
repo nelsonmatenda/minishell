@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_var_heredoc.c                               :+:      :+:    :+:   */
+/*   update_signal_status.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 15:12:37 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 15:37:35 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/02/03 18:54:57 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/02/03 18:57:33 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void	expand_variables(t_shell *shell, char **line)
+void	p_err_prohibited_char()
 {
-	int		i;
-	char	*aux;
-
-	aux = *line;
-	i = 0;
-	if (ft_find_char(aux, '$') == -1)
-		return ;
-	while (aux[i])
-	{
-		if (aux[i] == '$')
-		{
-			if (aux[i + 1] && aux[i + 1] == '?')
-				;
-			else if (expand_env(line, shell->env))
-				i = -1;
-		}
-		i++;
-	}
+	g_signal = SIGNAL_ERR_SYNTAX;
 }

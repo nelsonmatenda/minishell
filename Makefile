@@ -31,7 +31,8 @@ SRCS	+= $(addprefix src/tokens/, $(addsuffix .c, \
 			substitute_env_var))
 SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
 			destroy_split\
-			is_valid_command))
+			is_valid_command \
+			update_signal_status))
 SRCS	+= $(addprefix src/signals/, $(addsuffix .c, \
 			signals \
 			signals_heredoc \

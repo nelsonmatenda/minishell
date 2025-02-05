@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/04 12:50:20 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:53:13 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 	cmd_path = find_command_path(shell->cmd[i]->args[0], shell->env);
 	if (!cmd_path)
 	{
-		perror("Command not found");
+		p_error_cmd(shell->cmd[i]->args[0]);
 		exit(EXIT_FAILURE);
 	}
 	if (shell->cmd[i]->args)

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/04 12:23:29 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:42:59 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_shell
 	char		*cmd_full_path;
 	int			nbr_of_tokens;
 	char		*hr_filename;
+	int			exit_status;
 	char		**env;
 }				t_shell;
 
@@ -79,7 +80,7 @@ typedef struct s_subst
 	int			env_value_len;
 }				t_subst;
 
-void	ctrl_handler(int sig);
+void			p_error_cmd(char *s);
 void			p_err_prohibited_char(void);
 void			init_shell(t_shell	*shell, char **envp);
 void			reset_shell(t_shell *shell);

@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update_signal_status.c                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 18:54:57 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/06 18:12:29 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/02/06 12:38:39 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/02/06 13:50:13 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "libft.h"
 
-void	p_err_prohibited_char(t_shell *shell)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	shell->exit_status = SIGNAL_ERR_SYNTAX;
+	size_t	i;
+	size_t	j;
+
+	if (*needle == 0)
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] != '\0')
+	{
+		j = 0;
+		while (needle[j] != '\0' && haystack[i + j] != '\0'
+			&& needle[j] == haystack[i + j])
+		{
+			if (needle[j + 1] == '\0')
+			{
+				return ((char *)(haystack + i));
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/04 14:53:13 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:39:13 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,34 @@ int	handle_redirections(t_shell *shell, t_command *cmd)
 	return (0);
 }
 
+void	verif_absolut_path(t_shell *shell, char *cmd, int i)
+{
+	struct stat sb;
+
+	if (cmd && (ft_strstr(cmd, "/") == NULL))
+		return ;
+	if (stat(cmd, &sb) == 0)
+	{
+		if (S_ISDIR(sb.st_mode))
+		{
+			ft_putstr_fd("mini: is a directory\n", 2);
+			shell->exit_status = 126;
+			exit(shell->exit_status);
+		}
+		if (access(cmd, X_OK) == 0)
+			execve(cmd, shell->cmd[i]->args, shell->env);
+		else
+		{
+			ft_putstr_fd("mini: Permission denied\n", 2);
+			shell->exit_status = 126;
+			exit(shell->exit_status);
+		}
+	}
+	ft_putstr_fd("mini: No such file or directory\n", 2);
+	shell->exit_status = 127;
+	exit(shell->exit_status);
+}
+
 void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 {
 	char	*cmd_path;
@@ -82,6 +110,7 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 		close(pipe_fd[1]);
 	if (handle_redirections(shell, shell->cmd[i]) == -1)
 		exit(EXIT_FAILURE);
+	verif_absolut_path(shell, shell->cmd[i]->args[0], i);
 	cmd_path = find_command_path(shell->cmd[i]->args[0], shell->env);
 	if (!cmd_path)
 	{
@@ -91,7 +120,26 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 	if (shell->cmd[i]->args)
 		execve(cmd_path, shell->cmd[i]->args, shell->env);
 	perror("execve");
-	exit(EXIT_FAILURE);
+	exit(STATUS_CMD_NOT_FOUND);
+}
+
+void	status_exit(pid_t pid, t_shell *shell)
+{
+	int	status;
+
+	signal(SIGINT, &signals_heredoc_parents);
+	if (waitpid(pid, &status, 0) == -1)
+	{
+		perror("waitpid");
+		shell->exit_status = 1;
+	}
+	else
+	{
+		if (WIFEXITED(status))
+			shell->exit_status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			shell->exit_status = 128 + WTERMSIG(status);
+	}
 }
 
 int	handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2])
@@ -107,10 +155,11 @@ int	handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2])
 	else if (pid < 0)
 	{
 		perror("fork");
+		shell->exit_status = 1;
 		return (-1);
 	}
 	else
-		signal(SIGINT, &signals_heredoc_parents);
+		status_exit(pid, shell);
 	if (*prev_fd != -1)
 		close(*prev_fd);
 	if (shell->cmd[i + 1])

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 18:58:12 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:14:50 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	is_valid_quote(t_quote *list)
 	while (aux)
 	{
 		if (aux->type == INVALID_QUOTE)
-			return (p_err_prohibited_char(), 0);
+			return (0);
 		aux = aux->next;
 	}
 	return (1);
@@ -60,10 +60,12 @@ int	parser(t_shell *shell)
 	int	size;
 
 	if (!is_valid_quote(shell->list_input))
-		return (ft_putstr_fd(P_ERR_QUOTES, 2), 0);
+		return (p_err_prohibited_char(shell), \
+				ft_putstr_fd(P_ERR_QUOTES, 2), 0);
+	expand_status_var(shell);
 	size = count_check_tokens(shell);
 	if (size == 0)
-		return (0);
+		return (p_err_prohibited_char(shell), 0);
 	shell->cmd = malloc(sizeof(t_command *) * (size + 1));
 	if (!shell->cmd)
 		return (0);

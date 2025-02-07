@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_remover.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/03 11:44:23 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:56:33 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ static int	verify_env_var(char **input, char **envp, int i)
 	tmp[j] = '\0';
 	env_val = find_env(envp, tmp);
 	if (env_val)
-	{
 		replace(tmp, input, j, env_val);
-	}
 	else
 	{
 		replace(tmp, input, j, "\0");

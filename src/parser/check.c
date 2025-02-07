@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:15:22 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 19:01:03 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:13:19 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static int	check_last_rd(t_quote *aux)
 int	checks(t_quote *aux)
 {
 	if (!check_wrong_comb(aux->data))
-		return (p_err_prohibited_char(), ft_putstr_fd(P_ERR_TOKEN, 2), 0);
+		return (ft_putstr_fd(P_ERR_TOKEN, 2), 0);
 	if (!check_last_rd(aux))
-		return (p_err_prohibited_char(), ft_putstr_fd(P_ERR_TOKEN, 2), 0);
+		return (ft_putstr_fd(P_ERR_TOKEN, 2), 0);
 	if (!check_multiple_limits(aux))
-		return (p_err_prohibited_char(), ft_putstr_fd(P_ERR_TOKEN, 2), 0);
+		return (ft_putstr_fd(P_ERR_TOKEN, 2), 0);
 	return (1);
 }
 
@@ -60,9 +60,9 @@ int	first_caracter_case(t_quote **list, int	*count)
 	if ((*list)->token_type != ARG)
 	{
 		if (*s == '|')
-			return (p_err_prohibited_char(), ft_putstr_fd(P_ERR_TOKEN, 2), 0);
+			return (ft_putstr_fd(P_ERR_TOKEN, 2), 0);
 		if (!check_wrong_comb(s))
-			return (p_err_prohibited_char(), 0);
+			return (0);
 		if (*s == '<' || *s == '>')
 		{
 			if((*list)->token_type == HR_DOC)

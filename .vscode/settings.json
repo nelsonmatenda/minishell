@@ -4,7 +4,8 @@
 		"minishell.h": "c",
 		"error_msg.h": "c",
 		"stdbool.h": "c",
-		"lib.h": "c"
+		"lib.h": "c",
+		"history.h": "c"
 	},
 	"C_Cpp.files.exclude": {
     "**/node_modules": true,

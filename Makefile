@@ -38,7 +38,8 @@ SRCS	+= $(addprefix src/signals/, $(addsuffix .c, \
 			signals_heredoc \
 			signals_child))
 SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
-			execute))
+			execute \
+			expand_status_var))
 SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
 			heredoc \
 			expand_var_heredoc))
@@ -78,9 +79,9 @@ clean:
 	@echo "${GREEN}> ${END}${WHITE}Apagando os objectos do $(NAME)...${END}"
 
 fclean: clean
-	@rm -f $(NAME)
-	@make fclean -C $(LIB_DIR)
+	@rm -rf $(NAME)
 	@echo "${GREEN}> ${END}${WHITE}Limpeza do $(NAME) finalizada${END}"
+
 re: fclean all
 
 -include $(DEPS)

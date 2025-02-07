@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:14:59 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/03 18:53:23 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:24:20 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 
 # define SIGNAL_ERR_SYNTAX 2
 # define SIGNAL_CTRL_C 130
+# define STATUS_CMD_NOT_FOUND 127
 
 #endif

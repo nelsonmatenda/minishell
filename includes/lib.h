@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lib.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:51:24 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 14:41:34 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:39:27 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIB_H
 # define LIB_H
 
+#ifndef _DEFAULT_SOURCE
 # define _DEFAULT_SOURCE
+#endif
 
 # include <termios.h>
 # include <unistd.h>
@@ -25,6 +27,7 @@
 # include <readline/readline.h>
 # include <stdbool.h>
 # include <signal.h>
+# include <sys/stat.h>
 # include <sys/signal.h>
 # include "../libft/libft.h"
 # include <readline/history.h>

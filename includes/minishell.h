@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/04 15:42:59 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:51:13 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_subst
 }				t_subst;
 
 void			p_error_cmd(char *s);
-void			p_err_prohibited_char(void);
+void			p_err_prohibited_char(t_shell *shell);
 void			init_shell(t_shell	*shell, char **envp);
 void			reset_shell(t_shell *shell);
 void			ft_exit(t_shell *shell);
@@ -118,6 +118,7 @@ void			handler_heredoc(t_command *cur, t_quote **tokens);
 void			handler_args(t_command *cur, t_quote **tokens);
 void			handler_pipe(t_command **cur, t_quote **tokens, \
 					t_command **cmd, int *i);
+void			expand_status_var(t_shell *shell);
 int				parser(t_shell *shell);
 void			destroy_cmd(t_command **cmd);
 void			signals(void);
@@ -126,6 +127,7 @@ void			signals_child(void);
 void			signals_heredoc(int sa);
 int				heredoc(t_shell *shell, t_command *cmd);
 //REDIRECT
+void			replace_status_var(char **input, char *s);
 void			expand_variables(t_shell *shell, char **line);
 int				process_files(char *file_list, int flags, int std);
 int				handle_redirections(t_shell *shell, t_command *cmd);

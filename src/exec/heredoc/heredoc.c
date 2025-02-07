@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/04 12:18:07 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:01:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 
 	while (1)
 	{
-		//signal(SIGINT, signals_heredoc);
+		signal(SIGINT, signals_heredoc);
 		line = readline("> ");
 		if (!line)
 		{

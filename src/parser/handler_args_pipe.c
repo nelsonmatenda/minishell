@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:23:19 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/28 11:06:53 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:28:25 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_command	*new_cmd(void)
 	c->out = NULL;
 	c->delim = NULL;
 	c->append = 0;
+	c->last_is_delim = 0;
 	return (c);
 }
 

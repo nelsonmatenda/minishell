@@ -72,7 +72,7 @@ $(OBJ_DIR)/%.o: %.c
 	@cc $(CFLAGS) -c $< -o $@
 
 run: all
-	@./minishell
+	@ exec ./minishell
 clean:
 	@rm -rf $(OBJ_DIR)
 	@make clean -C $(LIB_DIR)

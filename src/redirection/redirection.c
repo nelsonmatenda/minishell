@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/07 13:39:13 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:20:02 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ int	handle_redirections(t_shell *shell, t_command *cmd)
 	if (cmd->last_is_delim)
 	{
 		if (fd_heredoc != -1)
-		{
-			dup2(fd_heredoc, STDIN_FILENO);
-			close(fd_heredoc);
-		}
+			persist_hr(shell, fd_heredoc);
 	}
+	else if (fd_heredoc != -1)
+		unlink(shell->hr_filename);
 	if (cmd->out)
 	{
 		flags = O_WRONLY | O_CREAT;
@@ -127,7 +126,7 @@ void	status_exit(pid_t pid, t_shell *shell)
 {
 	int	status;
 
-	signal(SIGINT, &signals_heredoc_parents);
+	signal(SIGINT, SIG_IGN);
 	if (waitpid(pid, &status, 0) == -1)
 	{
 		perror("waitpid");

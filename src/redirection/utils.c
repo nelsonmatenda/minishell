@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:40:11 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/01/31 16:51:54 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:20:07 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,11 @@ int	setup_pipe(int pipe_fd[2])
 		return (-1);
 	}
 	return (0);
+}
+
+void	persist_hr(t_shell *shell, int fd)
+{
+	dup2(fd, STDIN_FILENO);
+	close(fd);
+	unlink(shell->hr_filename);
 }

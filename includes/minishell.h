@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/06 18:51:13 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:20:38 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void			handler_pipe(t_command **cur, t_quote **tokens, \
 					t_command **cmd, int *i);
 void			expand_status_var(t_shell *shell);
 int				parser(t_shell *shell);
+void			persist_hr(t_shell *shell, int fd);
 void			destroy_cmd(t_command **cmd);
 void			signals(void);
 void			signals_heredoc_parents(int sig);
@@ -132,7 +133,8 @@ void			expand_variables(t_shell *shell, char **line);
 int				process_files(char *file_list, int flags, int std);
 int				handle_redirections(t_shell *shell, t_command *cmd);
 void			execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd);
-int				handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2]);
+int				handle_process(t_shell *shell, int i, \
+								int *prev_fd, int pipe_fd[2]);
 int				ft_exec(t_shell *shell);
 void			ft_free_array(char **array);
 char			*find_command_path(char *cmd, char **env);

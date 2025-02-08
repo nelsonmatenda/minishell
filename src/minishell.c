@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/07 13:08:23 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:36:54 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,10 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		signals();
-		g_signal = 0;
-		shell->input = readline("👽-➤ ");
+		shell->input = readline("👽-➤  ");
 		if (!shell->input)
 		{
-			if (g_signal == SIGNAL_CTRL_C)
-				ft_putstr_fd("exit", STDOUT_FILENO);
-			else
-				ft_putstr_fd("exit\n", STDOUT_FILENO);
+			ft_putstr_fd("exit\n", STDOUT_FILENO);
 			shell->exit_status = 0;
 			break ;
 		}
@@ -68,7 +64,6 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
-	g_signal = 0;
 	init_shell(&shell, envp);
 	minishell(&shell);
 	return (ft_exit(&shell), shell.exit_status);

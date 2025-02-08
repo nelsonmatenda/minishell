@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/06 19:01:40 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:10:22 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 	}
 }
 
+void	clean_heredoc_file(t_shell *shell)
+{
+	unlink(shell->hr_filename);
+	free(shell->hr_filename);
+}
+
 int	heredoc(t_shell *shell, t_command *cmd)
 {
 	int		fd;
@@ -114,7 +120,7 @@ int	heredoc(t_shell *shell, t_command *cmd)
 	while(delim[++i])
 	{
 		if (shell->hr_filename)
-			free(shell->hr_filename);
+			clean_heredoc_file(shell);
 		shell->hr_filename = create_tmp_file(shell);
 		if (!shell->hr_filename)
 			return (0);
@@ -122,7 +128,7 @@ int	heredoc(t_shell *shell, t_command *cmd)
 		if (fd == -1)
 			return (-1);
 		if(!read_heredoc(shell, cmd, delim[i], fd))
-			return (-1);
+			return (exit(0), -1);
 	}
 	fd = open(shell->hr_filename, O_RDONLY, 0644);
 	if (fd == -1)

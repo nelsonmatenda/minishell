@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 15:36:54 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/08 20:22:55 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ void	minishell(t_shell *shell)
 		shell->list_input = expand_env_var(shell->input, shell->env);
 		add_history(shell->input);
 		if (shell->list_input && parser(shell))
+		{
+			if (is_builtin_parent(shell, shell->cmd[0]))
+				continue ;
 			ft_exec(shell);
+		}
 		reset_shell(shell);
 	}
 }
@@ -66,5 +70,5 @@ int	main(int ac, char **av, char **envp)
 	(void)av;
 	init_shell(&shell, envp);
 	minishell(&shell);
-	return (ft_exit(&shell), shell.exit_status);
+	return (ft_exit(&shell));
 }

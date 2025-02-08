@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 17:43:11 by matenda          ###   ########.fr       */
+/*   Created: 2025/02/08 16:34:19 by matenda           #+#    #+#             */
+/*   Updated: 2025/02/08 16:44:48 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	ft_exit(t_shell *shell)
+void	echo_builtin(t_shell *shell, t_command *cmd)
 {
-	if (shell)
-		reset_shell(shell);
-	rl_clear_history();
+	int	i;
+	int	n_flag;
+
+	n_flag = 0;
+	i = 1;
+	if (cmd->args[i] && ft_strcmp(cmd->args[i], "-n") == 0)
+	{
+		n_flag = 1;
+		i++;
+	}
+	while (cmd->args[i])
+	{
+		printf("%s", cmd->args[i]);
+		if (cmd->args[i + 1])
+			printf(" ");
+		i++;
+	}
+	if (!n_flag)
+		printf("\n");
+	shell->exit_status = 0;
 	exit(shell->exit_status);
 }

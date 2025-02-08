@@ -40,6 +40,9 @@ SRC = ft_atoi \
 			ft_find_char \
 			ft_strstr \
 			ft_strreplace \
+			ft_atol \
+			ft_iswhitespace \
+
 
 END				:=	\033[0m
 BLUE			:=	\033[0;34m

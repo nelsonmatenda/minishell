@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:51:24 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 13:21:42 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:34:02 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <signal.h>
 # include <sys/stat.h>
 # include <sys/signal.h>
+# include <limits.h>
 # include "../libft/libft.h"
 # include <readline/history.h>
 

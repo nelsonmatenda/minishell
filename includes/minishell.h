@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/08 16:20:38 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/08 19:45:26 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			p_error_cmd(char *s);
 void			p_err_prohibited_char(t_shell *shell);
 void			init_shell(t_shell	*shell, char **envp);
 void			reset_shell(t_shell *shell);
-void			ft_exit(t_shell *shell);
+int			ft_exit(t_shell *shell);
 int				count_command(char	*s);
 t_enum_quote	check_quotes(const char *str, char **no_quotes_str, \
 							char **envp);
@@ -140,5 +140,14 @@ void			ft_free_array(char **array);
 char			*find_command_path(char *cmd, char **env);
 int				open_file(char *file, int flags);
 int				setup_pipe(int pipe_fd[2]);
+int				nbr_of_cmd(t_shell *shell);
+int				ft_2d_strlen(char **array);
+void			echo_builtin(t_shell *shell, t_command *cmd);
+void			pwd_builtin(t_shell *shell, t_command *cmd);
+void			env_builtin(t_shell *shell, t_command *cmd);
+void			exit_builtin(t_shell *shell, t_command *cmd);
+int				is_builtin_parent(t_shell *shell, t_command *cmd);
+int				is_builtin(t_shell *shell, t_command *cmd);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/08 16:20:02 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/08 19:16:43 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 		close(pipe_fd[1]);
 	if (handle_redirections(shell, shell->cmd[i]) == -1)
 		exit(EXIT_FAILURE);
+	is_builtin(shell, shell->cmd[i]);
 	verif_absolut_path(shell, shell->cmd[i]->args[0], i);
 	cmd_path = find_command_path(shell->cmd[i]->args[0], shell->env);
 	if (!cmd_path)

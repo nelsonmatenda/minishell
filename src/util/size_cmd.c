@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   size_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 17:43:11 by matenda          ###   ########.fr       */
+/*   Created: 2025/02/08 17:28:05 by matenda           #+#    #+#             */
+/*   Updated: 2025/02/08 17:30:27 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-int	ft_exit(t_shell *shell)
+int	nbr_of_cmd(t_shell *shell)
 {
-	if (shell)
-		reset_shell(shell);
-	rl_clear_history();
-	exit(shell->exit_status);
+	int i;
+
+	i = 0;
+	while (shell->cmd[i])
+		i++;
+	return (i);
 }

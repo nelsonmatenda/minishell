@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:13:54 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/06 13:50:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:38:55 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ char	*ft_strjoin_with_two_point(char const *s1, char const *s2, char c);
 ssize_t	ft_find_char(char *str, char c);
 char	*ft_strstr(const char *haystack, const char *needle);
 char	*ft_strreplace(char *orig, char *rep, char *with);
+long	ft_atol(const char *str);
 
 #endif

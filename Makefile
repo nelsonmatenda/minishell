@@ -32,7 +32,8 @@ SRCS	+= $(addprefix src/tokens/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/util/, $(addsuffix .c, \
 			destroy_split\
 			is_valid_command \
-			update_signal_status))
+			update_signal_status \
+			size_cmd))
 SRCS	+= $(addprefix src/signals/, $(addsuffix .c, \
 			signals \
 			signals_heredoc \
@@ -43,6 +44,16 @@ SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
 			heredoc \
 			expand_var_heredoc))
+SRCS	+= $(addprefix src/builtin/echo/, $(addsuffix .c, \
+			echo))
+SRCS	+= $(addprefix src/builtin/pwd/, $(addsuffix .c, \
+			pwd))
+SRCS	+= $(addprefix src/builtin/env/, $(addsuffix .c, \
+			env))
+SRCS	+= $(addprefix src/builtin/exit/, $(addsuffix .c, \
+			exit))
+SRCS	+= $(addprefix src/builtin/, $(addsuffix .c, \
+			is_builtin))
 SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \
 			redirection \
 			utils))
@@ -72,7 +83,7 @@ $(OBJ_DIR)/%.o: %.c
 	@cc $(CFLAGS) -c $< -o $@
 
 run: all
-	@ exec ./minishell
+	@ ./minishell
 clean:
 	@rm -rf $(OBJ_DIR)
 	@make clean -C $(LIB_DIR)

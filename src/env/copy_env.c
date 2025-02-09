@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_paths.c                                        :+:      :+:    :+:   */
+/*   copy_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 19:04:41 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/08 20:32:17 by matenda          ###   ########.fr       */
+/*   Created: 2025/02/09 17:44:49 by matenda           #+#    #+#             */
+/*   Updated: 2025/02/09 17:47:35 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	**get_paths(char *envp[], char *s)
-{
-	int		i;
-	char	**paths;
+int size_env(char** env) {
+	int size;
 
-	i = 0;
-	while (envp[i] && ft_strncmp(envp[i], s, ft_strlen(s)) != 0)
-		i++;
-	if (!envp[i])
-		return (NULL);
-	paths = ft_split(envp[i] + 5, ':');
-	return (paths);
+	size = 0;
+	while (env[size] != NULL)
+		size++;
+	return size;
 }
+
+char	**copy_env(t_shell *)

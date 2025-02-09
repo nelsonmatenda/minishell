@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:15:48 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/31 15:50:41 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:32:56 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char *find_command_path(char *cmd, char **env)
 	char	*path;
 	int		i;
 
-	paths = get_paths(env);
+	paths = get_paths(env, "PATH=");
 	full_path = NULL;
 	i = 0;
 	if (!paths)

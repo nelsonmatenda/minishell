@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/08 19:45:26 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/08 20:51:27 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_quote			*expand_env_var(char *input, char **envp);
 char			*remove_quotes_expand_env_var(char *input, char **envp);
 int				lst_quote_add(t_quote **lst, t_quote *new);
 t_quote			*ft_lstnew_quote(char *data, t_enum_quote type);
-char			**get_paths(char *envp[]);
+char			**get_paths(char *envp[], char *s);
 void			determine_token_types(t_quote *quote_list);
 // PARSER
 int				checks(t_quote *aux);
@@ -145,9 +145,9 @@ int				ft_2d_strlen(char **array);
 void			echo_builtin(t_shell *shell, t_command *cmd);
 void			pwd_builtin(t_shell *shell, t_command *cmd);
 void			env_builtin(t_shell *shell, t_command *cmd);
+void			cd_builtin(t_shell *shell, t_command *cmd);
 void			exit_builtin(t_shell *shell, t_command *cmd);
 int				is_builtin_parent(t_shell *shell, t_command *cmd);
 int				is_builtin(t_shell *shell, t_command *cmd);
-
 
 #endif

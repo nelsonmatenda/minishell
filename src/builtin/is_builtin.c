@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:25:41 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/08 20:21:31 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/08 21:04:49 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ int	is_builtin_parent(t_shell *shell, t_command *cmd)
 {
 	if (!cmd->args)
 		return (0);
+	if (shell->cmd[1])
+		return (1);
 	if (ft_strcmp(cmd->args[0], "exit") == 0)
 		return (exit_builtin(shell, cmd), 1);
+	else if (ft_strcmp(cmd->args[0], "cd") == 0)
+		return (cd_builtin(shell, cmd), 1);
 	return (0);
 }

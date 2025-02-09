@@ -52,6 +52,8 @@ SRCS	+= $(addprefix src/builtin/env/, $(addsuffix .c, \
 			env))
 SRCS	+= $(addprefix src/builtin/exit/, $(addsuffix .c, \
 			exit))
+SRCS	+= $(addprefix src/builtin/cd/, $(addsuffix .c, \
+			cd))
 SRCS	+= $(addprefix src/builtin/, $(addsuffix .c, \
 			is_builtin))
 SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \

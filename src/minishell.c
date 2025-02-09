@@ -6,7 +6,7 @@
 /*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 20:22:55 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:49:55 by matenda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	minishell(t_shell *shell)
 		if (shell->list_input && parser(shell))
 		{
 			if (is_builtin_parent(shell, shell->cmd[0]))
+			{
+				reset_shell(shell);
 				continue ;
+			}
 			ft_exec(shell);
 		}
 		reset_shell(shell);

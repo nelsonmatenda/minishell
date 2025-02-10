@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/08 20:51:27 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:28:40 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ typedef struct s_subst
 void			p_error_cmd(char *s);
 void			p_err_prohibited_char(t_shell *shell);
 void			init_shell(t_shell	*shell, char **envp);
+char			**copy_env(char **envp);
+int 			size_env(char** env);
 void			reset_shell(t_shell *shell);
-int			ft_exit(t_shell *shell);
+int				ft_exit(t_shell *shell);
 int				count_command(char	*s);
 t_enum_quote	check_quotes(const char *str, char **no_quotes_str, \
 							char **envp);
@@ -142,10 +144,16 @@ int				open_file(char *file, int flags);
 int				setup_pipe(int pipe_fd[2]);
 int				nbr_of_cmd(t_shell *shell);
 int				ft_2d_strlen(char **array);
+char 			*find_env(char **env, char *s);
+void			print_error_cd(void);
+char			*get_dir(t_shell *shell);
+int				remove_env(t_shell *shell, char *env_var);
+int				set_env(t_shell *shell, char *name, char *value);
 void			echo_builtin(t_shell *shell, t_command *cmd);
 void			pwd_builtin(t_shell *shell, t_command *cmd);
 void			env_builtin(t_shell *shell, t_command *cmd);
 void			cd_builtin(t_shell *shell, t_command *cmd);
+void			unset_builtin(t_shell *shell, t_command *cmd);
 void			exit_builtin(t_shell *shell, t_command *cmd);
 int				is_builtin_parent(t_shell *shell, t_command *cmd);
 int				is_builtin(t_shell *shell, t_command *cmd);

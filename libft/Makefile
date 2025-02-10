@@ -42,6 +42,7 @@ SRC = ft_atoi \
 			ft_strreplace \
 			ft_atol \
 			ft_iswhitespace \
+			ft_realloc \
 
 
 END				:=	\033[0m

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/09 16:49:55 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:09:09 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		signals();
-		shell->input = readline("👽-➤  ");
+		shell->input = readline("👽-➤ ");
 		if (!shell->input)
 		{
 			ft_putstr_fd("exit\n", STDOUT_FILENO);

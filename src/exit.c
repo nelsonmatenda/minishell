@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:22:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 17:43:11 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/10 08:48:46 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_exit(t_shell *shell)
 {
 	if (shell)
 		reset_shell(shell);
+	if (shell->env)
+		destroy_splited(shell->env);
 	rl_clear_history();
 	exit(shell->exit_status);
 }

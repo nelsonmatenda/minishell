@@ -13,6 +13,10 @@ SRCS	= $(addprefix src/, $(addsuffix .c, \
 			exit))
 SRCS	+= $(addprefix src/error/, $(addsuffix .c, \
 			p_error_cmd))
+SRCS	+= $(addprefix src/env/, $(addsuffix .c, \
+			copy_env \
+			set_env \
+			remove_env))
 SRCS	+= $(addprefix src/parser/, $(addsuffix .c, \
 			check\
 			count_tokens\
@@ -53,7 +57,10 @@ SRCS	+= $(addprefix src/builtin/env/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/builtin/exit/, $(addsuffix .c, \
 			exit))
 SRCS	+= $(addprefix src/builtin/cd/, $(addsuffix .c, \
-			cd))
+			cd \
+			utils))
+SRCS	+= $(addprefix src/builtin/unset/, $(addsuffix .c, \
+			unset))
 SRCS	+= $(addprefix src/builtin/, $(addsuffix .c, \
 			is_builtin))
 SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \

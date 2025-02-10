@@ -6,27 +6,11 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/06 11:56:33 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:12:37 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static char	*find_env(char **envp, char *env_var)
-{
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		tmp = envp[i];
-		if (!ft_strncmp(tmp, env_var, ft_strlen(env_var)))
-			return (tmp + ft_strlen(env_var));
-		i++;
-	}
-	return (NULL);
-}
 
 static void	replace(char *tmp, char **input, int j, char *env_val)
 {

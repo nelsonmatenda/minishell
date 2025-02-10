@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/04 15:46:36 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/10 08:46:23 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	init_shell(t_shell	*shell, char **envp)
 	shell->list_input = NULL;
 	shell->hr_filename = NULL;
 	shell->exit_status = -1;
-	shell->env = envp;
+	shell->env = copy_env(envp);
 }

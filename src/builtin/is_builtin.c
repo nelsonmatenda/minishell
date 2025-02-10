@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:25:41 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/10 16:23:19 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:31:58 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	sub(t_shell *shell, t_command *cmd)
 			return (1);
 		return (unset_builtin(shell, cmd), 1);
 	}
-	else if (ft_strcmp(cmd->args[0], "export") == 0)
-	{
-		if (shell->cmd[1])
-			return (1);
-		return (export_builtin(shell, cmd), 1);
-	}
+	// else if (ft_strcmp(cmd->args[0], "export") == 0)
+	// {
+	// 	if (shell->cmd[1])
+	// 		return (1);
+	// 	return (export_builtin(shell, cmd), 1);
+	// }
 	return (0);
 }
 

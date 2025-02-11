@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/10 15:28:40 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:19:10 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ typedef struct s_subst
 	int			env_var_len;
 	int			env_value_len;
 }				t_subst;
+
+typedef struct	s_env_str
+{
+	char				*data;
+	struct	s_env_str	*next;
+}						t_env_str;
 
 void			p_error_cmd(char *s);
 void			p_err_prohibited_char(t_shell *shell);

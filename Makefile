@@ -61,6 +61,10 @@ SRCS	+= $(addprefix src/builtin/cd/, $(addsuffix .c, \
 			utils))
 SRCS	+= $(addprefix src/builtin/unset/, $(addsuffix .c, \
 			unset))
+SRCS	+= $(addprefix src/builtin/export/, $(addsuffix .c, \
+			export \
+			export_add \
+			export_util))
 SRCS	+= $(addprefix src/builtin/, $(addsuffix .c, \
 			is_builtin))
 SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \

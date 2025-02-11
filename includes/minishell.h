@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/10 15:28:40 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:32:43 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,15 @@ char 			*find_env(char **env, char *s);
 void			print_error_cd(void);
 char			*get_dir(t_shell *shell);
 int				remove_env(t_shell *shell, char *env_var);
+int				is_valid_env(char **env);
 int				set_env(t_shell *shell, char *name, char *value);
 void			echo_builtin(t_shell *shell, t_command *cmd);
 void			pwd_builtin(t_shell *shell, t_command *cmd);
 void			env_builtin(t_shell *shell, t_command *cmd);
 void			cd_builtin(t_shell *shell, t_command *cmd);
 void			unset_builtin(t_shell *shell, t_command *cmd);
+void			export_add(t_shell *shell, t_command *cmd);
+void			export_builtin(t_shell *shell, t_command *cmd);
 void			exit_builtin(t_shell *shell, t_command *cmd);
 int				is_builtin_parent(t_shell *shell, t_command *cmd);
 int				is_builtin(t_shell *shell, t_command *cmd);

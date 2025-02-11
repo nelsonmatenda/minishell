@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 08:53:27 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/10 15:09:30 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:51:21 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,12 @@ int	add_new_var(t_shell *shell, char *name, char *value)
 	}
 	i = 0;
 	while (i < old_size)
+	{
 		new_env[i] =  shell->env[i];
-	new_env[(old_size + 2)] = NULL;
-	destroy_splited(shell->env);
+		i++;
+	}
+	new_env[(old_size + 1)] = NULL;
+	free(shell->env);
 	shell->env = new_env;
 	if (!sub_add(shell, &i, name, value))
 		return (-1);

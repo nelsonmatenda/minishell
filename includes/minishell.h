@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 09:32:43 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:54:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ typedef struct s_subst
 	int			env_var_len;
 	int			env_value_len;
 }				t_subst;
+
+typedef struct	s_env_str
+{
+	char				*data;
+	struct	s_env_str	*next;
+}						t_env_str;
 
 void			p_error_cmd(char *s);
 void			p_err_prohibited_char(t_shell *shell);
@@ -160,5 +166,6 @@ void			export_builtin(t_shell *shell, t_command *cmd);
 void			exit_builtin(t_shell *shell, t_command *cmd);
 int				is_builtin_parent(t_shell *shell, t_command *cmd);
 int				is_builtin(t_shell *shell, t_command *cmd);
+void			print_env_ordered(char **env);
 
 #endif

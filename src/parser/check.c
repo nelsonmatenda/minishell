@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:15:22 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 10:27:12 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:04:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	first_caracter_case(t_quote **list, int	*count)
 			return (0);
 		if (*s == '<' || *s == '>')
 		{
-			if ((*list)->token_type == HR_DOC)
+			if ((*list)->token_type != ARG)
 			{
 				aux = (*list)->next;
-				if (aux && aux->token_type == ARG && !aux->next)
+				if (aux && aux->token_type == ARG)
 					(*count)++;
 			}
 			*list = (*list)->next;

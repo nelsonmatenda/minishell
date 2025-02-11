@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 09:19:10 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:30:15 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,6 @@ void			unset_builtin(t_shell *shell, t_command *cmd);
 void			exit_builtin(t_shell *shell, t_command *cmd);
 int				is_builtin_parent(t_shell *shell, t_command *cmd);
 int				is_builtin(t_shell *shell, t_command *cmd);
+void			print_env_ordered(char **env);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:15:48 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 20:32:56 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:30:57 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_valid_command(char *cmd, char **paths)
 	return (0);
 }
 
-char *find_command_path(char *cmd, char **env)
+char	*find_command_path(char *cmd, char **env)
 {
 	char	**paths;
 	char	*full_path;
@@ -58,7 +58,7 @@ char *find_command_path(char *cmd, char **env)
 		{
 			ft_free_array(paths);
 			return (full_path);
-        }
+		}
 		free(full_path);
 		i++;
 	}

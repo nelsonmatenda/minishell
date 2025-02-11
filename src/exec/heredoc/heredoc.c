@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 16:10:22 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:26:18 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ char	*create_tmp_file(t_shell *shell)
 	}
 }
 
-
-
 int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 {
 	char	*line;
@@ -101,12 +99,6 @@ int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 	}
 }
 
-void	clean_heredoc_file(t_shell *shell)
-{
-	unlink(shell->hr_filename);
-	free(shell->hr_filename);
-}
-
 int	heredoc(t_shell *shell, t_command *cmd)
 {
 	int		fd;
@@ -117,7 +109,7 @@ int	heredoc(t_shell *shell, t_command *cmd)
 		return (-1);
 	delim = ft_split(cmd->delim, ' ');
 	i = -1;
-	while(delim[++i])
+	while (delim[++i])
 	{
 		if (shell->hr_filename)
 			clean_heredoc_file(shell);
@@ -127,7 +119,7 @@ int	heredoc(t_shell *shell, t_command *cmd)
 		fd = open(shell->hr_filename, O_RDWR, 0644);
 		if (fd == -1)
 			return (-1);
-		if(!read_heredoc(shell, cmd, delim[i], fd))
+		if (!read_heredoc(shell, cmd, delim[i], fd))
 			return (exit(0), -1);
 	}
 	fd = open(shell->hr_filename, O_RDONLY, 0644);

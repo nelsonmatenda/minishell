@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 09:54:12 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:29:31 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ typedef struct s_subst
 	int			env_value_len;
 }				t_subst;
 
-typedef struct	s_env_str
+typedef struct s_env_str
 {
 	char				*data;
-	struct	s_env_str	*next;
+	struct s_env_str	*next;
 }						t_env_str;
 
 void			p_error_cmd(char *s);
 void			p_err_prohibited_char(t_shell *shell);
 void			init_shell(t_shell	*shell, char **envp);
 char			**copy_env(char **envp);
-int 			size_env(char** env);
+int				size_env(char **env);
 void			reset_shell(t_shell *shell);
 int				ft_exit(t_shell *shell);
 int				count_command(char	*s);
@@ -139,6 +139,7 @@ int				heredoc(t_shell *shell, t_command *cmd);
 void			replace_status_var(char **input, char *s);
 void			expand_variables(t_shell *shell, char **line);
 int				process_files(char *file_list, int flags, int std);
+void			status_exit(pid_t pid, t_shell *shell);
 int				handle_redirections(t_shell *shell, t_command *cmd);
 void			execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd);
 int				handle_process(t_shell *shell, int i, \
@@ -146,11 +147,12 @@ int				handle_process(t_shell *shell, int i, \
 int				ft_exec(t_shell *shell);
 void			ft_free_array(char **array);
 char			*find_command_path(char *cmd, char **env);
+void			clean_heredoc_file(t_shell *shell);
 int				open_file(char *file, int flags);
 int				setup_pipe(int pipe_fd[2]);
 int				nbr_of_cmd(t_shell *shell);
 int				ft_2d_strlen(char **array);
-char 			*find_env(char **env, char *s);
+char			*find_env(char **env, char *s);
 void			print_error_cd(void);
 char			*get_dir(t_shell *shell);
 int				remove_env(t_shell *shell, char *env_var);
@@ -161,11 +163,11 @@ void			pwd_builtin(t_shell *shell, t_command *cmd);
 void			env_builtin(t_shell *shell, t_command *cmd);
 void			cd_builtin(t_shell *shell, t_command *cmd);
 void			unset_builtin(t_shell *shell, t_command *cmd);
+void			export_print(char **env);
 void			export_add(t_shell *shell, t_command *cmd);
 void			export_builtin(t_shell *shell, t_command *cmd);
 void			exit_builtin(t_shell *shell, t_command *cmd);
 int				is_builtin_parent(t_shell *shell, t_command *cmd);
 int				is_builtin(t_shell *shell, t_command *cmd);
-void			print_env_ordered(char **env);
 
 #endif

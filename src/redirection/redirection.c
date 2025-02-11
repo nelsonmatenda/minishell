@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/08 19:16:43 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:28:31 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	handle_redirections(t_shell *shell, t_command *cmd)
 
 void	verif_absolut_path(t_shell *shell, char *cmd, int i)
 {
-	struct stat sb;
+	struct stat	sb;
 
 	if (cmd && (ft_strstr(cmd, "/") == NULL))
 		return ;
@@ -121,25 +121,6 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 		execve(cmd_path, shell->cmd[i]->args, shell->env);
 	perror("execve");
 	exit(STATUS_CMD_NOT_FOUND);
-}
-
-void	status_exit(pid_t pid, t_shell *shell)
-{
-	int	status;
-
-	signal(SIGINT, SIG_IGN);
-	if (waitpid(pid, &status, 0) == -1)
-	{
-		perror("waitpid");
-		shell->exit_status = 1;
-	}
-	else
-	{
-		if (WIFEXITED(status))
-			shell->exit_status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			shell->exit_status = 128 + WTERMSIG(status);
-	}
 }
 
 int	handle_process(t_shell *shell, int i, int *prev_fd, int pipe_fd[2])

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 09:17:52 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/10 11:13:49 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:13:35 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t newsize)
 		return (ptr);
 	newptr = malloc(newsize);
 	if (!newptr)
-		return NULL;
+		return (NULL);
 	ft_memcpy(newptr, ptr, old_size);
 	free(ptr);
 	return (newptr);

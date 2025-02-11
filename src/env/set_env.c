@@ -6,18 +6,18 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 08:53:27 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 09:51:21 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:21:20 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int search_update_var(t_shell *shell, char *name, char *value)
+int	search_update_var(t_shell *shell, char *name, char *value)
 {
 	int		i;
 	char	*new_var;
-	size_t		name_len;
-	size_t		value_len;
+	size_t	name_len;
+	size_t	value_len;
 
 	i = 0;
 	name_len = ft_strlen(name);
@@ -76,7 +76,7 @@ int	add_new_var(t_shell *shell, char *name, char *value)
 	i = 0;
 	while (i < old_size)
 	{
-		new_env[i] =  shell->env[i];
+		new_env[i] = shell->env[i];
 		i++;
 	}
 	new_env[(old_size + 1)] = NULL;
@@ -89,7 +89,7 @@ int	add_new_var(t_shell *shell, char *name, char *value)
 
 int	set_env(t_shell *shell, char *name, char *value)
 {
-	int verif;
+	int	verif;
 
 	verif = search_update_var(shell, name, value);
 	if (verif == 0)
@@ -105,5 +105,3 @@ int	set_env(t_shell *shell, char *name, char *value)
 	}
 	return (1);
 }
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   size_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 17:28:05 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/08 17:30:27 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:31:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	nbr_of_cmd(t_shell *shell)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (shell->cmd[i])

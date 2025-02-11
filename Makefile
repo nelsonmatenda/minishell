@@ -47,7 +47,8 @@ SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
 			expand_status_var))
 SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
 			heredoc \
-			expand_var_heredoc))
+			expand_var_heredoc \
+			heredoc_utils))
 SRCS	+= $(addprefix src/builtin/echo/, $(addsuffix .c, \
 			echo))
 SRCS	+= $(addprefix src/builtin/pwd/, $(addsuffix .c, \
@@ -64,7 +65,8 @@ SRCS	+= $(addprefix src/builtin/unset/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/builtin/export/, $(addsuffix .c, \
 			export \
 			export_add \
-			export_util))
+			export_util \
+			print_env_ordered))
 SRCS	+= $(addprefix src/builtin/, $(addsuffix .c, \
 			is_builtin))
 SRCS	+= $(addprefix src/redirection/, $(addsuffix .c, \

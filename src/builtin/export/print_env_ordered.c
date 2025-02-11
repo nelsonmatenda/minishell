@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_env_ordered.c                                :+:      :+:    :+:   */
+/*    export_print.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 08:46:21 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 09:28:35 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:56:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	sort_env_list(t_env_str *head)
 	}
 }
 
-void	print_env_ordered(char **env)
+void	export_print(char **env)
 {
 	t_env_str	*env_str;
 	t_env_str	*tmp_first_pos;
@@ -93,16 +93,8 @@ void	print_env_ordered(char **env)
 	tmp_first_pos = env_str;
 	while (env_str)
 	{
-		printf("%s\n", env_str->data);
+		printf("declare -x %s\n", env_str->data);
 		env_str = env_str->next;
 	}
 	free_env_list(tmp_first_pos);
 }
-
-// int	main(int ac, char **av, char **env)
-// {
-// 	(void)ac;
-// 	(void)av;
-// 	print_env_ordered(env);
-// 	return (0);
-// }

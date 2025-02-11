@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 17:14:02 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/08 18:49:34 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:19:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	pwd_builtin(t_shell *shell, t_command *cmd)
 	}
 	else
 	{
-		ft_putstr_fd("mini:pwd: error retrieving current directory: getcwd: ", 2);
+		ft_putstr_fd(P_PWD_ERR, 2);
 		ft_putstr_fd("cannot access parent directories: ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd("\n", 2);

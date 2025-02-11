@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 08:57:31 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 09:05:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:16:20 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_valid_env(char **env)
 
 	if (ft_2d_strlen(env) == 0 || ft_2d_strlen(env) > 2)
 		return (0);
-	if(!is_valid_identifier(env[0]))
+	if (!is_valid_identifier(env[0]))
 		return (0);
 	i = 0;
 	while (env[1] && env[1][i])

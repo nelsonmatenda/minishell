@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:51:27 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/10 14:13:56 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:18:01 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ static int	go_oldpwd(t_shell *shell, t_command *cmd)
 
 void	cd_builtin(t_shell *shell, t_command *cmd)
 {
-	shell->exit_status = 0;
 	char	*old_dir;
 
+	shell->exit_status = 0;
 	if (ft_2d_strlen(cmd->args) > 2)
 	{
 		ft_putstr_fd("mini:cd: too many arguments\n", 2);

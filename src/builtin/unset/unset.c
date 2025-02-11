@@ -6,13 +6,13 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:02:23 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/10 16:08:13 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 10:14:58 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char *find_env_to_unset(char **env, char *s)
+char	*find_env_to_unset(char **env, char *s)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ char *find_env_to_unset(char **env, char *s)
 		}
 		i++;
 	}
-	return NULL;
+	return (NULL);
 }
 
 int	unset_env(t_shell *shell, t_command *cmd)

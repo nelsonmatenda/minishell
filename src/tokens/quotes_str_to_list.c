@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 11:54:35 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:29:35 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,17 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 		if (input[i + 1] && input[i + 1] != ' ')
 			concat = true;
 		if (j == 0)
-			lst_quote_add(quote_list, ft_lstnew_quote(data, INVALID_QUOTE, concat));
+			lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, INVALID_QUOTE, concat));
 		else if (input[i] == c && c == '\'')
-			i += lst_quote_add(quote_list, ft_lstnew_quote(data, SINGLE_QUOTE, concat));
+			i += lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, SINGLE_QUOTE, concat));
 		else if (input[i] == c && c == '"')
-			i += lst_quote_add(quote_list, ft_lstnew_quote(data, DOUBLE_QUOTE, concat));
+			i += lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, DOUBLE_QUOTE, concat));
 		else
-			lst_quote_add(quote_list, ft_lstnew_quote(data, INVALID_QUOTE, concat));
+			lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, INVALID_QUOTE, concat));
 	}
 	return (i);
 }

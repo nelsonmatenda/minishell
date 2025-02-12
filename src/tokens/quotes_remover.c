@@ -6,7 +6,7 @@
 /*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 09:32:44 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:24:45 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ t_quote	*expand_env_var(char *input, char **envp)
 		}
 		tmp_q_list = tmp_q_list->next;
 	}
+	concatenate_quotes(&quotes_list);
 	return (quotes_list);
 }

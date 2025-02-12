@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 10:29:31 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:19:16 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ typedef struct s_shell
 	char		**env;
 }				t_shell;
 
+typedef struct s_builtin
+{
+	char	*name;
+	void	(*func)(t_shell *, t_command *);
+}	t_builtin;
+
 typedef struct s_subst
 {
 	const char	*str;
@@ -87,6 +93,8 @@ typedef struct s_env_str
 }						t_env_str;
 
 void			p_error_cmd(char *s);
+char			**ft_split_mod(char const *s);
+void			create_builtin_parent(t_builtin *parent_builtin);
 void			p_err_prohibited_char(t_shell *shell);
 void			init_shell(t_shell	*shell, char **envp);
 char			**copy_env(char **envp);
@@ -140,7 +148,7 @@ void			replace_status_var(char **input, char *s);
 void			expand_variables(t_shell *shell, char **line);
 int				process_files(char *file_list, int flags, int std);
 void			status_exit(pid_t pid, t_shell *shell);
-int				handle_redirections(t_shell *shell, t_command *cmd);
+int				handler_redir(t_shell *shell, t_command *cmd);
 void			execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd);
 int				handle_process(t_shell *shell, int i, \
 								int *prev_fd, int pipe_fd[2]);

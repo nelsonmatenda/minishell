@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/10 16:09:09 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:39:34 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,8 @@ void	minishell(t_shell *shell)
 		add_history(shell->input);
 		if (shell->list_input && parser(shell))
 		{
-			if (is_builtin_parent(shell, shell->cmd[0]))
-			{
-				reset_shell(shell);
-				continue ;
-			}
-			ft_exec(shell);
+			if (!is_builtin_parent(shell, shell->cmd[0]))
+				ft_exec(shell);
 		}
 		reset_shell(shell);
 	}

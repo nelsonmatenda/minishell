@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 10:28:31 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:10:14 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	process_files(char *file_list, int flags, int std)
 	return (0);
 }
 
-int	handle_redirections(t_shell *shell, t_command *cmd)
+int	handler_redir(t_shell *shell, t_command *cmd)
 {
 	int	flags;
 	int	fd_heredoc;
@@ -107,7 +107,7 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 		close(pipe_fd[0]);
 	if (pipe_fd[1] != -1)
 		close(pipe_fd[1]);
-	if (handle_redirections(shell, shell->cmd[i]) == -1)
+	if (handler_redir(shell, shell->cmd[i]) == -1)
 		exit(EXIT_FAILURE);
 	is_builtin(shell, shell->cmd[i]);
 	verif_absolut_path(shell, shell->cmd[i]->args[0], i);

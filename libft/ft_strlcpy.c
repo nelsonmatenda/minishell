@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 07:21:06 by nfigueir          #+#    #+#             */
-/*   Updated: 2024/05/16 08:03:14 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:44:33 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 			dst[i] = src[i];
 			i++;
 		}
-		dst[i] = 0;
+		dst[i] = '\0';
 	}
 	while (src[i])
 		i++;
@@ -36,7 +36,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 //	char	src[10] = "123456789";
 //	char	dst[5];
 //	size_t	len;
-//	
+//
 //	len = ft_strlcpy(dst, src, sizeof(dst));
 //	printf("strinf dst: %s\n suposto a copiar: %zu", dst, len);
 //}

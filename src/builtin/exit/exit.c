@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 17:27:11 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/08 20:24:11 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/11 11:37:11 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ static int	check_arguments(t_shell *shell, t_command *cmd)
 	argc = ft_2d_strlen(cmd->args);
 	if (argc > 1 && !check_atol(cmd->args[1]))
 	{
+		printf("exit\n");
 		msg_error_exit(cmd, "numeric argument required\n", 1);
 		shell->exit_status = 2;
-		return (0);
+		ft_exit(shell);
 	}
 	else if (argc > 2)
 	{

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 08:57:31 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 10:16:20 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:17:57 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,39 @@ int	is_valid_env(char **env)
 		i++;
 	}
 	return (1);
+}
+
+static char	*word_dup(const char *start, int len)
+{
+	char	*word;
+
+	word = (char *)malloc(len + 1);
+	if (!word)
+		return (NULL);
+	word[len] = '\0';
+	while (len--)
+		word[len] = start[len];
+	return (word);
+}
+
+char	**ft_split_mod(char const *s)
+{
+	char		**ret;
+	int			i;
+	const char	*start;
+
+	i = 0;
+	ret = (char **)malloc(sizeof(char *) * 2);
+	if (!ret)
+		return (NULL);
+	while (*s)
+	{
+		start = s;
+		while (*s)
+			s++;
+		if (s > start)
+			ret[i++] = word_dup(start, s - start);
+	}
+	ret[i] = NULL;
+	return (ret);
 }

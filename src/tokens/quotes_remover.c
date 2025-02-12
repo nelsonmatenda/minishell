@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_remover.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/10 16:12:37 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:32:44 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	verify_env_var(char **input, char **envp, int i)
 	j = 0;
 	ptr = *input;
 	tmp = malloc(ft_strlen(ptr) + 2);
+	if (!tmp)
+		return (0);
 	while (ptr[i] && ptr[i] != ' ' && ptr[i] != '\'' && ptr[i] != '"' \
 			&& ft_isvalid_var_name(ptr[i]))
 		tmp[j++] = ptr[i++];
@@ -44,10 +46,7 @@ static int	verify_env_var(char **input, char **envp, int i)
 	if (env_val)
 		replace(tmp, input, j, env_val);
 	else
-	{
-		replace(tmp, input, j, "\0");
-		return (0);
-	}
+		replace(tmp, input, j, "");
 	free(tmp);
 	return (1);
 }
@@ -90,11 +89,11 @@ t_quote	*expand_env_var(char *input, char **envp)
 		i = 0;
 		while (tmp_q_list->data[i])
 		{
-			if (tmp_q_list->data[i] == '$' && \
-			(tmp_q_list->type == DOUBLE_QUOTE || tmp_q_list->type == NO_QUOTE))
+			if (tmp_q_list->data[i] == '$' && (tmp_q_list->type == \
+					DOUBLE_QUOTE || tmp_q_list->type == NO_QUOTE))
 			{
 				if (tmp_q_list->data[i + 1] && tmp_q_list->data[i + 1] == '?')
-					;
+					i++;
 				else if (expand_env(&tmp_q_list->data, envp))
 					i = -1;
 			}

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 12:29:04 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 12:39:55 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	handle_separator(t_quote **quote_list, char *input, int i)
 	if (!data)
 		return (-1);
 	ft_strlcpy(data, &input[j], i - j + 2);
-	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE));
+	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE, false));
 	return (i + 1);
 }
 
@@ -34,8 +34,10 @@ static int	handle_token(t_quote **quote_list, char *input, int i)
 {
 	int		j;
 	char	*data;
+	bool	concat;
 
 	j = i;
+	concat = false;
 	data = malloc(ft_strlen(input) + 1);
 	if (!data)
 		return (-1);
@@ -46,7 +48,9 @@ static int	handle_token(t_quote **quote_list, char *input, int i)
 		i++;
 	}
 	data[i - j] = '\0';
-	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE));
+	if (input[i] && input[i] != ' ')
+		concat = true;
+	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE, concat));
 	return (i);
 }
 
@@ -72,9 +76,11 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 	char	*data;
 	char	c;
 	int		j;
+	bool	concat;
 
 	i = 0;
 	j = 0;
+	concat = false;
 	if (input[i] && (input[i] == '\'' || input[i] == '"'))
 	{
 		data = ft_calloc(sizeof(char), ft_strlen(input) + 1);
@@ -82,14 +88,20 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 		while (input[i] && input[i] != c)
 			data[j++] = input[i++];
 		data[j] = '\0';
+		if (input[i + 1] && input[i + 1] != ' ')
+			concat = true;
 		if (j == 0)
-			lst_quote_add(quote_list, ft_lstnew_quote(data, INVALID_QUOTE));
+			lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, INVALID_QUOTE, concat));
 		else if (input[i] == c && c == '\'')
-			i += lst_quote_add(quote_list, ft_lstnew_quote(data, SINGLE_QUOTE));
+			i += lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, SINGLE_QUOTE, concat));
 		else if (input[i] == c && c == '"')
-			i += lst_quote_add(quote_list, ft_lstnew_quote(data, DOUBLE_QUOTE));
+			i += lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, DOUBLE_QUOTE, concat));
 		else
-			lst_quote_add(quote_list, ft_lstnew_quote(data, INVALID_QUOTE));
+			lst_quote_add(quote_list, \
+						ft_lstnew_quote(data, INVALID_QUOTE, concat));
 	}
 	return (i);
 }

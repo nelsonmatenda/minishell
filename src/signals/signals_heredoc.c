@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 18:54:20 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 15:43:38 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:03:05 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 	if (sig == SIGINT)
 // 	{
 // 		g_signal = SIGNAL_CTRL_C;
-// 		//ft_putstr_fd("\n", STDOUT_FILENO);
+// 		ft_putstr_fd("\n", STDOUT_FILENO);
 // 		return ;
 // 	}
 // }

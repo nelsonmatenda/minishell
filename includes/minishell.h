@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 12:39:28 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:36:20 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ typedef struct s_env_str
 	struct s_env_str	*next;
 }						t_env_str;
 
+t_shell			*get_addr(void *addr, int i);
+int				is_valid_quote(t_quote *list);
+int 			get_quote_type(char *input, char c, int i, int j);
 void			p_error_cmd(char *s);
 char			**ft_split_mod(char const *s);
 void			create_builtin_parent(t_builtin *parent_builtin);

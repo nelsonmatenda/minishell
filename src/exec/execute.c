@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:02:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 12:08:26 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:15:11 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ int	ft_exec(t_shell *shell)
 			close(pipe_fd[1]);
 		i++;
 	}
-	while (wait(NULL) > 0)
-		;
 	return (0);
 }

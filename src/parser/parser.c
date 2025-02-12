@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/06 18:14:50 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:14:22 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	parsing(t_shell *shell)
 	shell->cmd[++i] = NULL;
 }
 
-static int	is_valid_quote(t_quote *list)
+int	is_valid_quote(t_quote *list)
 {
 	t_quote	*aux;
 

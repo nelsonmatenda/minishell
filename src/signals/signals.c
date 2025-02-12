@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matenda <matenda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 16:34:36 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/08 14:02:22 by matenda          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:48:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ctrl_handler(int sig)
+// t_shell *get_addr(void *addr, int i)
+// {
+// 	static t_shell *allocated_addr;
+// 	if (i == 1)
+// 	{
+// 		t_shell *allocated_addr = (t_shell *)addr;
+// 		return (allocated_addr);
+// 	}
+// 	return (allocated_addr);
+// }
+
+void ctrl_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -24,9 +35,9 @@ void	ctrl_handler(int sig)
 	}
 }
 
-static void	handler_ctrl_c(void)
+static void handler_ctrl_c(void)
 {
-	struct sigaction	sa;
+	struct sigaction sa;
 
 	sa.sa_handler = ctrl_handler;
 	sa.sa_flags = SA_RESTART;
@@ -34,9 +45,9 @@ static void	handler_ctrl_c(void)
 	sigaction(SIGINT, &sa, NULL);
 }
 
-static void	handler_ctrl_backslash(void)
+static void handler_ctrl_backslash(void)
 {
-	struct sigaction	ctrl_backslash;
+	struct sigaction ctrl_backslash;
 
 	ctrl_backslash.sa_handler = SIG_IGN;
 	ctrl_backslash.sa_flags = SA_RESTART;
@@ -44,21 +55,21 @@ static void	handler_ctrl_backslash(void)
 	sigaction(SIGQUIT, &ctrl_backslash, NULL);
 }
 
-static void	signal_terms(void)
+static void signal_terms(void)
 {
-	struct termios	term;
+	struct termios term;
 
 	if (tcgetattr(1, &term))
 	{
 		ft_putstr_fd("mini: tcgetattr failed\n", 2);
-		return ;
+		return;
 	}
 	term.c_lflag &= ~ECHOCTL;
 	if (tcsetattr(1, 0, &term))
 		ft_putstr_fd("mini: tcsetattr failed\n", 2);
 }
 
-void	signals(void)
+void signals(void)
 {
 	signal_terms();
 	handler_ctrl_c();

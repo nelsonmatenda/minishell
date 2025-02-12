@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 15:10:14 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:27:23 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	execute_child(t_shell *shell, int i, int prev_fd, int *pipe_fd)
 	if (!cmd_path)
 	{
 		p_error_cmd(shell->cmd[i]->args[0]);
+		shell->exit_status = 127;
 		exit(EXIT_FAILURE);
 	}
 	if (shell->cmd[i]->args)

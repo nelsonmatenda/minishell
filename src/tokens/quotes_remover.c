@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 12:39:39 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:04:21 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,11 @@ int	expand_env(char **input, char **envp)
 	return (1);
 }
 
-t_quote	*expand_env_var(char *input, char **envp)
+static void	sub_expand(t_quote *tmp_q_list, char **envp)
 {
-	t_quote	*quotes_list;
-	t_quote	*tmp_q_list;
-	int		i;
+	int	i;
 
-	quotes_list = convert_str_to_quote_list(input);
-	determine_token_types(quotes_list);
-	tmp_q_list = quotes_list;
+	i = 0;
 	while (tmp_q_list)
 	{
 		i = 0;
@@ -101,6 +97,18 @@ t_quote	*expand_env_var(char *input, char **envp)
 		}
 		tmp_q_list = tmp_q_list->next;
 	}
-	concatenate_quotes(&quotes_list);
+}
+
+t_quote	*expand_env_var(char *input, char **envp)
+{
+	t_quote	*quotes_list;
+	t_quote	*tmp_q_list;
+
+	quotes_list = convert_str_to_quote_list(input);
+	determine_token_types(quotes_list);
+	tmp_q_list = quotes_list;
+	sub_expand(tmp_q_list, envp);
+	if (is_valid_quote(quotes_list))
+		concatenate_quotes(&quotes_list);
 	return (quotes_list);
 }

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 20:39:34 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:37:41 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ void	minishell(t_shell *shell)
 	while (1)
 	{
 		signals();
-		shell->input = readline("👽-➤ ");
+		shell->input = readline("mini> ");
+		if (g_signal == SIGNAL_CTRL_C)
+			shell->exit_status = 130;
 		if (!shell->input)
 		{
 			ft_putstr_fd("exit\n", STDOUT_FILENO);
@@ -67,6 +69,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
+	g_signal = 0;
 	init_shell(&shell, envp);
 	minishell(&shell);
 	return (ft_exit(&shell));

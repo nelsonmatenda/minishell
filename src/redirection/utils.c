@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:40:11 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 10:28:37 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:16:16 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	status_exit(pid_t pid, t_shell *shell)
 	int	status;
 
 	signal(SIGINT, SIG_IGN);
+	g_signal = 0;
 	if (waitpid(pid, &status, 0) == -1)
 	{
 		perror("waitpid");
@@ -53,7 +54,7 @@ void	status_exit(pid_t pid, t_shell *shell)
 	{
 		if (WIFEXITED(status))
 			shell->exit_status = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
+		if (WIFSIGNALED(status))
 			shell->exit_status = 128 + WTERMSIG(status);
 	}
 }

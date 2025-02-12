@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 10:26:18 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:27:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ char	*create_tmp_file(t_shell *shell)
 	char	*name;
 	int		fd;
 
-	if (shell->hr_filename)
-		name = shell->hr_filename;
-	else
-		name = ft_strdup(HR_FILENAME);
+	(void)shell;
+	name = ft_strdup(HR_FILENAME);
 	if (!name)
 		return (NULL);
 	while (1)

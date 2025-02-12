@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_lst_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:01:54 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 12:23:58 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:25:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,15 @@ void	concatenate_quotes(t_quote **quote_list)
 		else
 			current = current->next;
 	}
+}
+
+int get_quote_type(char *input, char c, int i, int j)
+{
+	if (input[i] == c && c == '\'')
+		return SINGLE_QUOTE;
+	if (input[i] == c && c == '"')
+		return DOUBLE_QUOTE;
+	if (j == 0)
+		return INVALID_QUOTE;
+	return INVALID_QUOTE;
 }

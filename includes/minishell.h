@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/11 10:29:31 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:32:28 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_quote
 	t_token_type	token_type;
 	struct s_quote	*next;
 	int				has_add;
+	bool			concat;
 }					t_quote;
 
 typedef struct s_command
@@ -110,7 +111,7 @@ int				expand_env(char **input, char **envp);
 t_quote			*expand_env_var(char *input, char **envp);
 char			*remove_quotes_expand_env_var(char *input, char **envp);
 int				lst_quote_add(t_quote **lst, t_quote *new);
-t_quote			*ft_lstnew_quote(char *data, t_enum_quote type);
+t_quote			*ft_lstnew_quote(char *data, t_enum_quote type, bool concat);
 char			**get_paths(char *envp[], char *s);
 void			determine_token_types(t_quote *quote_list);
 // PARSER

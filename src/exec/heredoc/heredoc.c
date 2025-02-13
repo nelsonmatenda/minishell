@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/12 18:27:06 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:18:42 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,16 @@ int	heredoc(t_shell *shell, t_command *cmd)
 	i = -1;
 	while (delim[++i])
 	{
-		if (shell->hr_filename)
+		if (cmd->files)
 			clean_heredoc_file(shell);
-		shell->hr_filename = create_tmp_file(shell);
-		if (!shell->hr_filename)
-			return (0);
-		fd = open(shell->hr_filename, O_RDWR, 0644);
+		cmd->files = create_tmp_file(shell);
+		if (!cmd->files)
+			return (-1);
+		fd = open(cmd->files, O_RDWR, 0644);
 		if (fd == -1)
 			return (-1);
 		if (!read_heredoc(shell, cmd, delim[i], fd))
 			return (exit(0), -1);
 	}
-	fd = open(shell->hr_filename, O_RDONLY, 0644);
-	if (fd == -1)
-		return (-1);
-	return (fd);
+	return (1);
 }

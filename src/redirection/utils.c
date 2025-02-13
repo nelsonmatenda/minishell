@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:40:11 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 17:16:16 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:15:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	setup_pipe(int pipe_fd[2])
 	return (0);
 }
 
-void	persist_hr(t_shell *shell, int fd)
+void	persist_hr(t_command *cmd, int fd)
 {
 	dup2(fd, STDIN_FILENO);
 	close(fd);
-	unlink(shell->hr_filename);
+	unlink(cmd->files);
 }
 
 void	status_exit(pid_t pid, t_shell *shell)

@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   process_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 13:02:53 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/13 10:18:55 by nfigueir         ###   ########.fr       */
+/*   Created: 2025/02/12 18:51:24 by nfigueir          #+#    #+#             */
+/*   Updated: 2025/02/12 19:15:07 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-int	ft_exec(t_shell *shell)
+void	process_heredocs(t_shell *shell)
 {
 	int	i;
-	int	prev_fd;
-	int	pipe_fd[2];
 
 	i = 0;
-	prev_fd = -1;
-	pipe_fd[0] = -1;
-	pipe_fd[1] = -1;
 	while (shell->cmd[i])
 	{
-		if (shell->cmd[i + 1] && setup_pipe(pipe_fd) == -1)
-			return (-1);
-		if (handle_process(shell, i, &prev_fd, pipe_fd) == -1)
-			return (-1);
-		if (shell->cmd[i + 1])
-			close(pipe_fd[1]);
+		if (shell->cmd[i]->delim && (heredoc(shell, shell->cmd[i]) == -1))
+			return ;
 		i++;
 	}
-	return (0);
 }

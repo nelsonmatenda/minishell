@@ -48,7 +48,8 @@ SRCS	+= $(addprefix src/exec/, $(addsuffix .c, \
 SRCS	+= $(addprefix src/exec/heredoc/, $(addsuffix .c, \
 			heredoc \
 			expand_var_heredoc \
-			heredoc_utils))
+			heredoc_utils \
+			process_heredoc))
 SRCS	+= $(addprefix src/builtin/echo/, $(addsuffix .c, \
 			echo))
 SRCS	+= $(addprefix src/builtin/pwd/, $(addsuffix .c, \

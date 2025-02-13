@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 13:13:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:31:06 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,23 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 	int		i;
 	int		j;
 	char	c;
-	char	*data;
-	bool	concat;
-	int		type;
+	t_aux	aux;
 
 	i = 0;
 	j = 0;
-	concat = false;
+	aux.concat = false;
 	if (!input[i] || (input[i] != '\'' && input[i] != '"'))
 		return (0);
-	data = ft_calloc(sizeof(char), ft_strlen(input) + 1);
+	aux.data = ft_calloc(sizeof(char), ft_strlen(input) + 1);
 	c = input[i++];
 	while (input[i] && input[i] != c)
-		data[j++] = input[i++];
-	data[j] = '\0';
+		aux.data[j++] = input[i++];
+	aux.data[j] = '\0';
 	if (input[i + 1] && input[i + 1] != ' ')
-		concat = true;
-	type = get_quote_type(input, c, i, j);
-	i += lst_quote_add(quote_list, ft_lstnew_quote(data, type, concat));
+		aux.data = true;
+	aux.type = get_quote_type(input, c, i, j);
+	i += lst_quote_add(quote_list, \
+						ft_lstnew_quote(aux.data, aux.type, aux.concat));
 	return (i);
 }
 

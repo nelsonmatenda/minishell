@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 16:36:20 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:30:52 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_command
 	int		delim_in_quotes;
 	int		last_is_delim;
 	int		append;
+	char	*files;
 }			t_command;
 
 typedef struct s_shell
@@ -93,9 +94,16 @@ typedef struct s_env_str
 	struct s_env_str	*next;
 }						t_env_str;
 
+typedef struct s_aux
+{
+	char	*data;
+	bool	concat;
+	int		type;
+}			t_aux;
+
 t_shell			*get_addr(void *addr, int i);
 int				is_valid_quote(t_quote *list);
-int 			get_quote_type(char *input, char c, int i, int j);
+int				get_quote_type(char *input, char c, int i, int j);
 void			p_error_cmd(char *s);
 char			**ft_split_mod(char const *s);
 void			create_builtin_parent(t_builtin *parent_builtin);
@@ -140,13 +148,14 @@ void			handler_pipe(t_command **cur, t_quote **tokens, \
 					t_command **cmd, int *i);
 void			expand_status_var(t_shell *shell);
 int				parser(t_shell *shell);
-void			persist_hr(t_shell *shell, int fd);
+void			persist_hr(t_command *cmd, int fd);
 void			destroy_cmd(t_command **cmd);
 void			signals(void);
 void			signals_heredoc_parents(int sig);
 void			signals_child(void);
 void			signals_heredoc(int sa);
 int				heredoc(t_shell *shell, t_command *cmd);
+void			process_heredocs(t_shell *shell);
 //REDIRECT
 void			replace_status_var(char **input, char *s);
 void			expand_variables(t_shell *shell, char **line);

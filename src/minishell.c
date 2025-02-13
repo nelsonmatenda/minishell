@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/12 17:37:41 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:09:12 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	minishell(t_shell *shell)
 		add_history(shell->input);
 		if (shell->list_input && parser(shell))
 		{
+			process_heredocs(shell);
 			if (!is_builtin_parent(shell, shell->cmd[0]))
 				ft_exec(shell);
 		}

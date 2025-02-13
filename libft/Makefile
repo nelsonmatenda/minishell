@@ -36,6 +36,14 @@ SRC = ft_atoi \
 			ft_isvalid_var_name \
 			ft_strcpy \
 			ft_strcat \
+			ft_strjoin_with_two_point \
+			ft_find_char \
+			ft_strstr \
+			ft_strreplace \
+			ft_atol \
+			ft_iswhitespace \
+			ft_realloc \
+
 
 END				:=	\033[0m
 BLUE			:=	\033[0;34m

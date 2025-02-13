@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 10:13:54 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/23 19:15:23 by jquicuma         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:29:36 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *s);
 void	*ft_calloc(size_t count, size_t size);
-void	*ft_realloc(void *ptr, size_t newsize);
 char	*ft_strdup(const char *s);
 //part 2
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -77,5 +76,11 @@ int		ft_isvalid_var_name(char c);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strcpy(char *dest, char *src);
 int		ft_strcmp(char *s1, char *s2);
+char	*ft_strjoin_with_two_point(char const *s1, char const *s2, char c);
+ssize_t	ft_find_char(char *str, char c);
+char	*ft_strstr(const char *haystack, const char *needle);
+char	*ft_strreplace(char *orig, char *rep, char *with);
+long	ft_atol(const char *str);
+void	*ft_realloc(void *ptr, size_t old_size, size_t newsize);
 
 #endif

@@ -6,11 +6,13 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:45:01 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/29 13:42:24 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:07:34 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	g_signal;
 
 void	reset_shell(t_shell *shell)
 {
@@ -40,12 +42,23 @@ void	minishell(t_shell *shell)
 {
 	while (1)
 	{
-		shell->input = readline("👽-➤  ");
+		signals();
+		shell->input = readline("mini> ");
+		if (g_signal == SIGNAL_CTRL_C)
+			shell->exit_status = 130;
+		if (!shell->input)
+		{
+			ft_putstr_fd("exit\n", STDOUT_FILENO);
+			shell->exit_status = 0;
+			break ;
+		}
 		shell->list_input = expand_env_var(shell->input, shell->env);
+		add_history(shell->input);
 		if (shell->list_input && parser(shell))
 		{
-			if (!ft_strncmp(shell->cmd[0]->args[0], "exi", ft_strlen("exi")))
-				break ;
+			process_heredocs(shell);
+			if (!is_builtin_parent(shell, shell->cmd[0]))
+				ft_exec(shell);
 		}
 		reset_shell(shell);
 	}
@@ -57,7 +70,8 @@ int	main(int ac, char **av, char **envp)
 
 	(void)ac;
 	(void)av;
+	g_signal = 0;
 	init_shell(&shell, envp);
 	minishell(&shell);
-	return (ft_exit(&shell), 0);
+	return (ft_exit(&shell));
 }

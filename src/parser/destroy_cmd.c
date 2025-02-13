@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:09:28 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/01/28 11:30:08 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:08:42 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	destroy_cmd(t_command **cmd)
 			free(cmd[i]->out);
 		if (cmd[i]->delim)
 			free(cmd[i]->delim);
+		if (cmd[i]->files)
+			free(cmd[i]->files);
 		free(cmd[i]);
 		i++;
 	}

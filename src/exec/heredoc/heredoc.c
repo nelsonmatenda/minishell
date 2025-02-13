@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/13 12:32:41 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:12:56 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ int	heredoc(t_shell *shell, t_command *cmd)
 		if (!read_heredoc(shell, cmd, delim[i], fd))
 			return (exit(0), -1);
 	}
+	destroy_splited(delim);
 	return (1);
 }

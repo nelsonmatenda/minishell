@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 16:51:27 by matenda           #+#    #+#             */
-/*   Updated: 2025/02/11 10:18:01 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:20:01 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ static int	go_home(t_shell *shell, t_command *cmd)
 			ft_putstr_fd("mini:cd: HOME not set\n", 2);
 			shell->exit_status = 1;
 		}
-		return (1);
+		return (free(old_dir), 1);
 	}
+	free(old_dir);
 	return (0);
 }
 
@@ -63,7 +64,7 @@ static int	go_oldpwd(t_shell *shell, t_command *cmd)
 		else
 		{
 			shell->exit_status = 1;
-			return (ft_putstr_fd("mini:cd: OLDPWD not set\n", 2), 1);
+			return (free(old_dir), ft_putstr_fd(P_CD_OLD, 2), 1);
 		}
 	}
 	return (0);

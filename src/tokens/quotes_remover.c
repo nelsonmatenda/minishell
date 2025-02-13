@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_remover.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:11:51 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 13:04:21 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:48:24 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static int	verify_env_var(char **input, char **envp, int i)
 	tmp = malloc(ft_strlen(ptr) + 2);
 	if (!tmp)
 		return (0);
-	while (ptr[i] && ptr[i] != ' ' && ptr[i] != '\'' && ptr[i] != '"' \
-			&& ft_isvalid_var_name(ptr[i]))
+	while (ptr[i] && !ft_iswhitespace(ptr[i]) && \
+			ptr[i] != '\'' && ptr[i] != '"' && ft_isvalid_var_name(ptr[i]))
 		tmp[j++] = ptr[i++];
 	tmp[j++] = '=';
 	tmp[j] = '\0';

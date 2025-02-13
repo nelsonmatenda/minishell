@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_str_to_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/13 10:35:23 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:51:18 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static int	handle_token(t_quote **quote_list, char *input, int i)
 	data = malloc(ft_strlen(input) + 1);
 	if (!data)
 		return (-1);
-	while (input[i] && input[i] != ' ' && !ft_strchr("<>|", input[i]) && \
-			input[i] != '\'' && input[i] != '"')
+	while (input[i] && !ft_iswhitespace(input[i]) && \
+			!ft_strchr("<>|", input[i]) && input[i] != '\'' && input[i] != '"')
 	{
 		data[i - j] = input[i];
 		i++;
 	}
 	data[i - j] = '\0';
-	if (input[i] && input[i] != ' ')
+	if (input[i] && !ft_iswhitespace(input[i]))
 		concat = true;
 	lst_quote_add(quote_list, ft_lstnew_quote(data, NO_QUOTE, concat));
 	return (i);
@@ -63,7 +63,7 @@ static int	add_to_list_no_quote(t_quote **quote_list, char *input)
 	{
 		if (ft_strchr("<>|", input[i]))
 			return (handle_separator(quote_list, input, i));
-		else if (input[i] != ' ')
+		else if (!ft_iswhitespace(input[i]))
 			return (handle_token(quote_list, input, i));
 		i++;
 	}
@@ -89,7 +89,7 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 	aux.data[j] = '\0';
 	aux.type = get_quote_type(input, c, i, j);
 	if (aux.type != INVALID_QUOTE)
-		if (input[i + 1] && input[i + 1] != ' ')
+		if (input[i + 1] && !ft_iswhitespace(input[i + 1]))
 			aux.concat = true;
 	i += lst_quote_add(quote_list, \
 						ft_lstnew_quote(aux.data, aux.type, aux.concat));
@@ -109,7 +109,7 @@ t_quote	*convert_str_to_quote_list(char *input)
 	len = ft_strlen(input);
 	while (i < len)
 	{
-		while (input[i] && input[i] == ' ')
+		while (input[i] && ft_iswhitespace(input[i]))
 			i++;
 		if (input[i] == '\'' || input[i] == '"')
 			i += add_to_list_with_quote(&quote_list, &input[i]);

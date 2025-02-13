@@ -5,6 +5,26 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Attach to Valgrind",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/minishell", // Caminho para o seu executável
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"miDebuggerPath": "/usr/bin/gdb", // Caminho para o GDB
+			"setupCommands": [
+				{
+					"description": "Conectar ao Valgrind",
+					"text": "target remote | vgdb --pid=14099", // Use o PID correto
+					"ignoreFailures": false
+				}
+			]
+		},
+		{
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",

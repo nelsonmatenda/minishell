@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_str_to_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jquicuma <jquicuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/12 13:13:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:40:09 by jquicuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 	while (input[i] && input[i] != c)
 		data[j++] = input[i++];
 	data[j] = '\0';
-	if (input[i + 1] && input[i + 1] != ' ')
-		concat = true;
 	type = get_quote_type(input, c, i, j);
+	if (type != INVALID_QUOTE)
+		if (input[i + 1] && input[i + 1] != ' ')
+			concat = true;
 	i += lst_quote_add(quote_list, ft_lstnew_quote(data, type, concat));
 	return (i);
 }
@@ -100,12 +101,14 @@ t_quote	*convert_str_to_quote_list(char *input)
 {
 	t_quote	*quote_list;
 	int		i;
+	int		len;
 
 	i = 0;
 	if (!input)
 		return (NULL);
 	quote_list = NULL;
-	while (input[i])
+	len = ft_strlen(input);
+	while (i < len)
 	{
 		while (input[i] && input[i] == ' ')
 			i++;

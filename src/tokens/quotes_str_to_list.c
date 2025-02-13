@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:55:16 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/13 10:31:06 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:35:23 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ static int	add_to_list_with_quote(t_quote **quote_list, char *input)
 	while (input[i] && input[i] != c)
 		aux.data[j++] = input[i++];
 	aux.data[j] = '\0';
-	if (input[i + 1] && input[i + 1] != ' ')
-		aux.data = true;
 	aux.type = get_quote_type(input, c, i, j);
+	if (aux.type != INVALID_QUOTE)
+		if (input[i + 1] && input[i + 1] != ' ')
+			aux.concat = true;
 	i += lst_quote_add(quote_list, \
 						ft_lstnew_quote(aux.data, aux.type, aux.concat));
 	return (i);
@@ -99,12 +100,14 @@ t_quote	*convert_str_to_quote_list(char *input)
 {
 	t_quote	*quote_list;
 	int		i;
+	int		len;
 
 	i = 0;
 	if (!input)
 		return (NULL);
 	quote_list = NULL;
-	while (input[i])
+	len = ft_strlen(input);
+	while (i < len)
 	{
 		while (input[i] && input[i] == ' ')
 			i++;

@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 09:19:29 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/13 10:27:04 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:22:48 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,16 @@ void	init_shell(t_shell	*shell, char **envp)
 	shell->hr_filename = NULL;
 	shell->exit_status = 0;
 	shell->env = copy_env(envp);
+}
+
+void	init_cmd(t_command **cmd)
+{
+	(*cmd)->args = NULL;
+	(*cmd)->in = NULL;
+	(*cmd)->out = NULL;
+	(*cmd)->delim = NULL;
+	(*cmd)->delim_in_quotes = 0;
+	(*cmd)->last_is_delim = 0;
+	(*cmd)->append = 0;
+	(*cmd)->files = NULL;
 }

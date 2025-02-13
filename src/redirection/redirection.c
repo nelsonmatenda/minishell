@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:25:53 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/13 10:14:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:56:17 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,17 @@ int	handler_redir(t_shell *shell, t_command *cmd)
 	int	flags;
 	int	fd_heredoc;
 
+	(void)shell;
 	if (cmd->in && process_files(cmd->in, O_RDONLY, STDIN_FILENO) == -1)
 		return (-1);
-	fd_heredoc = open_file(cmd->files, O_RDONLY);
 	if (cmd->last_is_delim)
 	{
+		fd_heredoc = open_file(cmd->files, O_RDONLY);
 		if (fd_heredoc != -1)
 			persist_hr(cmd, fd_heredoc);
+		else
+			unlink(cmd->files);
 	}
-	else if (fd_heredoc != -1)
-		unlink(shell->hr_filename);
 	if (cmd->out)
 	{
 		flags = O_WRONLY | O_CREAT;

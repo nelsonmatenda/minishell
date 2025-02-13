@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 08:53:27 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/11 10:21:20 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:30:46 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	search_update_var(t_shell *shell, char *name, char *value)
 	value_len = ft_strlen(value);
 	while (shell->env[i])
 	{
-		if (strncmp(shell->env[i], name, name_len) == 0)
+		if (ft_strncmp(shell->env[i], name, name_len) == 0)
 		{
 			free(shell->env[i]);
 			new_var = malloc((name_len + value_len + 1) * sizeof(char));

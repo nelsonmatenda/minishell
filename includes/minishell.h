@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 02:01:57 by jquicuma          #+#    #+#             */
-/*   Updated: 2025/02/13 10:30:52 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:22:09 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_aux
 	int		type;
 }			t_aux;
 
+void			init_cmd(t_command **cmd);
 t_shell			*get_addr(void *addr, int i);
 int				is_valid_quote(t_quote *list);
 int				get_quote_type(char *input, char c, int i, int j);

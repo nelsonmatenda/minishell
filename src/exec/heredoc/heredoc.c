@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:31:58 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/13 10:18:42 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:32:41 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	read_heredoc(t_shell *shell, t_command *cmd, char *delim, int fd)
 {
 	char	*line;
 
+	line = NULL;
 	while (1)
 	{
 		signal(SIGINT, signals_heredoc);
@@ -107,6 +108,7 @@ int	heredoc(t_shell *shell, t_command *cmd)
 		return (-1);
 	delim = ft_split(cmd->delim, ' ');
 	i = -1;
+	cmd->files = NULL;
 	while (delim[++i])
 	{
 		if (cmd->files)

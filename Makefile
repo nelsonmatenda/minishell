@@ -5,7 +5,7 @@ GREEN	= \033[0;32m
 #######################################################
 NAME	= minishell
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -MMD -MP -g3
+CFLAGS	= -Wall -Wextra -Werror
 LDLIBS	= -lreadline
 SRCS	= $(addprefix src/, $(addsuffix .c, \
 			minishell\

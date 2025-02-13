@@ -6,7 +6,7 @@
 /*   By: nfigueir <nfigueir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:40:41 by nfigueir          #+#    #+#             */
-/*   Updated: 2025/02/13 09:27:35 by nfigueir         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:26:42 by nfigueir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	parser(t_shell *shell)
 	shell->cmd = ft_calloc(sizeof(t_command *), (size + 1));
 	if (!shell->cmd)
 		return (0);
+	//init_cmd(shell->cmd);
 	parsing(shell);
 	return (1);
 }
